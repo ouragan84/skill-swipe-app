@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Text, View, Platform, TextInput} from 'react-native';
+import {API_URL} from '@env';
 
-const URL="http://127.0.0.1:3000";
+// const URL="http://127.0.0.1:3000";
 // const URL="https://reactnative.dev/movies.json";
 
 class App extends Component {
@@ -14,8 +15,8 @@ class App extends Component {
   };
 
   fetchLogs = async () => {
-    const json_logs = await fetch(URL+'/log').then((response) => response.json());
-    const logs_num = await fetch(URL+'/log/count').then((response) => response.json());
+    const json_logs = await fetch(API_URL+'/logs').then((response) => response.json());
+    const logs_num = await fetch(API_URL+'/logs/count').then((response) => response.json());
 
     this.setState({
       logs: JSON.stringify(json_logs, null, 2),
@@ -40,7 +41,7 @@ class App extends Component {
       "title": this.state.title,
       "message": this.state.content
     }))
-    fetch(URL+'/log', {
+    fetch(API_URL+'/logs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,6 +59,8 @@ class App extends Component {
         <View>
           <Text style={[styles.basetext, styles.title]}>LOGS APP</Text>
         </View>
+
+        <Text style={[styles.basetext]}>API URL = {API_URL}</Text>
 
         <TextInput
           style={styles.inputtitle}
