@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screens/Home';
 import Logs from './screens/Logs';
 import Counter from './screens/Counter';
+import TestCS from './screens/TestCS';
 
 import useCachedResources from './hooks/useCachedResources';
 
@@ -41,6 +42,11 @@ function NavStack() {
        name="Counter" 
        component={ Counter } 
        options={{ title: 'Cool Counter' }}
+      />
+      <Stack.Screen 
+       name="TestCS" 
+       component={ TestCS } 
+       options={{ title: 'Test Screen' }}
       />
     </Stack.Navigator>
   );
