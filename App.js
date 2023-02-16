@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screens/Home';
 import Logs from './screens/Logs';
 import Counter from './screens/Counter';
+import Onboard from './screens/Onboard';
 
 import useCachedResources from './hooks/useCachedResources';
 
@@ -15,7 +16,7 @@ const Stack = createStackNavigator();
 function NavStack() {
   return (
      <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Onboard"
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -31,6 +32,11 @@ function NavStack() {
         name="Home" 
         component={ Home } 
         options={{ title: 'Home' }}
+      />
+      <Stack.Screen
+        name="Onboard"
+        component={ Onboard }
+        options={{ title: 'Onboard Page'}}
       />
       <Stack.Screen 
         name="Logs" 
