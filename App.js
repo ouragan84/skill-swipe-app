@@ -1,7 +1,7 @@
 // App.js
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer , DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './screens/Home';
@@ -13,9 +13,18 @@ import useCachedResources from './hooks/useCachedResources';
 
 const Stack = createStackNavigator();
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white'
+  },
+};
+
 function NavStack() {
   return (
      <Stack.Navigator
+        
         initialRouteName="Home"
         screenOptions={{
           headerTitleAlign: 'center',
@@ -45,6 +54,7 @@ function NavStack() {
       />
       <Stack.Screen 
        name="TestCS" 
+       
        component={ TestCS } 
        options={{ title: 'Test Screen' }}
       />
@@ -60,7 +70,7 @@ export default function App() {
     return null;
   } else {
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={MyTheme} >
         <NavStack />
       </NavigationContainer>
     );
