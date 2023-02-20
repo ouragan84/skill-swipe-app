@@ -1,34 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Text, Image, StyleSheet, View} from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Entypo';
+import {styles} from '../../constants/styles';
+import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics';
 
-const styles = StyleSheet.create({
-    buttonStyle: {
-        height:60,
-        paddingVertical: 20,
-        paddingHorizontal: 20,
-        width:340,
-        borderRadius: 18,
+function srButtonStyle(p) {
+    return{
+        backgroundColor: p ? '#28A0BB' : 'white',
+        height:verticalScale(60),
+        paddingVertical: moderateScale(20),
+        paddingHorizontal: moderateScale(20),
+        width:horizontalScale(300),
+        borderRadius: moderateScale(18),
         margin: 12,
         borderWidth: 1,
-        borderColor: "#ADAFBB",
-        padding: 10,
-        fontSize: 16,
+        borderColor: p ? "#fff": "#ADAFBB",
+        fontSize: moderateScale(18),
         flexDirection: "row",
         justifyContent: 'space-between',
-    },
-    iconStyle: {
-        fontSize:20,
-        color: "#ADAFBB"
     }
-  });
+}
+function srIconStyle(p) {
+    return {
+        fontSize:moderateScale(18),
+        color: p ? '#fff': "#ADAFBB" 
+    }
+}
 
 export default function SRButtonM(props) {
+    const [pressed, setPressed] = useState(false);
+
     return (
-        <View style={styles.buttonStyle}>
-            <Text style={{fontSize:16}}>{props.name}</Text>
-            <Icon style={styles.iconStyle} name="check"/>
-        </View>
+        <TouchableWithoutFeedback onPress={()=>{
+            props.click()
+            setPressed(!pressed)
+            if (pressed){
+                // add tag
+            }else{
+                // remove tag
+            }
+        }}>
+            <View style={srButtonStyle(pressed)}>
+                <Text style={{fontSize:moderateScale(16), color: pressed ? "#fff": "black", fontWeight: pressed ? "bold" : "normal", letterSpacing:pressed ? .2 : .5}}>{props.name}</Text>
+                <Icon style={srIconStyle(pressed)} name="check"/>
+            </View>
+        </TouchableWithoutFeedback>
     );
 };
 

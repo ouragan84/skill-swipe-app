@@ -29,7 +29,7 @@ function NavStack() {
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor: '#621FF7',
+            backgroundColor: '#eee',
           },
           headerTintColor: '#fff',
           headerTitleStyle :{
@@ -37,10 +37,11 @@ function NavStack() {
           },
         }}
       >
+
       <Stack.Screen 
         name="Home" 
         component={ Home } 
-        options={{ title: 'Home' }}
+        options={{ title: 'Home', headerShown: false }}
       />
       <Stack.Screen 
         name="Logs" 
@@ -56,7 +57,7 @@ function NavStack() {
        name="TestCS" 
        
        component={ TestCS } 
-       options={{ title: 'Test Screen' }}
+       options={{ title: 'Test Screen', headerShown: false }}
       />
     </Stack.Navigator>
   );
