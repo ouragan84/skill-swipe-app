@@ -1,14 +1,6 @@
 import React from 'react';
 import {Text, Image, StyleSheet} from 'react-native';
-
-const styles = StyleSheet.create({
-    imgStyle: {
-      marginBottom: 40,
-      borderRadius: 15,
-      height: 400,
-      width: 270
-    },
-  });
+import {styles} from '../../constants/styles';
 
 export default function ImageM(props) {
     return (
