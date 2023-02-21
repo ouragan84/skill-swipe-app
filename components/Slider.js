@@ -1,8 +1,7 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
-import React from 'react';
-import Slides from '../data'
+import React, { useState } from 'react';
+import Slides from '../data' 
 import SlideItem from './SlideItem'
-import Pagination from './Pagination'
 import ButtonM from '../components/common/ButtonM';
 import ImageM from '../components/common/ImageM'
 import InputM from '../components/common/InputM'
@@ -16,18 +15,26 @@ console.log("a")
 }
 
 const Slider = () => {
+    const [dots, setDots] = useState(0)
+
     return (
         <View>
-            <FlatList data={Slides} renderItem=
-            {({item}) => <SlideItem item={item} />}
-            horizontal
+            <FlatList showsHorizontalScrollIndicator={false}
+                onScroll={(event) => {
+                    let xOffset = event.nativeEvent.contentOffset.x
+                    let contentWidth = event.nativeEvent.contentSize.width
+                    let value = xOffset / contentWidth
+                    setDots(Math.floor(value * 2/.6))
+                }}
+                data={Slides} renderItem= {
+                    ({item}) => <SlideItem item={item} />
+                }
+                horizontal
                 pagingEnabled
                 snapToAlignment='center'
-                showHorizontalScrollIndicator={false}
          />
-         <Pagination data={Slides}/>
-         <View>
-           <ThreeDotsM name={[true,false,false]}/>
+         <View style={{alignItems: 'center', justifyContent: 'center' }}>
+           <ThreeDotsM name={Slides[dots].name}/>
            <ButtonM name="Create an account" click={clickMe}/>
            <Text style={{marginTop:moderateScale(25),fontSize: moderateScale(15)}}>Already have an account? <Text onPress={clickMe} style={{color:'#28A0BB',fontWeight: 'bold',}}>Sign In</Text></Text>
          </View>
@@ -36,5 +43,3 @@ const Slider = () => {
 };
 
 export default Slider;
-
-//const styles = StyleSheet.create({});
