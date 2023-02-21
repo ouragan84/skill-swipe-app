@@ -24,7 +24,6 @@ const MyTheme = {
 function NavStack() {
   return (
      <Stack.Navigator
-        
         initialRouteName="Home"
         screenOptions={{
           headerTitleAlign: 'center',
