@@ -23,7 +23,7 @@ export default SlideItem;
 const styles_ = StyleSheet.create({
     container: {
         width,
-        height:verticalScale(540),
+        height:verticalScale(565),
         alignItems: 'center'
     },
     content: {

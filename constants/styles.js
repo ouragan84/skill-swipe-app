@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     borderRadius: moderateScale(15),
     height: verticalScale(360),
     width: horizontalScale(230),
-    marginBottom: moderateScale(40),
+    marginBottom: moderateScale(30),
     marginTop: moderateScale(30),
   },
 
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
     color: '#28A0BB', 
     fontSize: moderateScale(30), 
     fontWeight: 'bold',
-    marginBottom:moderateScale(20)
+    marginBottom:moderateScale(15)
   },
 
   inputBoxStyle: {
@@ -59,27 +59,9 @@ export const styles = StyleSheet.create({
       left:45,
   },
 
-  srButtonStyle: {
-      height:verticalScale(60),
-      paddingVertical: moderateScale(20),
-      paddingHorizontal: moderateScale(20),
-      width:horizontalScale(300),
-      borderRadius: moderateScale(18),
-      margin: 12,
-      borderWidth: 1,
-      borderColor: "#ADAFBB",
-      fontSize: moderateScale(18),
-      flexDirection: "row",
-      justifyContent: 'space-between',
-  },
-  srIconStyle: {
-      fontSize:moderateScale(18),
-      color: "#ADAFBB"
-  },
-
   TDviewStyle: {
-      marginTop:moderateScale(10),
-      marginBottom:moderateScale(30),
+      marginTop:moderateScale(0),
+      marginBottom:moderateScale(15),
       flexDirection: "row",
       alignItems: 'center',
       justifyContent: 'center',
