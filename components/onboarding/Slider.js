@@ -20,7 +20,10 @@ const Slider = () => {
                     let xOffset = event.nativeEvent.contentOffset.x
                     let contentWidth = event.nativeEvent.contentSize.width
                     let value = xOffset / contentWidth
-                    setDots(Math.floor(value * 2/.45) < 0 ? 0 : Math.floor(value * 2/.45))
+                    let v = Math.floor(value * 2/.45)
+                    if(v<0) v = 0
+                    if(v>2) v = 2
+                    setDots(v)
                 }}
                 data={Slides} renderItem= {
                     ({item}) => <SlideItem item={item} />
