@@ -1,14 +1,10 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React, { useState } from 'react';
-import Slides from '../data' 
+import Slides from '../../data' 
 import SlideItem from './SlideItem'
-import ButtonM from '../components/common/ButtonM';
-import ImageM from '../components/common/ImageM'
-import InputM from '../components/common/InputM'
-import SRButtonM from '../components/common/SRButtonM'
-import ThreeDotsM from '../components/special/ThreeDotsM';
-import { styles } from '../constants/styles';
-import { horizontalScale, moderateScale, verticalScale } from '../components/helper/Metrics';
+import ButtonM from '../../components/common/ButtonM';
+import ThreeDotsM from '../../components/special/ThreeDotsM';
+import { horizontalScale, moderateScale, verticalScale } from '../../components/helper/Metrics';
 
 const clickMe = () => {
 console.log("a")
@@ -24,7 +20,7 @@ const Slider = () => {
                     let xOffset = event.nativeEvent.contentOffset.x
                     let contentWidth = event.nativeEvent.contentSize.width
                     let value = xOffset / contentWidth
-                    setDots(Math.floor(value * 2/.6) < 0 ? 0 : Math.floor(value * 2/.6))
+                    setDots(Math.floor(value * 2/.45) < 0 ? 0 : Math.floor(value * 2/.45))
                 }}
                 data={Slides} renderItem= {
                     ({item}) => <SlideItem item={item} />
@@ -43,3 +39,4 @@ const Slider = () => {
 };
 
 export default Slider;
+

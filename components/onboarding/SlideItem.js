@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
 import React from 'react';
-import {styles} from '../constants/styles';
-import ImageM from './common/ImageM';
-import { verticalScale } from './helper/Metrics';
+import {styles} from '../../constants/styles';
+import ImageM from '../common/ImageM';
+import { verticalScale } from '../helper/Metrics';
 
 const {width, height} = Dimensions.get('screen')
 

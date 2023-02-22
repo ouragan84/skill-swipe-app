@@ -1,22 +1,13 @@
 import React from 'react';
-import { Button, View, Text } from 'react-native';
-import {
-    createMaterialTopTabNavigator,
-    createAppContainer
-  } from "react-navigation";
+import { SafeAreaView} from 'react-native';
+import Slider from '../components/onboarding/Slider'
 
+const Onboard = () => {
+  return (
+    <SafeAreaView>
+      <Slider />
+    </SafeAreaView>
+  );
+};
 
-export default function Onboard(props) {
-    return (
-        <View style={{ flex: 1, alignItems : 'center', justifyContent: 'center' }}>
-        <Button
-          title="Create an Account"
-          onPress={() => props.navigation.navigate('Logs')}
-        />
-        <Button
-          title="Sign in"
-          onPress={() => props.navigation.navigate('Counter')}
-        />
-        </View>
-    );
-}
+export default Onboard;
