@@ -13,6 +13,10 @@ export default function Home(props) {
         title="Go to Counter"
         onPress={() => props.navigation.navigate('Counter')}
       />
+      <Button
+        title="Go to Test Screen"
+        onPress={() => props.navigation.navigate('Onboard')}
+      />
     </View>
   );
 }

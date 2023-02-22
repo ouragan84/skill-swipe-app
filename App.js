@@ -1,16 +1,25 @@
 // App.js
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer , DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './screens/Home';
 import Logs from './screens/Logs';
 import Counter from './screens/Counter';
+import Onboard from './screens/Onboard';
 
 import useCachedResources from './hooks/useCachedResources';
 
 const Stack = createStackNavigator();
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white'
+  },
+};
 
 function NavStack() {
   return (
@@ -19,7 +28,7 @@ function NavStack() {
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor: '#621FF7',
+            backgroundColor: '#eee',
           },
           headerTintColor: '#fff',
           headerTitleStyle :{
@@ -27,10 +36,11 @@ function NavStack() {
           },
         }}
       >
+
       <Stack.Screen 
         name="Home" 
         component={ Home } 
-        options={{ title: 'Home' }}
+        options={{ title: 'Home', headerShown: false }}
       />
       <Stack.Screen 
         name="Logs" 
@@ -41,6 +51,12 @@ function NavStack() {
        name="Counter" 
        component={ Counter } 
        options={{ title: 'Cool Counter' }}
+      />
+      <Stack.Screen 
+       name="Onboard" 
+       
+       component={ Onboard } 
+       options={{ title: 'Onboard', headerShown: false }}
       />
     </Stack.Navigator>
   );
@@ -54,7 +70,7 @@ export default function App() {
     return null;
   } else {
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={MyTheme} >
         <NavStack />
       </NavigationContainer>
     );
