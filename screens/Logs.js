@@ -1,12 +1,98 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity, Text, View, Platform, TextInput} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, View, Platform, TextInput, Image, Button} from 'react-native';
+import * as ImagePicker from 'expo-image-picker'
 import {API_URL} from '@env';
+
+// Import Document Picker
+import DocumentPicker from 'react-native-document-picker';
+
 
 export default function Logs (props) {
   const [logsText, setLogsText] = useState('Press FETCH and logs will appear here.');
   const [logsCount, setLogsCount] = useState('Count: -');
   const [logSendTitle, setLogSendTitle] = useState('');
   const [logSendMessage, setLogSendMessage] = useState('');
+
+
+  const [photo, setPhoto] = React.useState(null);
+  const [caption, setCaption] = useState("")
+
+
+  const [singleFile, setSingleFile] = React.useState(null);
+
+  const createFormData = (photoUri, body = {}) => {
+    const data = new FormData();
+
+    console.log('HELLO')
+  
+    // data.append('photo', {
+    //   name: photo.fileName,
+    //   type: photo.type,
+    //   uri: Platform.OS === 'ios' ? photo.replace('file://', '') : photo.uri, //  const  uri = image?.uri;
+    // });
+  
+
+    // Object.keys(body).forEach((key) => {
+    //   data.append(key, body[key]);
+    // });
+    var imageJSON = {
+      imageName:new Date().getTime()+"_profile.png",
+      avatar:photoUri,
+      //name:name,
+      //email:email,
+      //SocietyCode:sCOde,
+      //password:Password
+    }
+  
+    data.append('image', JSON.stringify(imageJSON))
+    //data.append('image', JSON.stringify(imageJSON))
+    //data.append('image', Buffer.from(imageJSON.avatar))
+  
+    console.log('form data: ', JSON.stringify(imageJSON))
+    //console.log('form data: ', Buffer.from(imageJSON.avatar))
+
+    return data;
+  };
+
+
+ const handleChoosePhoto = async () => {
+   // No permissions request is necessary for launching the image library
+   let result = await ImagePicker.launchImageLibraryAsync({
+     mediaTypes: ImagePicker.MediaTypeOptions.All,
+     allowsEditing: true,
+     aspect: [4, 3],
+     quality: 1,
+   });
+
+   console.log(result);
+
+   if (!result.canceled) {
+      console.log('photo uri: ', result.assets[0].uri)
+     setPhoto(result.assets[0].uri);
+   }
+ };
+
+  const handleUploadPhoto = () => {
+    //console.log(`${API_URL}/api/upload`)
+    let uid = '123'
+    let url = 'http://localhost:3000' + '/image/api/upload/' + uid
+    fetch(url, {
+      method: 'POST',
+      // headers: {
+      //   'Content-Type': 'multipart/form-data',
+      // },
+      body: createFormData(photo, { userId: '123' }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log('response', response);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  };
+
+
 
   const sendLogs = () => {
     fetch(API_URL+'/logs', {
@@ -35,7 +121,6 @@ export default function Logs (props) {
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
         <Text>API URL = {API_URL}</Text>
-
         <TextInput
           style={styles.inputtitle}
           onChangeText={setLogSendTitle}
@@ -49,6 +134,19 @@ export default function Logs (props) {
           placeholder="Message"
         />
 
+<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      {photo && (
+        <>
+          <Image
+            source={{ uri: photo.uri }}
+            style={{ width: 300, height: 300 }}
+          />
+          <Button title="Upload Photo" onPress={handleUploadPhoto} />
+        </>
+      )}
+      <Button title="Choose Photo" onPress={handleChoosePhoto} />
+    </View>
+        
         <TouchableOpacity style={styles.button} onPress={sendLogs}>
           <Text>SEND</Text>
         </TouchableOpacity>
@@ -116,3 +214,5 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-mono'
   }
 });
+
+// "Content-Type": "multipart/form-data; boundary=some string"

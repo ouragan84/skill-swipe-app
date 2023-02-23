@@ -42,6 +42,7 @@ function NavStack() {
        component={ Counter } 
        options={{ title: 'Cool Counter' }}
       />
+      
     </Stack.Navigator>
   );
 }
