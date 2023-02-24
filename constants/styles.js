@@ -22,7 +22,15 @@ export const styles = StyleSheet.create({
   imgStyle: {
     borderRadius: moderateScale(15),
     height: verticalScale(360),
-    width: horizontalScale(230),
+    width: horizontalScale(250),
+    marginBottom: moderateScale(30),
+    marginTop: moderateScale(30),
+  },
+
+  logoImgStyle: {
+    borderRadius: moderateScale(25),
+    height: verticalScale(120),
+    width: horizontalScale(120),
     marginBottom: moderateScale(30),
     marginTop: moderateScale(30),
   },
@@ -49,6 +57,16 @@ export const styles = StyleSheet.create({
       borderColor: "#ADAFBB",
       padding: horizontalScale(15),
       fontSize: 16
+  },
+  inputBigBoxStyle: {
+    width:horizontalScale(300),
+    height:verticalScale(300),
+    borderRadius: moderateScale(18),
+    margin: moderateScale(10),
+    borderWidth: 1,
+    borderColor: "#ADAFBB",
+    padding: horizontalScale(15),
+    fontSize: 16
   },
   inputTextStyle: {
       paddingHorizontal:5,

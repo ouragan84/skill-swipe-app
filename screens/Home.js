@@ -14,8 +14,12 @@ export default function Home(props) {
         onPress={() => props.navigation.navigate('Counter')}
       />
       <Button
-        title="Go to Test Screen"
+        title="Go to Onboarding"
         onPress={() => props.navigation.navigate('Onboard')}
+      />
+      <Button
+        title="Go to Test Screen"
+        onPress={() => props.navigation.navigate('TestScreen')}
       />
     </View>
   );
