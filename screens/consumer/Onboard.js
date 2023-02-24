@@ -1,10 +1,10 @@
 import {StyleSheet, Text, View, FlatList, SafeAreaView} from 'react-native';
 import React, { useState } from 'react';
-import Slides from '../data' 
-import SlideItem from '../components/onboarding/SlideItem'
-import ButtonM from '../components/common/ButtonM';
-import ThreeDotsM from '../components/special/ThreeDotsM';
-import { horizontalScale, moderateScale, verticalScale } from '../components/helper/Metrics';
+import Slides from '../../data' 
+import SlideItem from '../../components/onboarding/SlideItem'
+import ButtonM from '../../components/common/ButtonM';
+import ThreeDotsM from '../../components/special/ThreeDotsM';
+import { horizontalScale, moderateScale, verticalScale } from '../../components/helper/Metrics';
 
 function clickMe() {
   console.log("b")

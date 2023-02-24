@@ -7,13 +7,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screens/Home';
 import Logs from './screens/Logs';
 import Counter from './screens/Counter';
-import Onboard from './screens/Onboard';
-import SignUp from './screens/SignUp';
+import Onboard from './screens/consumer/Onboard';
+import SignUp from './screens/consumer/register/SignUp';
 import TestScreen from './screens/TestScreen';
 
 import useCachedResources from './hooks/useCachedResources';
-import ProfileDetails from './screens/ProfileDetails';
+import ProfileDetails from './screens/consumer/register/ProfileDetails';
 import Describe from './screens/Describe';
+import EmailConfirmation from './screens/consumer/register/EmailConfirmation';
 
 const Stack = createStackNavigator();
 
@@ -79,6 +80,12 @@ function NavStack() {
        
        component={ Describe } 
        options={{ title: 'Describe', headerShown: false }}
+      />
+      <Stack.Screen 
+       name="EmailConfirmation" 
+       
+       component={ EmailConfirmation } 
+       options={{ title: 'EmailConfirmation', headerShown: false, gestureEnabled:false }}
       />
       <Stack.Screen 
        name="TestScreen" 

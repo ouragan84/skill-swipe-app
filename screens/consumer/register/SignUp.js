@@ -1,13 +1,8 @@
 import React from 'react';
 import {View,Text, SafeAreaView} from 'react-native';
-import InputM from '../components/common/InputM';
-import CButtonM from '../components/common/CButtonM';
-import NavbarM from '../components/common/NavbarM';
-import SRBoxM from '../components/common/SRBoxM';
-import LogoImageM from '../components/common/LogoImageM'
-import { horizontalScale, moderateScale } from '../components/helper/Metrics';
-import ButtonM from '../components/common/ButtonM';
-import { styles } from '../constants/styles';
+import LogoImageM from '../../../components/common/LogoImageM'
+import { horizontalScale, moderateScale } from '../../../components/helper/Metrics';
+import ButtonM from '../../../components/common/ButtonM';
 
 const clickMe = () => {
   console.log("c")
@@ -20,7 +15,7 @@ const TestScreen = (props) => {
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <LogoImageM source={require('../assets/images/logo.png')}/>
+      <LogoImageM source={require('../../../assets/images/logo.png')}/>
       <Text style={{fontSize:moderateScale(18), fontWeight:"bold", paddingBottom:50}}>Sign up to continue</Text>
       <ButtonM name="Register as Applicant" click={clkMe}/>
       <View style={{paddingBottom:moderateScale(20)}}/>

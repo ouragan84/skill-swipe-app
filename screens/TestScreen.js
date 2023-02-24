@@ -19,20 +19,7 @@ const TestScreen = (props) => {
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontSize:moderateScale(30), fontWeight:'bold', paddingBottom:10}}>Describe yourself</Text>
-      <Text style={{color:'#000',fontSize:moderateScale(15), paddingBottom:40, justifyContent: 'center', textAlign:'center', width:horizontalScale(300)}}>Talk about your interests, passions, your current position, or any other details you want to let employers know.</Text>
-      <TextInput
-        editable
-        multiline
-        numberOfLines={4}
-        style={styles.inputBigBoxStyle}
-        onChangeText={onChangeNumber}
-        value={number}
-        placeholder={props.placeholder}
-        keyboardType="numeric"
-      /> 
-      <View style={{paddingTop:moderateScale(50)}}></View>
-      <ButtonM name="Confirm" click={() => props.navigation.navigate('ProfileDetails')}/>
+      <Text>EMAIL CONFIRMATION</Text>
     </SafeAreaView>
   );
 };
