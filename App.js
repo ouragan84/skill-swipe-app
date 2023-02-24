@@ -8,6 +8,8 @@ import Home from './screens/Home';
 import Logs from './screens/Logs';
 import Counter from './screens/Counter';
 import Onboard from './screens/Onboard';
+// TODO - CHANGE below later
+import LocationComponent from './components/Location';
 import SignUp from './screens/SignUp';
 import TestScreen from './screens/TestScreen';
 
@@ -61,6 +63,12 @@ function NavStack() {
        
        component={ Onboard } 
        options={{ title: 'Onboard', headerShown: false }}
+      />
+      <Stack.Screen 
+       name="Location" 
+  
+       component={ LocationComponent } 
+       options={{ title: 'Location', headerShown: false }}
       />
       <Stack.Screen 
        name="ProfileDetails" 
