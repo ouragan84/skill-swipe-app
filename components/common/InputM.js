@@ -8,11 +8,11 @@ export default function InputM(props) {
     return (
         <View>
             <TextInput
+                secureTextEntry = {props.password}
                 style={styles.inputBoxStyle}
                 onChangeText={onChangeNumber}
                 value={number}
                 placeholder={props.placeholder}
-                keyboardType="numeric"
             /> 
             <Text style={styles.inputTextStyle}>{props.name}</Text>
         </View>   
