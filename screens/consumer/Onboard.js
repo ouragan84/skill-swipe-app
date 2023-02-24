@@ -1,20 +1,20 @@
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {StyleSheet, Text, View, FlatList, SafeAreaView} from 'react-native';
 import React, { useState } from 'react';
 import Slides from '../../data' 
-import SlideItem from './SlideItem'
+import SlideItem from '../../components/onboarding/SlideItem'
 import ButtonM from '../../components/common/ButtonM';
 import ThreeDotsM from '../../components/special/ThreeDotsM';
 import { horizontalScale, moderateScale, verticalScale } from '../../components/helper/Metrics';
 
-const clickMe = () => {
-console.log("a")
+function clickMe() {
+  console.log("b")
 }
 
-const Slider = () => {
-    const [dots, setDots] = useState(0)
-
-    return (
-        <View>
+const Onboard = (props) => {
+  const [dots, setDots] = useState(0)
+  return (
+    <SafeAreaView>
+      <View>
             <FlatList showsHorizontalScrollIndicator={false}
                 onScroll={(event) => {
                     let xOffset = event.nativeEvent.contentOffset.x
@@ -34,12 +34,12 @@ const Slider = () => {
          />
          <View style={{alignItems: 'center', justifyContent: 'center' }}>
            <ThreeDotsM name={Slides[dots].name}/>
-           <ButtonM name="Create an account" click={clickMe}/>
+           <ButtonM name="Create an account" click={() => props.navigation.navigate('SignUp')}/>
            <Text style={{marginTop:moderateScale(25),fontSize: moderateScale(15)}}>Already have an account? <Text onPress={clickMe} style={{color:'#28A0BB',fontWeight: 'bold',}}>Sign In</Text></Text>
          </View>
         </View>
-    );
+    </SafeAreaView>
+  );
 };
 
-export default Slider;
-
+export default Onboard;
