@@ -8,8 +8,12 @@ import Home from './screens/Home';
 import Logs from './screens/Logs';
 import Counter from './screens/Counter';
 import Onboard from './screens/Onboard';
+import SignUp from './screens/SignUp';
+import TestScreen from './screens/TestScreen';
 
 import useCachedResources from './hooks/useCachedResources';
+import ProfileDetails from './screens/ProfileDetails';
+import Describe from './screens/Describe';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +61,30 @@ function NavStack() {
        
        component={ Onboard } 
        options={{ title: 'Onboard', headerShown: false }}
+      />
+      <Stack.Screen 
+       name="ProfileDetails" 
+       
+       component={ ProfileDetails } 
+       options={{ title: 'ProfileDetails', headerShown: false }}
+      />
+      <Stack.Screen 
+       name="SignUp" 
+       
+       component={ SignUp } 
+       options={{ title: 'SignUp', headerShown: false }}
+      />
+      <Stack.Screen 
+       name="Describe" 
+       
+       component={ Describe } 
+       options={{ title: 'Describe', headerShown: false }}
+      />
+      <Stack.Screen 
+       name="TestScreen" 
+       
+       component={ TestScreen } 
+       options={{ title: 'TestScreen', headerShown: true }}
       />
     </Stack.Navigator>
   );
