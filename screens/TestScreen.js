@@ -19,7 +19,7 @@ const TestScreen = (props) => {
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>EMAIL CONFIRMATION</Text>
+      <Text>TEST SCREEN</Text>
     </SafeAreaView>
   );
 };
