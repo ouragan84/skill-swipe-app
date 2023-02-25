@@ -9,6 +9,10 @@ import Logs from './screens/Logs';
 import Counter from './screens/Counter';
 import Onboard from './screens/consumer/Onboard';
 import SignUp from './screens/consumer/register/SignUp';
+import SignIn from './screens/consumer/login/SignIn';
+import CodeSent from './screens/consumer/login/CodeSent';
+import ResetPassword from './screens/consumer/login/ResetPassword';
+import ForgotPassword from './screens/consumer/login/ForgotPassword';
 import TestScreen from './screens/TestScreen';
 
 import useCachedResources from './hooks/useCachedResources';
@@ -86,6 +90,30 @@ function NavStack() {
        
        component={ EmailConfirmation } 
        options={{ title: 'EmailConfirmation', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="SignIn" 
+       
+       component={ SignIn } 
+       options={{ title: 'EmailConfirmation', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="ForgotPassword" 
+       
+       component={ ForgotPassword } 
+       options={{ title: 'ForgotPassword', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="CodeSent" 
+       
+       component={ CodeSent } 
+       options={{ title: 'CodeSent', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="ResetPassword" 
+       
+       component={ ResetPassword } 
+       options={{ title: 'ResetPassword', headerShown: false, gestureEnabled:false }}
       />
       <Stack.Screen 
        name="TestScreen" 

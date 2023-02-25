@@ -8,7 +8,7 @@ const clickMe = () => {
   console.log("c")
 }
 
-const TestScreen = (props) => {
+const SignUp = (props) => {
   const clkMe = () => {
     props.navigation.navigate('ProfileDetails')
   }
@@ -28,4 +28,4 @@ const TestScreen = (props) => {
   );
 };
 
-export default TestScreen;
+export default SignUp;
