@@ -6,7 +6,7 @@ import ButtonM from '../../../components/common/ButtonM';
 import Icon from 'react-native-vector-icons/Entypo';
 
 const SignIn = (props) => {
-  const clkMe = () => {
+  const confirm = () => {
     props.navigation.navigate('TestScreen')
   }
 
@@ -26,7 +26,7 @@ const SignIn = (props) => {
         <Icon style={{color:"#888", fontSize: moderateScale(25), position:'absolute', top:verticalScale(30), left:horizontalScale(270)}} onPress={changeShowPassword} name={showPassword ? "eye" : "eye-with-line"}/>
       </View>
       <View style={{paddingBottom:moderateScale(50)}}/>
-      <ButtonM name="Confirm" click={clkMe} />
+      <ButtonM name="Confirm" click={confirm()} />
       <View style={{paddingBottom:moderateScale(20)}}/>
       <Text onPress={() => props.navigation.navigate('ForgotPassword')} style={{fontSize: moderateScale(15),color:'#28A0BB'}}>Forgot your password?</Text>
     </SafeAreaView>

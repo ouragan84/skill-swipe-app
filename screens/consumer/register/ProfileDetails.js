@@ -4,14 +4,29 @@ import InputM from '../../../components/common/InputM';
 import { horizontalScale, moderateScale, verticalScale } from '../../../components/helper/Metrics';
 import ButtonM from '../../../components/common/ButtonM';
 import Icon from 'react-native-vector-icons/Entypo';
+import {fetchUnprotected, fetchProtected} from '../../../hooks/webRequestHelper';
+import auth from '../../../hooks/authentication';
 
-function clickMe(props){
-  console.log("c")
-}
 
 const ProfileDetails = (props) => {
-  const clkMe = () => {
-    props.navigation.navigate('EmailConfirmation')
+
+  const isTypeUser = props.route.params;
+
+  const confirm = async () => {
+    await fetchUnprotected('/consumer/register', 'POST', {
+      email : "edgar.baudry@gmail.com", 
+      password : "abc", 
+      termsAndConditions : true, 
+      isTypeUser: isTypeUser
+    }, setErrorText, registerConsumer)
+  }
+
+  const registerConsumer = async (token) => {
+    await auth.saveToken(token);
+    await auth.saveEmail("");
+    await auth.savePassword("");
+    await fetchProtected('/consumer/send/confirmation/email', 'GET', null, setErrorText, 
+    () => {props.navigation.navigate('EmailConfirmation', {email: ""})})
   }
 
   const changeShowPassword = () => {
@@ -20,6 +35,7 @@ const ProfileDetails = (props) => {
   }
 
   const [showPassword, setShowPassword] = useState(false)
+  const [errorText, setErrorText] = useState("");
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
@@ -30,7 +46,8 @@ const ProfileDetails = (props) => {
         <Icon style={{color:"#888", fontSize: moderateScale(25), position:'absolute', top:verticalScale(30), left:horizontalScale(270)}} onPress={changeShowPassword} name={showPassword ? "eye" : "eye-with-line"}/>
       </View>
       <View style={{paddingBottom:moderateScale(50)}}/>
-      <ButtonM name="Confirm" click={clkMe} />
+      <ButtonM name="Confirm" click={confirm} />
+      <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
     </SafeAreaView>
   );
 };
