@@ -35,7 +35,7 @@ const Onboard = (props) => {
          <View style={{alignItems: 'center', justifyContent: 'center' }}>
            <ThreeDotsM name={Slides[dots].name}/>
            <ButtonM name="Create an account" click={() => props.navigation.navigate('SignUp')}/>
-           <Text style={{marginTop:moderateScale(25),fontSize: moderateScale(15)}}>Already have an account? <Text onPress={clickMe} style={{color:'#28A0BB',fontWeight: 'bold',}}>Sign In</Text></Text>
+           <Text style={{marginTop:moderateScale(25),fontSize: moderateScale(15)}}>Already have an account? <Text onPress={() => props.navigation.navigate('SignIn')} style={{color:'#28A0BB',fontWeight: 'bold',}}>Sign In</Text></Text>
          </View>
         </View>
     </SafeAreaView>
