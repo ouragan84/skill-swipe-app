@@ -5,10 +5,6 @@ import { horizontalScale, moderateScale } from '../../../components/helper/Metri
 import ButtonM from '../../../components/common/ButtonM';
 import {linkToPage} from '../../../hooks/webRequestHelper'
 
-const clickMe = () => {
-  console.log("c")
-}
-
 const SignUp = (props) => {
   const clkMe = (isTypeUser) => {
     props.navigation.navigate('ProfileDetails', {isTypeUser})
@@ -23,7 +19,7 @@ const SignUp = (props) => {
       <ButtonM name="Register as Company" click={() => clkMe(false)}/>
       <View style={{width:horizontalScale(210), paddingTop:moderateScale(70), flexDirection:"row", justifyContent:"space-between"}}>
         <Text onPress={() => linkToPage('/terms-of-use')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Terms of use</Text>
-        <Text onPress={() => linkToPage('/about')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Privacy Policy</Text>
+        <Text onPress={() => linkToPage('/privacy-policy')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Privacy Policy</Text>
       </View>
     </SafeAreaView>
   );

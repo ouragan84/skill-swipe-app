@@ -4,15 +4,17 @@ import {styles} from '../../constants/styles';
 
 
 export default function InputM(props) {
-    const [number, onChangeNumber] = React.useState('');
     return (
         <View>
             <TextInput
                 secureTextEntry = {props.password}
                 style={styles.inputBoxStyle}
-                onChangeText={onChangeNumber}
-                value={number}
+                onChangeText={props.onChangeValue}
+                value={props.value}
                 placeholder={props.placeholder}
+                autoCapitalize={props.autoCapitalize}
+                autoCorrect={props.autoCorrect}
+                autoComplete={props.autoComplete}
             /> 
             <Text style={styles.inputTextStyle}>{props.name}</Text>
         </View>   

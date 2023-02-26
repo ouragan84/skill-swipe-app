@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, View, Text } from 'react-native';
+import * as auth from '../hooks/authentication';
+
 
 export default function Home(props) {
   return (
@@ -20,6 +22,10 @@ export default function Home(props) {
       <Button
         title="Go to Test Screen"
         onPress={() => props.navigation.navigate('TestScreen')}
+      />
+      <Button
+        title="Reset Credentials"
+        onPress={() => auth.deleteCredentials()}
       />
     </View>
   );
