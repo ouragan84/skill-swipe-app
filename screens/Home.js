@@ -30,6 +30,11 @@ export default function Home(props) {
         onPress={() => props.navigation.navigate('Onboard')}
       />
       <Button
+        title="See Open Roles"
+        onPress={() => props.navigation.navigate('UserRecommendationsMain')}
+      />
+    
+      <Button
         title="Get Location"
         onPress={() => props.navigation.navigate('Location')}
 

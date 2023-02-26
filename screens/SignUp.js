@@ -2,7 +2,6 @@ import React from 'react';
 import {View,Text, SafeAreaView} from 'react-native';
 import InputM from '../components/common/InputM';
 import CButtonM from '../components/common/CButtonM';
-import NavbarM from '../components/common/NavbarM';
 import SRBoxM from '../components/common/SRBoxM';
 import LogoImageM from '../components/common/LogoImageM'
 import { horizontalScale, moderateScale } from '../components/helper/Metrics';
@@ -14,9 +13,16 @@ const clickMe = () => {
 }
 
 const TestScreen = (props) => {
+
+  const goToUserProfile = () => {
+    props.navigation.navigate('MyTabs', { screen: 'Feed' })
+  }
+
   const clkMe = () => {
     props.navigation.navigate('ProfileDetails')
   }
+
+  
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
@@ -27,6 +33,7 @@ const TestScreen = (props) => {
         <Text onPress={clickMe} style={{color:'#28A0BB'}}>Terms of use</Text>
         <Text onPress={clickMe} style={{color:'#28A0BB'}}>Privacy Policy</Text>
       </View>
+      <ButtonM name="Go to user profile since authenticated" click={goToUserProfile}/>
     </SafeAreaView>
   );
 };

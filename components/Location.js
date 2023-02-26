@@ -11,13 +11,21 @@ export default function App() {
     (async () => {
       
       let { status } = await Location.requestForegroundPermissionsAsync();
+
+      // Handle Permission Denied
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
         return;
       }
+      else
+      {
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+        // POST request to /user/locatiion/update?latitute=&longitute=?
+
+      }
+      
     })();
   }, []);
 
