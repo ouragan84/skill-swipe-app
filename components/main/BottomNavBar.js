@@ -9,6 +9,7 @@ import Profile from '../../screens/Profile';
 import Likes from '../../screens/Likes';
 import Messages from '../../screens/Messages';
 import UserRecommendations from '../../screens/UserRecommendations';
+import Main from './Main';
 
 // Icons
 import { AntDesign } from '@expo/vector-icons';
@@ -21,14 +22,14 @@ const Tab = createBottomTabNavigator();
 function BottomNavBar() {
   return (
     <Tab.Navigator
-      initialRouteName="UserRecommendations"
+      initialRouteName="Main"
       screenOptions={{
         tabBarActiveTintColor: '#e91e63',
       }}
     >
       <Tab.Screen
         name="LOGO"
-        component={UserRecommendations}
+        component={Main}
       />
       <Tab.Screen
         name="Likes"
