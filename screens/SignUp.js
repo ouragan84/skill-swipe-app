@@ -15,7 +15,7 @@ const clickMe = () => {
 const TestScreen = (props) => {
 
   const goToUserProfile = () => {
-    props.navigation.navigate('MyTabs', { screen: 'Feed' })
+    props.navigation.navigate('BottomNavBar', { screen: 'Profile' })
   }
 
   const clkMe = () => {

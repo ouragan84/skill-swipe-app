@@ -2,41 +2,66 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 import Profile from '../../screens/Profile';
 import Likes from '../../screens/Likes';
 import Messages from '../../screens/Messages';
+import UserRecommendations from '../../screens/UserRecommendations';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
+// Icons
+import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function BottomNavBar() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Profile" component={Profile} />
-      <Tab.Screen name="Likes" component={Likes} />
-      <Tab.Screen name="Messages" component={Messages} />
+    <Tab.Navigator
+      initialRouteName="UserRecommendations"
+      screenOptions={{
+        tabBarActiveTintColor: '#e91e63',
+      }}
+    >
+      <Tab.Screen
+        name="LOGO"
+        component={UserRecommendations}
+      />
+      <Tab.Screen
+        name="Likes"
+        component={Likes}
+        options={{
+          tabBarLabel: 'Likes',
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="like1" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Messages"
+        component={Messages}
+        options={{
+          tabBarLabel: 'Messages',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="chatbubbles" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user" size={24} color="black" />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
 
-export default function App() {
-  return (
-      <MyTabs />
-  );
-}
+export default BottomNavBar;

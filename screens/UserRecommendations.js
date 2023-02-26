@@ -6,7 +6,6 @@ import ButtonM from '../components/common/ButtonM';
 import ThreeDotsM from '../components/special/ThreeDotsM';
 import { horizontalScale, moderateScale, verticalScale } from '../components/helper/Metrics';
 import BottomNavBar from '../components/main/BottomNavBar';
-import BottomNavBar2 from '../components/main/BottomNavBar2';
 //import NavBar from '../components/main/NavBar';
 
 function clickMe() {
@@ -37,7 +36,6 @@ const UserRecommendations = (props) => {
          />
          <View style={{alignItems: 'center', justifyContent: 'center' }}>
            <ThreeDotsM name={Slides[dots].name}/>
-           <Text>NavBar</Text>
          </View>
         </View>
         
