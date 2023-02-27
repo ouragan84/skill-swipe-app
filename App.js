@@ -19,6 +19,8 @@ import useCachedResources from './hooks/useCachedResources';
 import ProfileDetails from './screens/consumer/register/ProfileDetails';
 import Describe from './screens/Describe';
 import EmailConfirmation from './screens/consumer/register/EmailConfirmation';
+import NameDOB from './screens/consumer/register/user/NameDOB';
+import Experience from './screens/consumer/register/user/Experience';
 
 const Stack = createStackNavigator();
 
@@ -114,6 +116,18 @@ function NavStack() {
        
        component={ ResetPassword } 
        options={{ title: 'ResetPassword', headerShown: false }}
+      />
+      <Stack.Screen 
+       name="NameDOB" 
+       
+       component={ NameDOB } 
+       options={{ title: 'NameDOB', headerShown: false }}
+      />
+      <Stack.Screen 
+       name="Experience" 
+       
+       component={ Experience } 
+       options={{ title: 'Experience', headerShown: false }}
       />
       <Stack.Screen 
        name="TestScreen" 

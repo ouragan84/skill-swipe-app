@@ -19,7 +19,8 @@ const TestScreen = (props) => {
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>TEST SCREEN</Text>
+      <InputM name="First Name" placeholder="Enter your first name"/>
+      <CButtonM/>
     </SafeAreaView>
   );
 };

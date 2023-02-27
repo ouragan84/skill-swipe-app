@@ -27,6 +27,10 @@ export default function Home(props) {
         title="Reset Credentials"
         onPress={() => auth.deleteCredentials()}
       />
+      <Button
+        title="User SignUp (after email conf)"
+        onPress={() => props.navigation.navigate('NameDOB')}
+      />
     </View>
   );
 }

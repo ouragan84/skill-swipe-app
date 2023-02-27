@@ -5,13 +5,13 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {styles} from '../../constants/styles';
 import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics';
 
-function srButtonStyle(p) {
+function srButtonStyle(p,w) {
     return{
         backgroundColor: p ? '#28A0BB' : 'white',
-        height:verticalScale(60),
+        height:moderateScale(60),
         paddingVertical: moderateScale(20),
         paddingHorizontal: moderateScale(20),
-        width:horizontalScale(300),
+        width:horizontalScale(w ? w : 300),
         borderRadius: moderateScale(18),
         margin: 12,
         borderWidth: 1,
@@ -41,7 +41,7 @@ export default function SRButtonM(props) {
                 // remove tag
             }
         }}>
-            <View style={srButtonStyle(pressed)}>
+            <View style={srButtonStyle(pressed, props.width)}>
                 <Text style={{fontSize:moderateScale(16), color: pressed ? "#fff": "black", fontWeight: pressed ? "bold" : "normal", letterSpacing:pressed ? .2 : .5}}>{props.name}</Text>
                 <Icon style={srIconStyle(pressed)} name="check"/>
             </View>
