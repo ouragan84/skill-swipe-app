@@ -49,32 +49,32 @@ export const styles = StyleSheet.create({
   },
 
   inputBoxStyle: {
-      paddingVertical: moderateScale(20),
-      width:horizontalScale(300),
-      borderRadius: moderateScale(18),
-      margin: moderateScale(12),
-      borderWidth: 1,
-      borderColor: "#ADAFBB",
-      padding: horizontalScale(15),
-      fontSize: 16
-  },
-  inputBigBoxStyle: {
+    paddingVertical: moderateScale(20),
     width:horizontalScale(300),
-    height:verticalScale(300),
     borderRadius: moderateScale(18),
-    margin: moderateScale(10),
+    margin: moderateScale(12),
     borderWidth: 1,
     borderColor: "#ADAFBB",
     padding: horizontalScale(15),
     fontSize: 16
   },
+  inputBigBoxStyle: {
+    width:horizontalScale(300),
+    height:verticalScale(130),
+    borderRadius: moderateScale(18),
+    margin: moderateScale(10),
+    borderWidth: 1,
+    borderColor: "#ADAFBB",
+    paddingHorizontal: moderateScale(15),
+    paddingVertical: moderateScale(10),
+  },
   inputTextStyle: {
-      paddingHorizontal:5,
-      backgroundColor:'white',
-      position: 'absolute',
-      color: '#888',
-      top:4,
-      left:45,
+    paddingHorizontal:5,
+    backgroundColor:'white',
+    position: 'absolute',
+    color: '#888',
+    top:4,
+    left:45,
   },
 
   TDviewStyle: {
