@@ -10,14 +10,14 @@ export default function NinputM(props) {
             <TextInput
                 secureTextEntry = {props.password}
                 style={{
-                    paddingVertical: moderateScale(20),
-                    width:horizontalScale(150),
+                    paddingVertical: moderateScale(15),
+                    width:horizontalScale(138),
                     borderRadius: moderateScale(18),
                     margin: moderateScale(12),
                     borderWidth: 1,
                     borderColor: "#ADAFBB",
                     padding: moderateScale(15),
-                    fontSize: 16
+                    fontSize: moderateScale(16)
                     
                 }}
                 keyboardType="numeric"

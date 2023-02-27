@@ -24,8 +24,9 @@ const Experience = () => {
       <MLinputM name="Description" placeholder="Enter your description"/>
       <View style={{flexDirection:'row', justifyContent:'center', alignContent:'center'}}>
         <NinputM name="Years" placeholder="00"/>
-        <SRButtonM name="Current" width={moderateScale(130)} click={clickMe}/>
+        <NinputM name="Months" placeholder="00"/>
       </View>   
+      <SRButtonM name="Current" click={clickMe}/>
       <Modal
         animationType="slide"
         transparent={true}
