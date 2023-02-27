@@ -14,7 +14,6 @@ export default function InputM(props) {
                 placeholder={props.placeholder}
                 autoCapitalize={props.autoCapitalize}
                 autoCorrect={props.autoCorrect}
-                autoComplete={props.autoComplete}
             /> 
             <Text style={styles.inputTextStyle}>{props.name}</Text>
         </View>   

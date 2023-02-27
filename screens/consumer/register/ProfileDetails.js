@@ -50,7 +50,7 @@ const ProfileDetails = (props) => {
       <Text style={{fontSize:moderateScale(36), fontWeight:'bold', paddingBottom:50}}>Profile Details</Text>
       <InputM name="Email" placeholder="Enter your email" value={email} onChangeValue={setEmail} autoCapitalize='none' autoCorrect={false} autoComplete='email'/>
       <View>      
-        <InputM name="Password" placeholder="Set your password" password={!showPassword} value={password} onChangeValue={setPassword} autoCapitalize='none' autoCorrect={false} autoComplete='true' />
+        <InputM name="Password" placeholder="Set your password" password={!showPassword} value={password} onChangeValue={setPassword} autoCapitalize='none' autoCorrect={false} />
         <Icon style={{color:"#888", fontSize: moderateScale(25), position:'absolute', top:verticalScale(30), left:horizontalScale(270)}} onPress={changeShowPassword} name={showPassword ? "eye" : "eye-with-line"}/>
       </View>
       <View style={{paddingBottom:moderateScale(50)}}/>

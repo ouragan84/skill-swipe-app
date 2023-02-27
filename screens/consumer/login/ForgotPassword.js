@@ -22,7 +22,7 @@ const ForgotPassword = (props) => {
       <Text style={{fontSize:moderateScale(36), fontWeight:'bold', paddingBottom:50}}>
         What's your email?
       </Text>
-      <InputM name="Email" placeholder="Enter your email" value={email} onChangeValue={setEmail} autoCapitalize='none' autoCorrect={false} autoComplete='email'/>
+      <InputM name="Email" placeholder="Enter your email" value={email} onChangeValue={setEmail} autoCapitalize='none' autoCorrect={false}/>
       <View style={{paddingBottom:moderateScale(50)}}/>
       <ButtonM name="Confirm" click={sendPasswordResetEmail} />
       <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
