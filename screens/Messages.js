@@ -1,19 +1,41 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-  
+import React from 'react';
+import { styles } from '../constants/styles';
+
+import {
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  View,
+  FlatList
+} from 'react-native';
+import Message from '../components/main/MessageItem';
+import Icon from '../components/main/Icon';
+import Demo from '../data/messagesData';
+
 const Messages = () => {
   return (
-    <View style={{ flex: 1, 
-                   alignItems: "center",
-                   justifyContent: "center" }}>
-      <Text style={{ color: "#006600", fontSize: 40 }}>
-         Messages Screen!
-      </Text>
-      <Ionicons name="ios-videocam-outline" 
-                size={80} color="#006600" />
-    </View>
+    <ImageBackground
+      source={require('../assets/images/bg.png')}
+      style={styles.bg}
+    >
+      <View style={styles.containerMessages}>
+        <ScrollView>
+          {
+            Demo.map((item, index)=> (
+              <TouchableOpacity>
+              <Message
+                image={item.image}
+                name={item.name}
+                lastMessage={item.message}
+              />
+            </TouchableOpacity>
+            ))
+          }
+        </ScrollView>
+      </View>
+    </ImageBackground>
   );
 };
-  
+
 export default Messages;

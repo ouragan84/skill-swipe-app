@@ -1,6 +1,10 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Dimensions} from 'react-native'
 import { horizontalScale, moderateScale, verticalScale } from '../components/helper/Metrics';
 
+
+const DIMENSION_WIDTH = Dimensions.get("window").width;
+const DIMENSION_HEIGHT = Dimensions.get("window").height;
+const GRAY = "#757E90";
 
 export const styles = StyleSheet.create({
     buttonBorderStyle: {
@@ -84,5 +88,44 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
   },
+
+  // CONTAINER - GENERAL
+	bg: {
+		flex: 1,
+		resizeMode: "cover",
+		width: DIMENSION_WIDTH,
+		height: DIMENSION_HEIGHT
+	},
+
+  // COMPONENT - MESSAGE
+	containerMessage: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "flex-start",
+		flexDirection: "row",
+		paddingHorizontal: 10,
+		width: DIMENSION_WIDTH - 100
+	},
+	avatar: {
+		borderRadius: 30,
+		width: 60,
+		height: 60,
+		marginRight: 20,
+		marginVertical: 15
+	},
+	message: {
+		color: GRAY,
+		fontSize: 12,
+		paddingTop: 5
+	},
+
+  // SCREEN - MESSAGES
+	containerMessages: {
+		justifyContent: "space-between",
+		flex: 1,
+		paddingHorizontal: 10
+	},
+
+
 });
 
