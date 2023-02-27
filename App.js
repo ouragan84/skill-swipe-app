@@ -95,25 +95,25 @@ function NavStack() {
        name="SignIn" 
        
        component={ SignIn } 
-       options={{ title: 'EmailConfirmation', headerShown: false, gestureEnabled:false }}
+       options={{ title: 'SignIn', headerShown: false }}
       />
       <Stack.Screen 
        name="ForgotPassword" 
        
        component={ ForgotPassword } 
-       options={{ title: 'ForgotPassword', headerShown: false, gestureEnabled:false }}
+       options={{ title: 'ForgotPassword', headerShown: false }}
       />
       <Stack.Screen 
        name="CodeSent" 
        
        component={ CodeSent } 
-       options={{ title: 'CodeSent', headerShown: false, gestureEnabled:false }}
+       options={{ title: 'CodeSent', headerShown: false }}
       />
       <Stack.Screen 
        name="ResetPassword" 
        
        component={ ResetPassword } 
-       options={{ title: 'ResetPassword', headerShown: false, gestureEnabled:false }}
+       options={{ title: 'ResetPassword', headerShown: false }}
       />
       <Stack.Screen 
        name="TestScreen" 
