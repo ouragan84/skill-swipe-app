@@ -19,6 +19,9 @@ import useCachedResources from './hooks/useCachedResources';
 import ProfileDetails from './screens/consumer/register/ProfileDetails';
 import Describe from './screens/Describe';
 import EmailConfirmation from './screens/consumer/register/EmailConfirmation';
+import SetProfileDetails from './screens/consumer/register/SetProfileDetails';
+import SetLocation from './screens/consumer/register/SetLocation';
+import Experience from './screens/consumer/Experience';
 
 const Stack = createStackNavigator();
 
@@ -120,6 +123,23 @@ function NavStack() {
        
        component={ TestScreen } 
        options={{ title: 'TestScreen', headerShown: true }}
+      />
+      <Stack.Screen
+      name="SetProfileDetails"
+
+      component={ SetProfileDetails }
+      options={{ title: 'SetProfileDetails', headerShown: false}}
+      />
+      <Stack.Screen
+      name="SetLocation"
+
+      component={ SetLocation }
+      options={{ title: 'SetLocation', headerShown: false }}
+      />
+      <Stack.Screen
+      name="Experience"
+      component={ Experience }
+      options={{ title: 'Experience', headerShown: false }}
       />
     </Stack.Navigator>
   );

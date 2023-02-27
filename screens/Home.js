@@ -21,6 +21,14 @@ export default function Home(props) {
         title="Go to Test Screen"
         onPress={() => props.navigation.navigate('TestScreen')}
       />
+      <Button
+      title="Go to Set Profile Details"
+      onPress={() => props.navigation.navigate('SetProfileDetails')}
+      />
+      <Button
+      title="Go to Experience Page"
+      onPress={() => props.navigation.navigate('Experience')}
+      />
     </View>
   );
 }
