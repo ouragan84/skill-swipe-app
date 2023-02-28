@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {styles} from '../../constants/styles';
 import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics';
 
-function srButtonStyle(p,w) {
+function srButtonStyle(p,w,t) {
     return{
         backgroundColor: p ? '#28A0BB' : 'white',
         height:moderateScale(60),
@@ -16,9 +16,9 @@ function srButtonStyle(p,w) {
         margin: 12,
         borderWidth: 1,
         borderColor: p ? "#fff": "#ADAFBB",
-        fontSize: moderateScale(18),
+        
         flexDirection: "row",
-        justifyContent: 'space-between',
+        justifyContent: t? 'space-between':'center',
     }
 }
 function srIconStyle(p) {
@@ -41,9 +41,9 @@ export default function SRButtonM(props) {
                 // remove tag
             }
         }}>
-            <View style={srButtonStyle(pressed, props.width)}>
+            <View style={srButtonStyle(pressed, props.width, props.tick, props.fsmall)}>
                 <Text style={{fontSize:moderateScale(16), color: pressed ? "#fff": "black", fontWeight: pressed ? "bold" : "normal", letterSpacing:pressed ? .2 : .5}}>{props.name}</Text>
-                <Icon style={srIconStyle(pressed)} name="check"/>
+                {props.tick ? <Icon style={srIconStyle(pressed)} name="check"/> : <></>}
             </View>
         </TouchableWithoutFeedback>
     );

@@ -8,7 +8,7 @@ import SRButtonM from '../../../../components/common/SRButtonM';
 import { horizontalScale, moderateScale } from '../../../../components/helper/Metrics';
 import { styles } from '../../../../constants/styles';
 
-const Experience = () => {
+const Experience = (props) => {
   const [num, setNum] = useState("1")
   const [modalVisible, setModalVisible] = useState(false);
   const [skillCount, setSkillCount] = useState(0)
@@ -38,7 +38,7 @@ const Experience = () => {
         <View style={stylez.centeredView}>
           <View style={stylez.modalView}>  
             <InputM name="Search" placeholder="Type a skill you have"/>
-            <ScrollView style={{width:'100%', padding:moderateScale(10), backgroundColor:"#eee", borderRadius:18}}>
+            <ScrollView style={{width:'100%', padding:moderateScale(10), backgroundColor:"#eeeeee", borderRadius:18}}>
               <SRButtonM name="Skill 1" click={clickMe}/>
               <SRButtonM name="Skill 1" click={clickMe}/>
               <SRButtonM name="Skill 1" click={clickMe}/>
@@ -62,7 +62,7 @@ const Experience = () => {
       <View style={{paddingBottom:moderateScale(10)}}/>
       <ButtonM name={`Add Skills (${skillCount}/5)`} click={() => setModalVisible(!modalVisible)}/>
       <View style={{paddingBottom:moderateScale(50)}}/>
-      <Text onPress={clickMe} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Done adding Experiences</Text>
+      <Text onPress={() => props.navigation.navigate('Interests')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Done adding Experiences</Text>
       <View style={{paddingBottom:moderateScale(20)}}/>
       <ButtonM name="Add another experience +" click={clickMe}/>
       
