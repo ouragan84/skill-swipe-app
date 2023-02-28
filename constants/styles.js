@@ -126,6 +126,12 @@ export const styles = StyleSheet.create({
 		paddingHorizontal: 10
 	},
 
+  // CONTAINER - MATCHES
+	containerLikes: {
+		justifyContent: "space-between",
+		flex: 1,
+		paddingHorizontal: 10
+	},
 
 });
 

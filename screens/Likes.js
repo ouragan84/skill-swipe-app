@@ -1,19 +1,45 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-  
+import React from 'react';
+import { styles} from '../constants/styles';
+
+import {
+  ScrollView,
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  FlatList
+} from 'react-native';
+import CardItem from '../components/main/CardItem';
+import Icon from '../components/main/Icon';
+import Demo from '../data/messagesData';
+
 const Likes = () => {
   return (
-    <View style={{ flex: 1, 
-                   alignItems: "center", 
-                   justifyContent: "center" }}>
-      <Text style={{ color: "#006600", fontSize: 40 }}>
-        Likes Screen!
-      </Text>
-      <Ionicons name="ios-images-outline" 
-                size={80} color="#006600" />
-    </View>
+    <ImageBackground
+      source={require('../assets/images/bg.png')}
+      style={styles.bg}
+    >
+      <View style={styles.containerLikes}>
+        <ScrollView>
+          <FlatList
+            numColumns={2}
+            data={Demo}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <TouchableOpacity>
+                <CardItem
+                  image={item.image}
+                  name={item.name}
+                  status={item.status}
+                  variant
+                />
+              </TouchableOpacity>
+            )}
+          />
+        </ScrollView>
+      </View>
+    </ImageBackground>
   );
 };
-  
+
 export default Likes;
