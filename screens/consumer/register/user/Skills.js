@@ -30,24 +30,24 @@ const Skills = (props) => {
       <InputM name="Search" placeholder="Type a skill you have"/>
       <ScrollView style={{width:horizontalScale(320),backgroundColor:"#eeeeee", borderRadius:moderateScale(22),flexGrow:0, height:verticalScale(400)}}>
         <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
-          <SRButtonM name="Skill 1" click={clickMe}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+          <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
         </View>
       </ScrollView>
       <View style={{paddingBottom:moderateScale(20)}}/>
-      <ButtonM name="Confirm" click={clickMe}/>
+      <ButtonM name="Confirm" click={() => props.navigation.navigate('Profile')}/>
     
     </SafeAreaView>
   );

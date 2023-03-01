@@ -23,6 +23,7 @@ import NameDOB from './screens/consumer/register/user/NameDOB';
 import Experience from './screens/consumer/register/user/Experience';
 import Interests from './screens/consumer/register/user/Interests';
 import Skills from './screens/consumer/register/user/Skills';
+import Profile from './screens/consumer/register/user/Profile';
 
 const Stack = createStackNavigator();
 
@@ -142,6 +143,12 @@ function NavStack() {
        
        component={ Skills } 
        options={{ title: 'Skills', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="Profile" 
+       
+       component={ Profile } 
+       options={{ title: 'Profile', headerShown: false, gestureEnabled:false }}
       />
       <Stack.Screen 
        name="TestScreen" 

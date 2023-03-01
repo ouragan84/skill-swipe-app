@@ -39,20 +39,20 @@ const Experience = (props) => {
           <View style={stylez.modalView}>  
             <InputM name="Search" placeholder="Type a skill you have"/>
             <ScrollView style={{width:'100%', padding:moderateScale(10), backgroundColor:"#eeeeee", borderRadius:18}}>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
-              <SRButtonM name="Skill 1" click={clickMe}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
             </ScrollView>
             <View style={{paddingBottom:moderateScale(15)}}/>
             <ButtonM name={`Done (${skillCount}/5)`}  click={() => setModalVisible(!modalVisible)}/>

@@ -18,7 +18,10 @@ const NameDOB = (props) => {
       <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingBottom:50}}>Tell us your name</Text>
       <InputM name="First Name" placeholder="Enter your first name" />
       <InputM name="Last Name" placeholder="Enter your first name" />
-      <View style={{paddingBottom:moderateScale(50)}}/>
+      <View style={{paddingBottom:moderateScale(20)}}/>
+      <CButtonM/>
+      <View style={{paddingBottom:moderateScale(30)}}/>
+
       {/* CLICK THIS BUTTON TO ALLOW LOCATION SERVICES */}
       <ButtonM name="Confirm" click={() => props.navigation.navigate('Experience')} />
     </SafeAreaView>
