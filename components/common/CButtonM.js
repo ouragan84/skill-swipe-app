@@ -7,7 +7,7 @@ import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics
 export default function CButtonM(){
     return (
         <View style={{width:horizontalScale(260)}}>
-            <RNDateTimePicker display='inline' value={new Date()} maximumDate={new Date()} />
+            <RNDateTimePicker display='default' value={new Date()} maximumDate={new Date()} />
         </View>
     );
 };

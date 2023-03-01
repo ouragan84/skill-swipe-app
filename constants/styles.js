@@ -39,7 +39,6 @@ export const styles = StyleSheet.create({
     borderRadius: moderateScale(25),
     height: verticalScale(120),
     width: horizontalScale(120),
-    marginBottom: moderateScale(30),
     marginTop: moderateScale(30),
   },
 
