@@ -7,7 +7,7 @@ import IconButton from './IconButton'
 import OverlayLabel from './Overlaylabel'
 import styles from './Main.styles'
 
-const Main = () => {
+const Main = (props) => {
   const useSwiper = useRef()
 
   const handleOnSwipedLeft = () => useSwiper.current.swipeLeft()

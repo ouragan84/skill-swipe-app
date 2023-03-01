@@ -1,10 +1,23 @@
 import {StyleSheet, Dimensions} from 'react-native'
 import { horizontalScale, moderateScale, verticalScale } from '../components/helper/Metrics';
 
-
 const DIMENSION_WIDTH = Dimensions.get("window").width;
 const DIMENSION_HEIGHT = Dimensions.get("window").height;
+
+const PRIMARY_COLOR = "#7444C0";
+const SECONDARY_COLOR = "#5636B8";
+const WHITE = "#FFFFFF";
 const GRAY = "#757E90";
+const DARK_GRAY = "#363636";
+const BLACK = "#000000";
+
+const ONLINE_STATUS = "#46A575";
+const OFFLINE_STATUS = "#D04949";
+
+const STAR_ACTIONS = "#FFA200";
+const LIKE_ACTIONS = "#B644B2";
+const DISLIKE_ACTIONS = "#363636";
+const FLASH_ACTIONS = "#5028D7";
 
 export const styles = StyleSheet.create({
     buttonBorderStyle: {
@@ -53,32 +66,32 @@ export const styles = StyleSheet.create({
   },
 
   inputBoxStyle: {
-      paddingVertical: moderateScale(20),
-      width:horizontalScale(300),
-      borderRadius: moderateScale(18),
-      margin: moderateScale(12),
-      borderWidth: 1,
-      borderColor: "#ADAFBB",
-      padding: horizontalScale(15),
-      fontSize: 16
-  },
-  inputBigBoxStyle: {
+    paddingVertical: moderateScale(20),
     width:horizontalScale(300),
-    height:verticalScale(300),
     borderRadius: moderateScale(18),
-    margin: moderateScale(10),
+    margin: moderateScale(12),
     borderWidth: 1,
     borderColor: "#ADAFBB",
     padding: horizontalScale(15),
     fontSize: 16
   },
+  inputBigBoxStyle: {
+    width:horizontalScale(300),
+    height:verticalScale(130),
+    borderRadius: moderateScale(18),
+    margin: moderateScale(10),
+    borderWidth: 1,
+    borderColor: "#ADAFBB",
+    paddingHorizontal: moderateScale(15),
+    paddingVertical: moderateScale(10),
+  },
   inputTextStyle: {
-      paddingHorizontal:5,
-      backgroundColor:'white',
-      position: 'absolute',
-      color: '#888',
-      top:4,
-      left:45,
+    paddingHorizontal:5,
+    backgroundColor:'white',
+    position: 'absolute',
+    color: '#888',
+    top:4,
+    left:45,
   },
 
   TDviewStyle: {
@@ -89,7 +102,73 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
   },
 
-  // CONTAINER - GENERAL
+  // SCREEN - PROFILE
+	containerProfile: { marginHorizontal: 0 },
+	photo: {
+		width: DIMENSION_WIDTH,
+		height: 450
+	},
+	topIconLeft: {
+		fontSize: 20,
+		paddingLeft: 20,
+		marginTop: -20,
+		transform: [{ rotate: "90deg" }]
+	},
+	topIconRight: {
+		fontSize: 20,
+		paddingRight: 20
+	},
+	actionsProfile: {
+		justifyContent: "center",
+		flexDirection: "row",
+		alignItems: "center"
+	},
+	textButton: {
+		fontSize: 15,
+		paddingLeft: 5
+	},
+	circledButton: {
+		width: 50,
+		height: 50,
+		borderRadius: 25,
+		backgroundColor: PRIMARY_COLOR,
+		justifyContent: "center",
+		alignItems: "center",
+		marginRight: 10
+	},
+	roundedButton: {
+		justifyContent: "center",
+		flexDirection: "row",
+		alignItems: "center",
+		marginLeft: 10,
+		height: 50,
+		borderRadius: 25,
+		backgroundColor: SECONDARY_COLOR,
+		paddingHorizontal: 20
+	},
+
+	// SCREEN - GENERAL
+	bg: {
+		flex: 1,
+		resizeMode: "cover",
+		width: DIMENSION_WIDTH,
+		height: DIMENSION_HEIGHT
+	},
+	top: {
+		paddingTop: 50,
+		marginHorizontal: 10,
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center"
+	},
+	title: { paddingBottom: 10, fontSize: 22, color: DARK_GRAY },
+	icon: {
+		fontSize: 20,
+		color: DARK_GRAY,
+		paddingRight: 10
+	},
+
+  // SCREEN - GENERAL
 	bg: {
 		flex: 1,
 		resizeMode: "cover",
@@ -126,7 +205,7 @@ export const styles = StyleSheet.create({
 		paddingHorizontal: 10
 	},
 
-  // CONTAINER - MATCHES
+  // SCREEN - MATCHES
 	containerLikes: {
 		justifyContent: "space-between",
 		flex: 1,

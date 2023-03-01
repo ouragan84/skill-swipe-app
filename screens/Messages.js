@@ -23,7 +23,7 @@ const Messages = () => {
         <ScrollView>
           {
             Demo.map((item, index)=> (
-              <TouchableOpacity>
+              <TouchableOpacity key={index}>
               <Message
                 image={item.image}
                 name={item.name}

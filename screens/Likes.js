@@ -13,14 +13,17 @@ import CardItem from '../components/main/CardItem';
 import Icon from '../components/main/Icon';
 import Demo from '../data/messagesData';
 
-const Likes = () => {
+const Likes = (props) => {
+
+  console.log('DEMO DATA: ', Demo[0])
+
   return (
     <ImageBackground
       source={require('../assets/images/bg.png')}
       style={styles.bg}
     >
       <View style={styles.containerLikes}>
-        <ScrollView>
+        {/* <ScrollView> */}
           <FlatList
             numColumns={2}
             data={Demo}
@@ -28,15 +31,14 @@ const Likes = () => {
             renderItem={({ item }) => (
               <TouchableOpacity>
                 <CardItem
-                  image={item.image}
-                  name={item.name}
-                  status={item.status}
+                  profileData={item}
                   variant
+                  navigation={props.navigation}
                 />
               </TouchableOpacity>
             )}
           />
-        </ScrollView>
+        {/* </ScrollView> */}
       </View>
     </ImageBackground>
   );

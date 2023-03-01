@@ -8,7 +8,7 @@ module.exports = [
 			'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
 		message:
 			'I will go back to Gotham and I will fight men Iike this but I will not become an executioner.',
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	},
 	{
 		id: 2,
@@ -18,7 +18,7 @@ module.exports = [
 			'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
 		status: 'Offline',
 		message: "Someone like you. Someone who'll rattle the cages.",
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	},
 	{
 		id: 3,
@@ -29,7 +29,7 @@ module.exports = [
 		status: 'Offline',
 		message:
 			'Oh, hee-hee, aha. Ha, ooh, hee, ha-ha, ha-ha. And I thought my jokes were bad.',
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	},
 	{
 		id: 4,
@@ -39,7 +39,7 @@ module.exports = [
 			'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
 		status: 'Online',
 		message: "Bats frighten me. It's time my enemies shared my dread.",
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	},
 	{
 		id: 5,
@@ -49,7 +49,7 @@ module.exports = [
 			'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
 		status: 'Offline',
 		message: "It's not who I am underneath but what I do that defines me.",
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	},
 	{
 		id: 6,
@@ -60,7 +60,7 @@ module.exports = [
 		status: 'Online',
 		message:
 			'You have nothing, nothing to threaten me with. Nothing to do with all your strength.',
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	},
 	{
 		id: 7,
@@ -71,7 +71,7 @@ module.exports = [
 		status: 'Online',
 		message:
 			"Never start with the head. The victim gets all fuzzy. He can't feel the next... See?",
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	},
 	{
 		id: 8,
@@ -88,7 +88,7 @@ module.exports = [
 		status: 'Online',
 		message:
 			"And as for the television's so-called plan, Batman has no jurisdiction.",
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	},
 	{
 		id: 9,
@@ -99,7 +99,7 @@ module.exports = [
 		status: 'Online',
 		message:
 			'This is what happens when an unstoppable force meets an immovable object.',
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	},
 	{
 		id: 10,
@@ -110,6 +110,6 @@ module.exports = [
 		status: 'Offline',
 		message:
 			'You want order in Gotham. Batman must take off his mask and turn himself in.',
-		image: require('../assets/images/logo.png')
+		image: '../assets/images/logo.png'
 	}
 ];

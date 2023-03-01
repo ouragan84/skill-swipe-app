@@ -3,6 +3,9 @@ import { View, Text, Image, ImageSourcePropType } from 'react-native'
 import { shape, string, number } from 'prop-types'
 import styles from './Card.styles'
 const Card = ({ card }) => (
+
+  // console.log('CARD', card)
+
   <View
     activeOpacity={1}
     style={styles.card}

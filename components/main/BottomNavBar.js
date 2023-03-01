@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-import Profile from '../../screens/Profile';
+import MyProfile from '../../screens/MyProfile';
 import Likes from '../../screens/Likes';
 import Messages from '../../screens/Messages';
-import UserRecommendations from '../../screens/UserRecommendations';
 import Main from './Main';
 
 // Icons
@@ -28,12 +25,13 @@ function BottomNavBar() {
       }}
     >
       <Tab.Screen
-        name="LOGO"
-        component={Main}
+        name="Main"
+        children={props => <Main {...props} />}
       />
       <Tab.Screen
         name="Likes"
-        component={Likes}
+        // component={Likes}
+        children={props => <Likes navigation={props.navigation} />}
         options={{
           tabBarLabel: 'Likes',
           tabBarIcon: ({ color, size }) => (
@@ -52,10 +50,10 @@ function BottomNavBar() {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="MyProfile"
+        component={MyProfile}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: 'MyProfile',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="user" size={24} color="black" />
           ),

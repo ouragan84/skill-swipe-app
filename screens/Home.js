@@ -4,6 +4,7 @@ import LocationComponent from '../components/Location';
 
 import * as Location from 'expo-location';
 
+import * as auth from '../hooks/authentication';
 
 
 export default function Home(props) {
@@ -42,6 +43,14 @@ export default function Home(props) {
       <Button
         title="Go to Test Screen"
         onPress={() => props.navigation.navigate('TestScreen')}
+      />
+      <Button
+        title="Reset Credentials"
+        onPress={() => auth.deleteCredentials()}
+      />
+      <Button
+        title="User SignUp (after email conf)"
+        onPress={() => props.navigation.navigate('NameDOB')}
       />
     </View>
   );
