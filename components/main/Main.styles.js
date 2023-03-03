@@ -2,13 +2,13 @@ import { StyleSheet, Dimensions } from 'react-native'
 
 const { height } = Dimensions.get('window')
 
-export default StyleSheet.create({
-  container: {
+export const mainStyles = StyleSheet.create({
+  mainContainer: {
     flex: 1,
     justifyContent: 'space-between',
   },
   swiperContainer: {
-    height: height - 250,
+    height: height - 500,
   },
   buttonsContainer: {
     justifyContent: 'space-between',

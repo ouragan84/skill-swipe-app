@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MyProfile from '../../screens/MyProfile';
 import Likes from '../../screens/Likes';
 import Messages from '../../screens/Messages';
+import Explore from './Explore';
 import Main from './Main';
 
 // Icons
@@ -26,7 +27,8 @@ function BottomNavBar() {
     >
       <Tab.Screen
         name="Main"
-        children={props => <Main {...props} />}
+        //children={props => <Main {...props} />}
+        component={Main}
       />
       <Tab.Screen
         name="Likes"
