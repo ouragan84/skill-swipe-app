@@ -44,7 +44,7 @@ const Main = (props) => {
   }  
 
 
-const handleOnSwipedLeft = () => {
+const handleOnSwipedLeft = (index) => {
   if(!tempStates.left)
   {
     console.log('looft')
@@ -55,12 +55,16 @@ const handleOnSwipedLeft = () => {
       left: true,
       right: false
     }
-  }
+    console.log('card index rejected: ', index)
 
+  //to the next card
+  setCardIndex(index+1)
   setSwipeStates(tempStates)
+  }
+  
 }
 
-const handleOnSwipedRight = () => {
+const handleOnSwipedRight = (index ) => {
   if(!tempStates.right)
   {
     console.log('right')
@@ -71,15 +75,14 @@ const handleOnSwipedRight = () => {
       left: false,
       right: true
     }
-  }
+    console.log('card index liked: ', index)
+
+  //to the next card
+  setCardIndex(index+1)
   setSwipeStates(tempStates)
+  }
+  
 }
-
-// const handleOnSwipedBottom = () => {
-//   console.log('down')
-//   setSwipeState(false)
-// }
-
 
 // Icon click handle
 const handleRejectIconClick = () => {
@@ -94,10 +97,16 @@ const handleRejectIconClick = () => {
       left: true,
       right: false
     }
-
+    
     useSwiper.current.swipeLeft()
+
+    console.log('card index rejected: ', cardIndex)
+
+    //to the next card
+    setCardIndex(cardIndex+1)
+    setSwipeStates(tempStates)
   }
-  setSwipeStates(tempStates)
+  
 }
 const handleDescIconClick = () => {
   if(!tempStates.up)
@@ -111,8 +120,11 @@ const handleDescIconClick = () => {
       left: false,
       right: false
     }
-  }
+
+    console.log('desc for card index: ', cardIndex, ', name: ', userProfiles[cardIndex].name)
   setSwipeStates(tempStates) 
+  }
+  
 }
 const handleLikeIconClick = () => {
 
@@ -128,8 +140,15 @@ const handleLikeIconClick = () => {
       right: true
     }
     useSwiper.current.swipeRight()
-  }   
-  setSwipeStates(tempStates) 
+
+    console.log('card index liked: ', cardIndex)
+
+  //to the next card
+  setCardIndex(cardIndex+1)
+  setSwipeStates(tempStates)
+  } 
+  
+   
 }
 
   const allButtons = (
@@ -186,8 +205,8 @@ return (
         //onSwipedTop={(index) => handleOnSwipedTop(index)}
         disableBottomSwipe={true}
         disableTopSwipe={true}
-        onSwipedLeft={handleOnSwipedLeft}
-        onSwipedRight={handleOnSwipedRight}
+        onSwipedLeft={(index) => handleOnSwipedLeft(index)}
+        onSwipedRight={(index) => handleOnSwipedRight(index)}
         animateCardOpacity
         containerStyle={mainStyles.container}
         cards={userProfiles}
@@ -217,22 +236,11 @@ return (
               },
             },
           },
-          top: {
-            title: 'INFO',
-            element: <OverlayLabel label="INFO" color="#ffffff" />,
-            style: {
-              wrapper: {
-                ...mainStyles.overlayWrapper,
-                alignItems: 'flex-start',
-                marginLeft: 30,
-              },
-            },
-          },
         }}
       />
     </View>
     {!swipeStates.up? allButtons: likeRejectButtons}
-    {swipeStates.up? <MainDescription/> : <Text>Nothing</Text>}
+    {swipeStates.up? <MainDescription info={userProfiles[cardIndex]}/> : <Text></Text>}
   </View>
 )}
 
