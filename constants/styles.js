@@ -41,6 +41,12 @@ export const styles = StyleSheet.create({
     width: horizontalScale(120),
     marginTop: moderateScale(30),
   },
+  companyLogoImgStyle:{
+    borderRadius: moderateScale(25),
+    height: verticalScale(200),
+    width: horizontalScale(200),
+    marginTop: moderateScale(30),
+  },
 
   textOB2style: {
     textAlign: 'center',

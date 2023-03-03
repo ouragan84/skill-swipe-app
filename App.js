@@ -24,6 +24,10 @@ import Experience from './screens/consumer/register/user/Experience';
 import Interests from './screens/consumer/register/user/Interests';
 import Skills from './screens/consumer/register/user/Skills';
 import Profile from './screens/consumer/register/user/Profile';
+import GetStarted from './screens/consumer/register/business/GetStarted';
+import Industry from './screens/consumer/register/business/Industry';
+import AddLogo from './screens/consumer/register/business/AddLogo';
+import Position from './screens/consumer/register/business/Position';
 
 const Stack = createStackNavigator();
 
@@ -149,6 +153,30 @@ function NavStack() {
        
        component={ Profile } 
        options={{ title: 'Profile', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="GetStarted" 
+       
+       component={ GetStarted } 
+       options={{ title: 'GetStarted', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="Industry" 
+       
+       component={ Industry } 
+       options={{ title: 'Industry', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="AddLogo" 
+       
+       component={ AddLogo } 
+       options={{ title: 'AddLogo', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="Position" 
+       
+       component={ Position } 
+       options={{ title: 'Position', headerShown: false, gestureEnabled:false }}
       />
       <Stack.Screen 
        name="TestScreen" 
