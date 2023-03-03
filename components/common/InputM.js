@@ -8,6 +8,7 @@ export default function InputM(props) {
         <View>
             <TextInput
                 secureTextEntry = {props.password}
+                keyboardType = {props.numeric ? "numeric" : 'default'}
                 style={styles.inputBoxStyle}
                 onChangeText={props.onChangeValue}
                 value={props.value}

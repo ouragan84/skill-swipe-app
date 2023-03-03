@@ -27,11 +27,24 @@ export const styles = StyleSheet.create({
     marginTop: moderateScale(30),
   },
 
+  profImgStyle: {
+    borderRadius: moderateScale(15),
+    height: verticalScale(360),
+    width: horizontalScale(250),
+    marginBottom: moderateScale(30),
+    marginTop: moderateScale(30),
+  },
+
   logoImgStyle: {
     borderRadius: moderateScale(25),
     height: verticalScale(120),
     width: horizontalScale(120),
-    marginBottom: moderateScale(30),
+    marginTop: moderateScale(30),
+  },
+  companyLogoImgStyle:{
+    borderRadius: moderateScale(25),
+    height: verticalScale(200),
+    width: horizontalScale(200),
     marginTop: moderateScale(30),
   },
 
