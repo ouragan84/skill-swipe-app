@@ -20,7 +20,7 @@ const NameDOB = (props) => {
       <InputM name="Last Name" placeholder="Enter your first name" />
       <View style={{paddingBottom:moderateScale(50)}}/>
 
-      {/* CLICK THIS BUTTON TO ALLOW LOCATION SERVICES */}
+      {/* TODO CLICK THIS BUTTON TO ALLOW LOCATION SERVICES */}
       <ButtonM name="Confirm" click={() => props.navigation.navigate('Experience')} />
     </SafeAreaView>
   );

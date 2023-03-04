@@ -230,7 +230,7 @@ const Position = (props) => {
       <View style={{paddingBottom:moderateScale(40)}}/>
       <Text onPress={() => props.navigation.navigate('TestScreen')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Done adding positions</Text>
       <View style={{paddingBottom:moderateScale(20)}}/>
-      <ButtonM name="Add another experience +" click={()=>{setNum(num+1)}}/>        
+      <ButtonM name="Add another position +" click={()=>{setNum(num+1)}}/>        
 
     </SafeAreaView>
     
