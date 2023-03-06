@@ -88,8 +88,6 @@ const Position = (props) => {
       <View style={{paddingBottom:moderateScale(20)}}/>
       <InputM name="Title" placeholder="Enter job title"/>
       <MLinputM name="Description" placeholder="Enter job description"/>
-      <InputM name="Location" placeholder="San Francisco, CA"/>
-
       
       <View>
       <View style={stylez.sliderOne}>
