@@ -27,6 +27,10 @@ import Experience from './screens/consumer/register/user/Experience';
 import Interests from './screens/consumer/register/user/Interests';
 import Skills from './screens/consumer/register/user/Skills';
 import Profile from './screens/Profile';
+import Dashboard from './screens/Dashboard';
+
+import LikedProfiles from './screens/LikedProfiles';
+import MessageScreen from './screens/MessageScreen';
 
 const Stack = createStackNavigator();
 
@@ -160,16 +164,31 @@ function NavStack(props) {
        options={{ title: 'TestScreen', headerShown: true}}
       />
       <Stack.Screen 
-       name="BottomNavBar" 
-       
+       name="BottomNavBar"  
        component={ BottomNavBar }
-       options={{ title: 'BottomNavBar', headerShown: true, navigation: props.navigation }}
+       options={{ title: 'BottomNavBar', headerShown: true, }}
       />
       <Stack.Screen
         name="Profile"
         component={Profile}
-        options={{ title: 'ForgotPassword', headerShown: false }}
+        options={{ title: 'Profile', headerShown: false }}
       />
+      <Stack.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{ title: 'Dashboard', headerShown: false }}
+      />
+      <Stack.Screen
+        name="LikedProfiles"
+        component={LikedProfiles}
+        options={{ title: 'Liked Profiles', headerShown: false }}
+      />
+      <Stack.Screen
+        name="MessageScreen"
+        component={MessageScreen}
+        options={{ title: 'Message Screen', headerShown: false }}
+      />
+
     </Stack.Navigator>
   );
 }

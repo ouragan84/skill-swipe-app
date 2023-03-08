@@ -12,11 +12,25 @@ import {
 import CardItem from '../components/main/CardItem';
 import Icon from '../components/main/Icon';
 import Demo from '../data/messagesData';
+import userProfiles from '../data/userProfiles';
 
-const Likes = (props) => {
+const Likes = (props, route) => {
 
   console.log('DEMO DATA: ', Demo[0])
 
+  let navSource = ''
+
+  if(route && route.params)
+  {
+    navSource = route.params.navigation
+    console.log('route')
+  }
+    
+  else  
+  {
+    navSource = props.navigation
+    console.log('props')
+  }
   return (
     <ImageBackground
       source={require('../assets/images/bg.png')}
@@ -28,12 +42,14 @@ const Likes = (props) => {
             numColumns={2}
             data={Demo}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <TouchableOpacity>
+                {/* REPLACE BELOW WITH LIKES PROFILES */}
                 <CardItem
                   profileData={item}
+                  profiles={userProfiles}
                   variant
-                  navigation={props.navigation}
+                  navigation={navSource}
                 />
               </TouchableOpacity>
             )}

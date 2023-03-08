@@ -104,20 +104,31 @@ export const styles = StyleSheet.create({
 
   // SCREEN - PROFILE
 	containerProfile: { marginHorizontal: 0 },
-	photo: {
-		width: DIMENSION_WIDTH,
-		height: 450
+	containerCardItem: {
+		marginTop: 0,
+	},
+	topIcons: {
+		flex: 1, 
+		flexDirection: 'row',
+		marginTop: 100
 	},
 	topIconLeft: {
-		fontSize: 20,
 		paddingLeft: 20,
-		marginTop: -20,
-		transform: [{ rotate: "90deg" }]
+		marginTop: 50,
+		marginBottom: -50,
 	},
 	topIconRight: {
 		fontSize: 20,
-		paddingRight: 20
+		paddingRight: 20,
+		textAlign: 'right'
 	},
+	photo: {
+		width: DIMENSION_WIDTH,
+		height: 450,
+		marginTop: 0
+	},
+	
+	
 	actionsProfile: {
 		justifyContent: "center",
 		flexDirection: "row",
@@ -144,7 +155,7 @@ export const styles = StyleSheet.create({
 		height: 50,
 		borderRadius: 25,
 		backgroundColor: SECONDARY_COLOR,
-		paddingHorizontal: 20
+		paddingHorizontal: 20,
 	},
 
 	// SCREEN - GENERAL
