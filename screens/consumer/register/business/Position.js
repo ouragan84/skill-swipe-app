@@ -10,6 +10,9 @@ import SRButtonM from '../../../../components/common/SRButtonM';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
 import { styles } from '../../../../constants/styles';
 import SkillsListB from './helper-components/SkillsListB';
+import SkillsListItem from './helper-components/SkillsListItem';
+import Icon from 'react-native-vector-icons/Entypo';
+
 
 const Position = (props) => {
   const [num, setNum] = useState(1)
@@ -20,6 +23,8 @@ const Position = (props) => {
   const multiSliderValuesChange = values => setMultiSliderValue(values);
   const [multiSlider2Value, setMultiSlider2Value] = React.useState([15, 30]);
   const multiSlider2ValuesChange = values => setMultiSlider2Value(values);
+  const [multiSlider3Value, setMultiSlider3Value] = React.useState([3, 4]);
+  const multiSlider3ValuesChange = values => setMultiSlider3Value(values);
 
   let skillsList=[
     "Access Platform",
@@ -114,13 +119,12 @@ const Position = (props) => {
 "Web Administration",
 "Web Based Technology",
 "Yield Management",
-]
+  ]
 
   const clickMe = () => {
     setSkillCount(skillCount+1)
   }
 
-  // 0 - remote, 1 - hybrid, 2 - inPerson
   const [workType, setWorkType] = useState([false,false,false])
   const [ageRange, setAgeRange] = useState([false,false,false])
   const [flexib, setFlexib] = useState([false,false,false])
@@ -177,16 +181,83 @@ const Position = (props) => {
 
   const [selectedSkills, setSelectedSkills] = useState([])
 
+  // THIS SKILLPRIORITIES ARRAY IS ALL YOU NEED FOR THE BACKEND
+  // THE FORMAT IS ['skill', 'difficulty']
+  let skillPriorities = []
+  for(let i = 0; i < selectedSkills.length; i++){
+    skillPriorities[i] = ["",""]
+  }
+  const setSkillPriorities = (a, i) =>{
+    skillPriorities[i] = a
+  }
+
+  const renderItem = (item,i) => { 
+    return(
+      <SkillsListItem item={item} i={i} skillsList={skillsList} selectedSkills={selectedSkills} callbackSkillCount={setSkillCount} callbackSelectedSkills={setSelectedSkills} callbackSkillPri={setSkillPriorities}/> 
+    )
+  }
+
+  const vToRE = (v) => {
+    let ref = [0, 1, 5, 10, "+"]
+    return ref[v]
+  }
+
+  const handleRelExpDisplay = () => {
+    if(multiSlider3Value[0] == 0 && multiSlider3Value[1] == 4)
+      return "None"
+    
+    if(multiSlider3Value[1] == 4){
+      return vToRE(multiSlider3Value[0]) + vToRE(multiSlider3Value[1])
+    }else{
+      return vToRE(multiSlider3Value[0]) + " to "+ vToRE(multiSlider3Value[1])
+    }
+  }
+
+
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#edf5f7'}}>
       <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingBottom:moderateScale(30)}}>Add Position {num}</Text>
       
-      <ScrollView style={{width:'100%',backgroundColor:"white",flexGrow:0, height:verticalScale(480)}}>
+      <ScrollView style={{width:'100%',backgroundColor:"white",flexGrow:0, height:verticalScale(500)}}>
       <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
       <View style={{paddingBottom:moderateScale(20)}}/>
       <InputM name="Title" placeholder="Enter job title"/>
       <MLinputM name="Description" placeholder="Enter job description"/>
       
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={stylez.centeredView}>
+          <View style={stylez.modalView}>  
+            <ScrollView style={{width:horizontalScale(300), padding:moderateScale(10), backgroundColor:"#eeeeee"}}>
+              <SkillsListB skillsList={skillsList} callback={setSelectedSkills} countCallback={setSkillCount} selected={selectedSkills}/>
+            </ScrollView>
+            <View style={{paddingBottom:moderateScale(15)}}/>
+            <ButtonM name={`Done (${skillCount}/5)`}  click={() => {
+              console.log(selectedSkills)
+              setSkillCount(selectedSkills.length)
+              setModalVisible(!modalVisible)
+            }}/>
+          </View>
+        </View>
+      </Modal>
+      <View style={{paddingBottom:moderateScale(10)}}/>
+      <ButtonM name={`Add Skill Tags (${skillCount}/5)`} click={() => setModalVisible(!modalVisible)}/>
+      
+      {selectedSkills.length>0 ? <Text style={stylez.text}>Select your skills' priorities</Text>:<></>}
+      <View style={{paddingBottom:moderateScale(10)}}/>
+      {
+        selectedSkills.map((item,index) => {
+          return renderItem(item,index)
+        })
+      }
+
+
       <View>
       <View style={stylez.sliderOne}>
         <Text style={stylez.text}>Pay Range</Text>
@@ -227,32 +298,28 @@ const Position = (props) => {
       />
       </View>
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}>
-        <View style={stylez.centeredView}>
-          <View style={stylez.modalView}>  
-            <ScrollView style={{width:horizontalScale(300), padding:moderateScale(10), backgroundColor:"#eeeeee"}}>
-              <SkillsListB skillsList={skillsList} callback={setSelectedSkills} countCallback={setSkillCount} selected={selectedSkills}/>
-            </ScrollView>
-            <View style={{paddingBottom:moderateScale(15)}}/>
-            <ButtonM name={`Done (${skillCount}/5)`}  click={() => {
-              console.log(selectedSkills)
-              setSkillCount(selectedSkills.length)
-              setModalVisible(!modalVisible)
-            }}/>
-          </View>
-        </View>
-      </Modal>
-      <View style={{paddingBottom:moderateScale(10)}}/>
-      <ButtonM name={`Add Skill Tags (${skillCount}/5)`} click={() => setModalVisible(!modalVisible)}/>
-      
-      <View style={{paddingBottom:moderateScale(5)}}/>
+      <View>
+      <View style={stylez.sliderOne}>
+        <Text style={stylez.text}>Relevant Experience</Text>
+        <Text style={stylez.text}>{handleRelExpDisplay()}</Text>
+      </View>
+      <MultiSlider
+        values={[multiSlider3Value[0], multiSlider3Value[1]]}
+        sliderLength={horizontalScale(300)}
+        onValuesChange={multiSlider3ValuesChange}
+        min={0}
+        max={4}
+        step={1}
+        allowOverlap={false}
+        snapped
+        selectedStyle={{ backgroundColor: '#28A0BB',}}
+        unselectedStyle={{ backgroundColor: '#ADAFBB', }}
+        trackStyle={{ height: 4, }}
+      />
+      </View>
+
+
+
       {/* <SRButtonM name="Accept Minors" click={()=>{console.log("a")}} tick={true}/> */}
       <Text style={stylez.text}>Age range</Text>
       <View style={{justifyContent:'space-between', flexDirection:'row'}}>
@@ -328,7 +395,8 @@ const Position = (props) => {
         </TouchableWithoutFeedback>
       </View>
 
-      <View style={{paddingBottom:moderateScale(10)}}/>
+      <View style={{paddingBottom:moderateScale(15)}}/>
+
       <View style={{justifyContent:'space-between', flexDirection:'row', width:horizontalScale(300)}}>
         <Text style={{alignSelf: 'center',paddingBottom: moderateScale(5),fontSize:moderateScale(15)}}>
           Number of open roles
@@ -336,11 +404,12 @@ const Position = (props) => {
         <NinputM placeholder="" width={moderateScale(100)}/>
       </View>
 
+
       <View style={{paddingBottom:moderateScale(40)}}/>
       </View>
       </ScrollView>
 
-      <View style={{paddingBottom:moderateScale(40)}}/>
+      <View style={{paddingBottom:moderateScale(20)}}/>
       <Text onPress={() => props.navigation.navigate('TestScreen')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Done adding positions</Text>
       <View style={{paddingBottom:moderateScale(20)}}/>
       <ButtonM name="Add another position +" click={()=>{setNum(num+1)}}/>        
@@ -415,9 +484,7 @@ const stylez = StyleSheet.create({
     alignSelf: 'center',
     paddingTop: moderateScale(5),
     paddingBottom: moderateScale(5),
-    fontSize:moderateScale(18),
-    letterSpacing:.45,
-    fontWeight:'bold',
+    fontSize:moderateScale(15),
   },
   sliderOne: {
     flexDirection: 'row',

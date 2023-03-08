@@ -9,10 +9,10 @@ export default function ButtonM(props) {
 
     let skillsList=props.skillsList
     const [selected,setSelect] = useState(props.selected)
-    const handlePress = (index) => {
+    const handlePress = (index, isSelected) => {
         let existingState = [...selected];
         if(existingState.includes(index)){
-            existingState = existingState.filter(item => item !== index)
+            existingState = existingState.filter(i => i !== index)
             setSelect(existingState)
         } else {
             existingState.push(index)
@@ -35,9 +35,13 @@ export default function ButtonM(props) {
             }}
             onPress={()=>{
                 if(canSelect || isSelected) {
-                    handlePress(index)
+                    handlePress(index, isSelected)
                     let arr = selected.splice(0)
-                    arr.push(index)
+                    if(!arr.includes(index)) 
+                      arr.push(index)
+                    else
+                      arr = arr.filter(i => i !== index)
+                    console.log(arr)
                     setSelected(arr)
                     setCount(arr.length)
                 }
