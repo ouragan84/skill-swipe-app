@@ -9,6 +9,7 @@ import NinputM from '../../../../components/common/NinputM';
 import SRButtonM from '../../../../components/common/SRButtonM';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
 import { styles } from '../../../../constants/styles';
+import SkillsListB from './helper-components/SkillsListB';
 
 const Position = (props) => {
   const [num, setNum] = useState(1)
@@ -20,64 +21,161 @@ const Position = (props) => {
   const [multiSlider2Value, setMultiSlider2Value] = React.useState([15, 30]);
   const multiSlider2ValuesChange = values => setMultiSlider2Value(values);
 
+  let skillsList=[
+    "Access Platform",
+"Application Development/Technology",
+"Architecture",
+"Artificial Intelligence",
+"Banner Advertisement",
+"Business Analytics",
+"Business Continuity",
+"Business Support Systems (BSS)",
+"Business to Business (B2B)",
+"Business to Consumer (B2C)",
+"Business Transformation",
+"C",
+"C#",
+"C++",
+"Change Management",
+"Co-Branding",
+"Competitive Intelligence",
+"Component Development",
+"CSS (Cascading Style Sheets)",
+"Data Controlling",
+"Data Gathering",
+"Data Mining/Warehousing",
+"Database Administration/Manager",
+"Database Development",
+"Database Integration",
+"Delivery Systems",
+"Digital Marketing",
+"Digital Media",
+"Distribution Channels",
+"E-commerce",
+"E-portal",
+"Electronic Data Interchange (EDI)",
+"Electronic Marketing",
+"Encryption",
+"End-user Support",
+"Fault Analysis",
+"Framework",
+"Geographic Information System (GIS)",
+"Global HITS",
+"Graphic Design",
+"HTML",
+"Information Security",
+"Information Technology",
+"Infrastructure Development",
+"Intellectual Property Rights (IPR)",
+"Java",
+"Knowledge Management",
+"LAN/WAN",
+"Licensing",
+"Machine Learning",
+"Management Information System (MIS)",
+"Market-Space",
+"Mergers and Acquisitions",
+"Multiplatform Integration",
+"Needs Assessment",
+"Network Administration/Management",
+"Network Solutions",
+"Online Advertising",
+"Operations Support Systems (OSS)",
+"Oracle",
+"Process Re-Engineering",
+"Product Launch/Testing",
+"Program Management",
+"Programming",
+"Project Management",
+"Python",
+"Quality Assurance",
+"Reach",
+"React JS",
+"Research and Development",
+"Root Cause Analysis",
+"SAS/SPSS",
+"Search Engine Optimization (SEO)",
+"Software Configuration",
+"Software Engineering",
+"Solutions Delivery/Strategies",
+"Storefront",
+"Structured Query Language (SQL)",
+"Systems Administration",
+"Systems Development Life Cycle (SDLC)",
+"Technical Documentation",
+"Technical Support",
+"Trading",
+"Turnkey",
+"Unix",
+"Vendor Management",
+"Visual Basic",
+"Voice over Internet Protocol (VoIP)",
+"Vortals (Vertical Industry Portals)",
+"Web Administration",
+"Web Based Technology",
+"Yield Management",
+]
 
   const clickMe = () => {
     setSkillCount(skillCount+1)
   }
 
-    // 0 - remote, 1 - hybrid, 2 - inPerson
-    const [workType, setWorkType] = useState([false,false,false])
-    const [flexib, setFlexib] = useState([false,false,false])
-  
-    const buttonBorderStyleL = (w) => {
-      return {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: moderateScale(15),
-        width:horizontalScale(100),
-        borderBottomLeftRadius: moderateScale(18),
-        borderTopLeftRadius: moderateScale(18),
-        elevation: 3,
-        backgroundColor: w ? '#28A0BB' : 'white',
-        borderWidth:1,
-        borderColor: w ? "white" :'#ADAFBB',
-      }
+  // 0 - remote, 1 - hybrid, 2 - inPerson
+  const [workType, setWorkType] = useState([false,false,false])
+  const [ageRange, setAgeRange] = useState([false,false,false])
+  const [flexib, setFlexib] = useState([false,false,false])
+
+  const buttonBorderStyleL = (w) => {
+    return {
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: moderateScale(15),
+      width:horizontalScale(100),
+      borderBottomLeftRadius: moderateScale(18),
+      borderTopLeftRadius: moderateScale(18),
+      elevation: 3,
+      backgroundColor: w ? '#28A0BB' : 'white',
+      borderWidth:1,
+      borderColor: w ? "white" :'#ADAFBB',
     }
-    const buttonBorderStyleM = (w) => {
-      return{
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: moderateScale(15),
-        width:horizontalScale(100),
-        elevation: 3,
-        backgroundColor: w ? '#28A0BB' : 'white',
-        borderTopWidth:1,
-        borderBottomWidth:1,
-        borderColor: w ? "white" :'#ADAFBB',
-      }
+  }
+  const buttonBorderStyleM = (w) => {
+    return{
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: moderateScale(15),
+      width:horizontalScale(100),
+      elevation: 3,
+      backgroundColor: w ? '#28A0BB' : 'white',
+      borderTopWidth:1,
+      borderBottomWidth:1,
+      borderColor: w ? "white" :'#ADAFBB',
     }
-    const buttonBorderStyleR = (w) => {
-      return{
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: moderateScale(15),
-        width:horizontalScale(100),
-        borderBottomRightRadius: moderateScale(18),
-        borderTopRightRadius: moderateScale(18),
-        elevation: 3,
-        backgroundColor: w ? '#28A0BB' : 'white',
-        borderWidth:1,
-        borderColor: w ? "white" :'#ADAFBB',
-      }
+  }
+  const buttonBorderStyleR = (w) => {
+    return{
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: moderateScale(15),
+      width:horizontalScale(100),
+      borderBottomRightRadius: moderateScale(18),
+      borderTopRightRadius: moderateScale(18),
+      elevation: 3,
+      backgroundColor: w ? '#28A0BB' : 'white',
+      borderWidth:1,
+      borderColor: w ? "white" :'#ADAFBB',
     }
-    const buttonTextStyle = (w) => {
-      return {
-        color: w ? "white" : "black",
-        fontSize: moderateScale(16),
-        fontWeight: w ?'bold':'default',
-        letterSpacing: 0.25,
-      }
+  }
+  const buttonTextStyle = (w) => {
+    return {
+      color: w ? "white" : "black",
+      fontSize: moderateScale(16),
+      fontWeight: w ?'bold':'default',
+      letterSpacing: 0.25,
     }
+  }
+
+  const [selectedSkills, setSelectedSkills] = useState([])
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#edf5f7'}}>
@@ -139,25 +237,15 @@ const Position = (props) => {
         }}>
         <View style={stylez.centeredView}>
           <View style={stylez.modalView}>  
-            <InputM name="Search" placeholder="Type a skill you have"/>
-            <ScrollView style={{width:'100%', padding:moderateScale(10), backgroundColor:"#eeeeee", borderRadius:18}}>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+            <ScrollView style={{width:horizontalScale(300), padding:moderateScale(10), backgroundColor:"#eeeeee"}}>
+              <SkillsListB skillsList={skillsList} callback={setSelectedSkills} countCallback={setSkillCount} selected={selectedSkills}/>
             </ScrollView>
             <View style={{paddingBottom:moderateScale(15)}}/>
-            <ButtonM name={`Done (${skillCount}/5)`}  click={() => setModalVisible(!modalVisible)}/>
+            <ButtonM name={`Done (${skillCount}/5)`}  click={() => {
+              console.log(selectedSkills)
+              setSkillCount(selectedSkills.length)
+              setModalVisible(!modalVisible)
+            }}/>
           </View>
         </View>
       </Modal>
@@ -165,10 +253,29 @@ const Position = (props) => {
       <ButtonM name={`Add Skill Tags (${skillCount}/5)`} click={() => setModalVisible(!modalVisible)}/>
       
       <View style={{paddingBottom:moderateScale(5)}}/>
-      <SRButtonM name="Accept Minors" click={()=>{console.log("a")}} tick={true}/>
+      {/* <SRButtonM name="Accept Minors" click={()=>{console.log("a")}} tick={true}/> */}
+      <Text style={stylez.text}>Age range</Text>
+      <View style={{justifyContent:'space-between', flexDirection:'row'}}>
+        <TouchableWithoutFeedback onPress={()=>setAgeRange([true,false,false])}> 
+          <View style={buttonBorderStyleL(ageRange[0])}>
+            <Text style={buttonTextStyle(ageRange[0])}>16+</Text>
+          </View>
+        </TouchableWithoutFeedback>
 
+        <TouchableWithoutFeedback onPress={()=>setAgeRange([false,true,false])}>
+          <View style={buttonBorderStyleM(ageRange[1])}>
+            <Text style={buttonTextStyle(ageRange[1])}>18+</Text>
+          </View>
+        </TouchableWithoutFeedback>
 
-      <Text style={{fontSize:moderateScale(15), paddingVertical:moderateScale(10)}}>Select the job type</Text>
+        <TouchableWithoutFeedback onPress={()=>setAgeRange([false,false,true])}>
+          <View style={buttonBorderStyleR(ageRange[2])}>
+            <Text style={buttonTextStyle(ageRange[2])}>21+</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+
+      <Text style={stylez.text}>Select the job type</Text>
       <View style={{justifyContent:'space-between', flexDirection:'row'}}>
         <TouchableWithoutFeedback onPress={()=>setWorkType([true,false,false])}> 
           <View style={buttonBorderStyleL(workType[0])}>
@@ -220,8 +327,16 @@ const Position = (props) => {
           </View>
         </TouchableWithoutFeedback>
       </View>
-      <View style={{paddingBottom:moderateScale(40)}}/>
 
+      <View style={{paddingBottom:moderateScale(10)}}/>
+      <View style={{justifyContent:'space-between', flexDirection:'row', width:horizontalScale(300)}}>
+        <Text style={{alignSelf: 'center',paddingBottom: moderateScale(5),fontSize:moderateScale(15)}}>
+          Number of open roles
+        </Text>
+        <NinputM placeholder="" width={moderateScale(100)}/>
+      </View>
+
+      <View style={{paddingBottom:moderateScale(40)}}/>
       </View>
       </ScrollView>
 
@@ -293,8 +408,16 @@ const stylez = StyleSheet.create({
   text: {
     alignSelf: 'center',
     paddingTop: moderateScale(20),
-    paddingBottom: moderateScale(5)  ,
+    paddingBottom: moderateScale(5),
     fontSize:moderateScale(15)
+  },
+  textS: {
+    alignSelf: 'center',
+    paddingTop: moderateScale(5),
+    paddingBottom: moderateScale(5),
+    fontSize:moderateScale(18),
+    letterSpacing:.45,
+    fontWeight:'bold',
   },
   sliderOne: {
     flexDirection: 'row',

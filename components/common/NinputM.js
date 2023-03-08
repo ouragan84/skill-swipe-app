@@ -11,7 +11,7 @@ export default function NinputM(props) {
                 secureTextEntry = {props.password}
                 style={{
                     paddingVertical: moderateScale(15),
-                    width:horizontalScale(138),
+                    width: props.width ? props.width: horizontalScale(138),
                     borderRadius: moderateScale(18),
                     margin: moderateScale(12),
                     borderWidth: 1,
@@ -27,7 +27,7 @@ export default function NinputM(props) {
                 autoCapitalize={props.autoCapitalize}
                 autoCorrect={props.autoCorrect}
             /> 
-            <Text style={styles.inputTextStyle}>{props.name}</Text>
+            {props.name ? <Text style={styles.inputTextStyle}>{props.name}</Text>:<></>}
         </View>   
     );
 };
