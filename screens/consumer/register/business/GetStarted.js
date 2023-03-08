@@ -24,7 +24,7 @@ const GetStarted = (props) => {
       <InputM name="Company Size" placeholder="Enter your company's size" numeric={true}/>      
 
       <View style={{paddingBottom:moderateScale(30)}}/>
-      {/* CLICK THIS BUTTON TO ALLOW LOCATION SERVICES */}
+      {/* TODO CLICK THIS BUTTON TO ALLOW LOCATION SERVICES */}
       <ButtonM name="Confirm" click={() => props.navigation.navigate('Industry')} />
     </SafeAreaView>
   );
