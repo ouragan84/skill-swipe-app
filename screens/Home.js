@@ -52,6 +52,10 @@ export default function Home(props) {
         title="User SignUp (after email conf)"
         onPress={() => props.navigation.navigate('NameDOB')}
       />
+      <Button
+        title="Business SignUp (after email conf)"
+        onPress={() => props.navigation.navigate('GetStarted')}
+      />
     </View>
   );
 }
