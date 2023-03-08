@@ -8,7 +8,8 @@ export const mainStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   swiperContainer: {
-    height: height - 500,
+    marginTop:-50,
+    height: height - 400,
   },
   buttonsContainer: {
     justifyContent: 'space-between',

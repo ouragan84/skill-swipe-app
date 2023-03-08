@@ -8,6 +8,8 @@ import Icon from './Icon';
 
 const CardItem = (props) => {
 
+  console.log('index: ', props.profileIndex, '; item: ', props.profileData)
+
   // Custom styling
   const fullWidth = Dimensions.get('window').width;
   const imageStyle = [
@@ -39,8 +41,17 @@ const CardItem = (props) => {
 
     // console.log('item: ', a)
 
-    props.navigation.navigate('Profile', {
-      profileData: props.profileData})
+    // props.navigation.navigate('Profile', {
+    //   profileData: props.profileData,
+    //   profileIndex: props.profileIndex,
+    //   profiles: props.userProfiles
+    // })
+    props.navigation.navigate('LikedProfiles', {
+      profileData: props.profileData,
+      profileIndex: props.profileIndex,
+      userProfiles: props.profiles,
+      navigation: props.navigation
+    })
   }
 
   const profilePicPath = '../' + props.profileData.image
@@ -53,13 +64,13 @@ const CardItem = (props) => {
       <Image source={require('../../assets/images/logo.png')} style={imageStyle}/>
 
       {/* MATCHES */}
-      {props.profileData.matches && (
+      {/* {props.profileData.matches && (
         <View style={styles.matchesCardItem}>
           <Text style={styles.matchesTextCardItem}>
             <Icon name="heart" /> {props.profileData.matches}% Match!
           </Text>
         </View>
-      )}
+      )} */}
 
       {/* NAME */}
       <Text style={nameStyle}>{props.profileData.name}</Text>
@@ -78,7 +89,7 @@ const CardItem = (props) => {
       )}
 
       {/* ACTIONS */}
-      {props.actions && (
+      {/* {props.actions && (
         <View style={styles.actionsCardItem}>
           <TouchableOpacity style={styles.miniButton}>
             <Text style={styles.star}>
@@ -107,7 +118,7 @@ const CardItem = (props) => {
             </Text>
           </TouchableOpacity>
         </View>
-      )}
+      )} */}
     </View>
     </TouchableOpacity>
     
