@@ -19,10 +19,27 @@ const TestScreen = (props) => {
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <InputM name="First Name" placeholder="Enter your first name"/>
-      <CButtonM/>
+      <View style={{width: 400, height: 700, backgroundColor: 'white', borderWidth: 2, borderColor: 'black',justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontSize: 26}}>There are no more liked applicants.</Text>
+        <Text style={{fontSize: 20}}></Text>
+        <Text style={{fontSize: 22}}>Please check out your liked applicants!</Text>
+        <Text style={{fontSize: 20}}></Text>
+        <Text style={{fontSize: 20}}></Text>
+        <ButtonM name = "See Liked Applicants" click = {() => props.navigation.navigate('CompanyMessages')}/>
+      </View>
     </SafeAreaView>
   );
 };
+
+// const TestScreen = (props) => {
+//   const [number, onChangeNumber] = React.useState('');
+
+//   return (
+//     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
+//       <InputM name="First Name" placeholder="Enter your first name"/>
+//       <CButtonM/>
+//     </SafeAreaView>
+//   );
+// };
 
 export default TestScreen;
