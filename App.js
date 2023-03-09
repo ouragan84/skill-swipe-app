@@ -1,12 +1,15 @@
 // App.js
 
 import React from 'react';
+import { Text, View } from 'react-native';
 import { NavigationContainer , DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './screens/Home';
 import Logs from './screens/Logs';
 import Counter from './screens/Counter';
+// TODO - CHANGE below later
+import LocationComponent from './components/Location';
 import Onboard from './screens/consumer/Onboard';
 import SignUp from './screens/consumer/register/SignUp';
 import SignIn from './screens/consumer/login/SignIn';
@@ -14,7 +17,7 @@ import CodeSent from './screens/consumer/login/CodeSent';
 import ResetPassword from './screens/consumer/login/ResetPassword';
 import ForgotPassword from './screens/consumer/login/ForgotPassword';
 import TestScreen from './screens/TestScreen';
-
+import BottomNavBar from './components/main/BottomNavBar';
 import useCachedResources from './hooks/useCachedResources';
 import ProfileDetails from './screens/consumer/register/ProfileDetails';
 import Describe from './screens/Describe';
@@ -23,6 +26,11 @@ import NameDOB from './screens/consumer/register/user/NameDOB';
 import Experience from './screens/consumer/register/user/Experience';
 import Interests from './screens/consumer/register/user/Interests';
 import Skills from './screens/consumer/register/user/Skills';
+//import Profile from './screens/Profile';
+import Dashboard from './screens/Dashboard';
+
+import LikedProfiles from './screens/LikedProfiles';
+import MessageScreen from './screens/MessageScreen';
 import Profile from './screens/consumer/register/user/Profile';
 import GetStarted from './screens/consumer/register/business/GetStarted';
 import Industry from './screens/consumer/register/business/Industry';
@@ -39,7 +47,7 @@ const MyTheme = {
   },
 };
 
-function NavStack() {
+function NavStack(props) {
   return (
      <Stack.Navigator
         initialRouteName="Home"
@@ -58,7 +66,7 @@ function NavStack() {
       <Stack.Screen 
         name="Home" 
         component={ Home } 
-        options={{ title: 'Home', headerShown: false }}
+        options={{ title: 'Home', headerShown: false}}
       />
       <Stack.Screen 
         name="Logs" 
@@ -75,6 +83,12 @@ function NavStack() {
        
        component={ Onboard } 
        options={{ title: 'Onboard', headerShown: false }}
+      />
+      <Stack.Screen 
+       name="Location" 
+  
+       component={ LocationComponent } 
+       options={{ title: 'Location', headerShown: false }}
       />
       <Stack.Screen 
        name="ProfileDetails" 
@@ -182,8 +196,34 @@ function NavStack() {
        name="TestScreen" 
        
        component={ TestScreen } 
-       options={{ title: 'TestScreen', headerShown: true }}
+       options={{ title: 'TestScreen', headerShown: true}}
       />
+      <Stack.Screen 
+       name="BottomNavBar"  
+       component={ BottomNavBar }
+       options={{ title: 'BottomNavBar', headerShown: true, }}
+      />
+      {/* <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{ title: 'Profile', headerShown: false }}
+      /> */}
+      <Stack.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{ title: 'Dashboard', headerShown: false }}
+      />
+      <Stack.Screen
+        name="LikedProfiles"
+        component={LikedProfiles}
+        options={{ title: 'Liked Profiles', headerShown: false }}
+      />
+      <Stack.Screen
+        name="MessageScreen"
+        component={MessageScreen}
+        options={{ title: 'Message Screen', headerShown: false }}
+      />
+
     </Stack.Navigator>
   );
 }
@@ -191,13 +231,14 @@ function NavStack() {
 export default function App() {
 
   const isLoadingComplete = useCachedResources();
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
       <NavigationContainer theme={MyTheme} >
-        <NavStack />
+        <NavStack/>
       </NavigationContainer>
     );
   }
