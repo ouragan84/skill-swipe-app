@@ -101,12 +101,12 @@ const checkConsumerStatusAndNavigate = (navigation) => {
             if(response.consumer.isTypeUser){
                 navigation.reset({
                     index: 0,
-                    routes: [{name: 'Counter'}], // user set up
+                    routes: [{name: 'NameDOB'}], // user set up
                   });
             } else {
                 navigation.reset({
                     index: 0,
-                    routes: [{name: 'Counter'}], // company set up
+                    routes: [{name: 'GetStarted'}], // company set up
                   });
             }
         } else {

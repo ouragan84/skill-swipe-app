@@ -6,16 +6,14 @@ import ButtonM from '../../../../components/common/ButtonM';
 import SRButtonM from '../../../../components/common/SRButtonM';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
 import { styles } from '../../../../constants/styles';
-
-function clickMe(){
-  console.log("poopy buttcrack")
-}
+import {fetchUnprotected, fetchProtected} from '../../../../hooks/webRequestHelper';
 
 const Interests = (props) => {
   const [sliderOneChanging, setSliderOneChanging] = React.useState(false);
   const [sliderOneValue, setSliderOneValue] = React.useState([10]);
   const [multiSliderValue, setMultiSliderValue] = React.useState([20, 25]);
   const [multiSlider2Value, setMultiSlider2Value] = React.useState([2, 3]);
+  const [errorText, setErrorText] = useState("");
 
   const sliderOneValuesChangeStart = () => setSliderOneChanging(true);
   const sliderOneValuesChange = values => setSliderOneValue(values);
@@ -28,6 +26,32 @@ const Interests = (props) => {
   // 0 - remote, 1 - hybrid, 2 - inPerson
   const [workType, setWorkType] = useState([false,false,false])
   const [flexib, setFlexib] = useState([false,false,false])
+
+  const submitIntrests = () => {
+    // console.log("1", sliderOneValue);
+    // console.log("2", multiSliderValue);
+    // console.log("3", multiSlider2Value);
+    // // console.log("4", maxDistance);
+    // console.log("4", workType);
+    // console.log("5", flexib);
+
+    if(flexib.count(true) == 0)
+      return setErrorText("Please add your flexibility")
+
+
+    fetchProtected('/user/set/preferences', 'POST', {
+      maxDistance: sliderOneValue[0],
+      hoursPerWeek: multiSliderValue,
+      companySize: [multiSlider2Value[0]+1, multiSlider2Value[1]+1],
+      isRemote: workType[0],
+      isHybrid: workType[1],
+      isInPerson: workType[2],
+      hoursFlexibility: [flexib.findIndex(true)+1, flexib.findIndex(true)+1]
+
+    }, setErrorText, () => props.navigation.navigate('Skills'), props.navigation)
+
+    // props.navigation.navigate('Skills')
+  }
 
   const buttonBorderStyleL = (w) => {
     return {
@@ -168,7 +192,7 @@ const Interests = (props) => {
         </View>
 
         <View style={{paddingBottom:moderateScale(10)}}/>
-        <Text style={stylez.text}>How flexible are your hours?</Text>
+        <Text style={stylez.text}>How flexible do you want your work hours?</Text>
         <View style={{paddingBottom:moderateScale(5)}}/>
         <View style={{justifyContent:'space-between', flexDirection:'row'}}>
           <TouchableWithoutFeedback onPress={()=>{
@@ -201,7 +225,8 @@ const Interests = (props) => {
       </View>
 
       <View style={{paddingBottom:moderateScale(10)}}/>
-      <ButtonM name="Confirm" click={() => props.navigation.navigate('Skills')} />
+      <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
+      <ButtonM name="Confirm" click={submitIntrests} />
   
     </SafeAreaView>
   );

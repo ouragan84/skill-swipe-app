@@ -7,26 +7,57 @@ import NinputM from '../../../../components/common/NinputM';
 import SRButtonM from '../../../../components/common/SRButtonM';
 import { horizontalScale, moderateScale } from '../../../../components/helper/Metrics';
 import { styles } from '../../../../constants/styles';
+import { skillsList } from '../../../../data/skillTags';
+import {fetchUnprotected, fetchProtected} from '../../../../hooks/webRequestHelper';
+import SkillsListB from '../../../../components/helper/SkillsListB';
 
 const Experience = (props) => {
-  const [num, setNum] = useState("1")
+  // const [num, setNum] = useState("1")
   const [modalVisible, setModalVisible] = useState(false);
   const [skillCount, setSkillCount] = useState(0)
+  const [selectedSkills, setSelectedSkills] = useState([])
+  const [errorText, setErrorText] = useState("");
+  const [years, setYears] = useState("")
+  const [months, setMonths] = useState("")
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [isCurrent, setIsCurrent] = useState(false)
 
-  const clickMe = () => {
-    setSkillCount(skillCount+1)
+  const submitExperience = () => {
+    const skills = [];
+    selectedSkills.forEach(s => {
+      skills.push(skillsList[s]);
+    });
+    fetchProtected('/user/add/experience', 'POST', {
+      years: Number(years), months: Number(months), title, description, isCurrent, skills
+    }, setErrorText, () => {
+        // currently can have weird behaviour if going backwards. Might want to add logic for that or navigation.reset
+        setModalVisible(false)
+        setSkillCount(0)
+        setSelectedSkills([])
+        setErrorText("")
+        setYears("")
+        setMonths("")
+        setTitle("")
+        setDescription("")
+        setIsCurrent(false)
+        props.navigation.navigate('Experience', {num: props.route.params.num + 1}); 
+        
+    }, props.navigation)
   }
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingBottom:moderateScale(30)}}>Experience {num}</Text>
-      <InputM name="Title" placeholder="Enter job title"/>
-      <MLinputM name="Description" placeholder="Enter your description"/>
+      <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingBottom:moderateScale(30)}}>Experience {props.route.params.num}</Text>
+      <InputM name="Title" placeholder="Enter job title" onChangeValue={setTitle} value={title}/>
+      <MLinputM name="Description" placeholder="Enter your description" onChangeValue={setDescription} value={description}/>
       <View style={{flexDirection:'row', justifyContent:'center', alignContent:'center'}}>
-        <NinputM name="Years" placeholder="00"/>
-        <NinputM name="Months" placeholder="00"/>
+        <NinputM name="Years" placeholder="00" onChangeValue={setYears} value={years}/>
+        <NinputM name="Months" placeholder="00" onChangeValue={setMonths} value={months}/>
       </View>   
-      <SRButtonM name="Current" click={clickMe}/>
+      <SRButtonM name="Current" click={() => setIsCurrent(!isCurrent)}/>
+
+
       <Modal
         animationType="slide"
         transparent={true}
@@ -37,34 +68,28 @@ const Experience = (props) => {
         }}>
         <View style={stylez.centeredView}>
           <View style={stylez.modalView}>  
-            <InputM name="Search" placeholder="Type a skill you have"/>
-            <ScrollView style={{width:'100%', padding:moderateScale(10), backgroundColor:"#eeeeee", borderRadius:18}}>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
-              <SRButtonM name="Skill 1" click={clickMe} tick={true}/>
+            <ScrollView style={{width:horizontalScale(300), padding:moderateScale(10), backgroundColor:"#eeeeee"}}>
+              <SkillsListB skillsList={skillsList} callback={setSelectedSkills} countCallback={setSkillCount} selected={selectedSkills}/>
             </ScrollView>
             <View style={{paddingBottom:moderateScale(15)}}/>
-            <ButtonM name={`Done (${skillCount}/5)`}  click={() => setModalVisible(!modalVisible)}/>
+            <ButtonM name={`Done (${skillCount}/5)`}  click={() => {
+              console.log(selectedSkills)
+              setSkillCount(selectedSkills.length)
+              setModalVisible(!modalVisible)
+            }}/>
           </View>
         </View>
       </Modal>
+
+
       <View style={{paddingBottom:moderateScale(10)}}/>
-      <ButtonM name={`Add Skills (${skillCount}/5)`} click={() => setModalVisible(!modalVisible)}/>
+      <ButtonM name={`Add Skill Tags (${skillCount}/5)`} click={() => setModalVisible(!modalVisible)}/>
       <View style={{paddingBottom:moderateScale(50)}}/>
       <Text onPress={() => props.navigation.navigate('Interests')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Done adding Experiences</Text>
       <View style={{paddingBottom:moderateScale(20)}}/>
-      <ButtonM name="Add another experience +" click={clickMe}/>
+      <ButtonM name="Add another experience +" click={submitExperience}/>
+
+      <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
       
     </SafeAreaView>
     

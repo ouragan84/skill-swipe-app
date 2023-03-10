@@ -9,9 +9,10 @@ import NinputM from '../../../../components/common/NinputM';
 import SRButtonM from '../../../../components/common/SRButtonM';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
 import { styles } from '../../../../constants/styles';
-import SkillsListB from './helper-components/SkillsListB';
+import SkillsListB from '../../../../components/helper/SkillsListB';
 import SkillsListItem from './helper-components/SkillsListItem';
 import Icon from 'react-native-vector-icons/Entypo';
+import { skillsList } from '../../../../data/skillTags';
 
 
 const Position = (props) => {
@@ -26,96 +27,6 @@ const Position = (props) => {
   const [multiSlider3Value, setMultiSlider3Value] = React.useState([3, 4]);
   const multiSlider3ValuesChange = values => setMultiSlider3Value(values);
 
-  let skillsList=[
-    "Java",
-"Python",
-"C++",
-"JavaScript",
-"PHP",
-"Ruby",
-"Swift",
-"Objective-C",
-"Kotlin",
-"Go",
-"TypeScript",
-"Rust",
-"Perl",
-"Lua",
-"Bash - Shell",
-"Powershell",
-"Scala",
-"R",
-"MATLAB",
-"Dart",
-"Visual Basic (VB)",
-"C#",
-"Haskell",
-"Erlang",
-"Lisp",
-"Clojure",
-"Assembly language",
-"SQL (Structured Query Language)",
-"HTML/CSS",
-"XML",
-"JSON",
-"GraphQL",
-"Solidity (for blockchain)",
-"Dart (for Flutter)",
-"Julia",
-"Groovy",
-"Tcl (Tool Command Language)",
-"Prolog",
-"Ada",
-"Cobol",
-"ReactJS",
-"Angular",
-"Vue.js",
-"Ruby on Rails",
-"Django",
-"Laravel",
-"Express.js",
-"Flask",
-"ASP.NET",
-"Spring Boot",
-"Database management",
-"Agile methodology",
-"Object-oriented programming",
-"Algorithms",
-"Machine learning",
-"Data analytics",
-"Cloud computing",
-"DevOps",
-"UX/UI design",
-"Mobile app development",
-"Version control",
-"Network security",
-"System administration",
-"Artificial intelligence",
-"Computer graphics",
-"Test-driven development",
-"Project management",
-"Web server administration",
-"Scripting",
-"Data visualization",
-"Cybersecurity",
-"Data mining",
-"Operating systems",
-"API design",
-"Embedded systems",
-"Virtualization",
-"Data modeling",
-"Information retrieval",
-"Distributed systems",
-"Computer vision",
-"Natural language processing",
-"Big data",
-"Microservices",
-"Data warehousing",
-"Serverless computing",
-"Containerization",
-"Object-relational mapping",
-"Business intelligence",
-  ]
 
   const clickMe = () => {
     setSkillCount(skillCount+1)

@@ -10,11 +10,6 @@ import { Dimensions } from 'react-native';
 
 const { screenWidth, screenHeight } = Dimensions.get('window');
 
-
-function clickMe(){
-  console.log("poopy buttcrack")
-}
-
 const Skills = (props) => {
 
   const [skillCount, setSkillCount] = useState(0)
