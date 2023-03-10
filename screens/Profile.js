@@ -17,17 +17,6 @@ import Icon from '../components/main/Icon';
 //import userProfiles from '../data/userProfiles'
 
 const Profile = ({route}) => {
-  // const {
-  //   age,
-  //   image,
-  //   info1,
-  //   info2,
-  //   info3,
-  //   info4,
-  //   location,
-  //   match,
-  //   name
-  // } = userProfiles[7];
 
   console.log('IN PROFILE: ', route.params.profileData)
 

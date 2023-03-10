@@ -38,7 +38,6 @@ export default function Home(props) {
       <Button
         title="Get Location"
         onPress={() => props.navigation.navigate('Location')}
-
       />
       <Button
         title="Go to Test Screen"

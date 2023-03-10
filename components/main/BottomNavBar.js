@@ -29,13 +29,13 @@ function BottomNavBar({route}) {
         initialRouteName="Main"
         screenOptions={{
           tabBarActiveTintColor: '#e91e63',
+          headerShown: false
         }}
       >
         <Tab.Screen
           name="MyProfile"
           component={MyProfile}
           options={{
-            tabBarLabel: 'MyProfile',
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="user" size={24} color="black" />
             ),
@@ -65,6 +65,7 @@ function BottomNavBar({route}) {
     <Tab.Navigator
         initialRouteName="Dashboard"
         screenOptions={{
+          headerShown: false,
           tabBarActiveTintColor: '#e91e63',
         }}
       >
@@ -82,7 +83,6 @@ function BottomNavBar({route}) {
 
         <Tab.Screen
           name="Main"
-          //children={props => <Main {...props} />}
           component={Main}
         />
         <Tab.Screen
@@ -95,8 +95,6 @@ function BottomNavBar({route}) {
             ),
           }}
         />
-        
-       
       </Tab.Navigator>
   )
   

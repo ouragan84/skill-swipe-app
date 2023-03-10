@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Platform, Text, View, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 //import Device from 'expo-device';
 import * as Location from 'expo-location';
+import { Button } from 'react-native-paper';
 
 export default function App() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
+  const navigation = useNavigation();
+
+  // TODO go back to where you came from
   useEffect(() => {
     (async () => {
       
@@ -23,6 +29,8 @@ export default function App() {
         setLocation(location);
 
         // POST request to /user/locatiion/update?latitute=&longitute=?
+        
+        // go back to the screen you came from - TODO
 
       }
       
@@ -39,6 +47,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>{text}</Text>
+      <Button onPress={() => navigation.goBack()}>Go back</Button>
     </View>
   );
 }

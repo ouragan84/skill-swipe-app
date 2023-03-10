@@ -31,11 +31,13 @@ import Dashboard from './screens/Dashboard';
 
 import LikedProfiles from './screens/LikedProfiles';
 import MessageScreen from './screens/MessageScreen';
+import Description from './screens/UserProfileMain/Description';
 import Profile from './screens/consumer/register/user/Profile';
 import GetStarted from './screens/consumer/register/business/GetStarted';
 import Industry from './screens/consumer/register/business/Industry';
 import AddLogo from './screens/consumer/register/business/AddLogo';
 import Position from './screens/consumer/register/business/Position';
+import BusinessProfileSummary from './screens/BusinessMain/BusinessProfileSummary';
 
 const Stack = createStackNavigator();
 
@@ -198,10 +200,14 @@ function NavStack(props) {
        component={ TestScreen } 
        options={{ title: 'TestScreen', headerShown: true}}
       />
+
+
+
+      {/* MAIN PAGE SCREENS - GENERAL*/}
       <Stack.Screen 
        name="BottomNavBar"  
        component={ BottomNavBar }
-       options={{ title: 'BottomNavBar', headerShown: true, }}
+       options={{ title: 'BottomNavBar', headerShown: false}}
       />
       {/* <Stack.Screen
         name="Profile"
@@ -222,6 +228,20 @@ function NavStack(props) {
         name="MessageScreen"
         component={MessageScreen}
         options={{ title: 'Message Screen', headerShown: false }}
+      />
+
+      {/* MAIN PAGE SCREENS - USER PROFILE*/}
+      <Stack.Screen
+        name="Description"
+        component={Description}
+        options={{ title: 'Description', headerShown: false }}
+      />
+
+      {/* MAIN PAGE SCREENS - BUSINESS PROFILE*/}
+      <Stack.Screen
+        name="BusinessProfileSummary"
+        component={BusinessProfileSummary}
+        options={{ title: 'BusinessProfileSummary', headerShown: false }}
       />
 
     </Stack.Navigator>

@@ -5,9 +5,15 @@ import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics
 
 
 export default function NinputM(props) {
+
+    let isEditable = props.isEditable!==undefined? props.isEditable: true
+
+    console.log('can edit: ', isEditable)
+
     return (
         <View>
             <TextInput
+                editable={isEditable}
                 secureTextEntry = {props.password}
                 style={{
                     paddingVertical: moderateScale(15),
@@ -17,7 +23,7 @@ export default function NinputM(props) {
                     borderWidth: 1,
                     borderColor: "#ADAFBB",
                     padding: moderateScale(15),
-                    fontSize: moderateScale(16)
+                    fontSize: moderateScale(12)
                     
                 }}
                 keyboardType="numeric"
