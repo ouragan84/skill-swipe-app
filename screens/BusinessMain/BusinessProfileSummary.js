@@ -1,8 +1,7 @@
 
 
 import {React, useState}from 'react';
-import { styles} from '../constants/styles';
-import Card from '../components/main/Card'
+import { styles} from '../../constants/styles';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -22,19 +21,19 @@ import {
 import Icon from 'react-native-vector-icons/Entypo';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { SafeAreaView } from 'react-navigation';
-import { horizontalScale, moderateScale, verticalScale } from '../components/helper/Metrics';
+import { horizontalScale, moderateScale, verticalScale } from '../../components/helper/Metrics';
 
-import MLinputM from '../components/common/MLinputM';
-import NinputM from '../components/common/NinputM';
-import InputM from '../components/common/InputM';
+import MLinputM from '../../components/common/MLinputM';
+import NinputM from '../../components/common/NinputM';
+import InputM from '../../components/common/InputM';
 
-import ButtonM from '../components/common/ButtonM';
-import ExpItem from '../components/UserProfileMain/ExpItem';
-import ImageUpload from '../components/common/ImageUpload';
+import ButtonM from '../../components/common/ButtonM';
+import ExpItem from '../../components/UserProfileMain/ExpItem';
+import ImageUpload from '../../components/common/ImageUpload';
 
 
 
-const MyProfile = (props) => {
+const BusinessProfileSummary = ({route}) => {
 
   const navigation = useNavigation();
 
@@ -42,80 +41,12 @@ const MyProfile = (props) => {
     console.log("a")
   }
 
-  const userInfo = {
-    "_id": {
-      "$oid": "6409abe76c3633aa2ab021f2"
-    },
-    "personalInformation": {
-      "location": [
-        {
-          "$numberDouble": "37.785834"
-        },
-        {
-          "$numberDouble": "-122.406417"
-        }
-      ],
-      "firstName": "Edgar",
-      "lastName": "Baudry",
-      "DOB": {
-        "$date": {
-          "$numberLong": "969778800000"
-        }
-      },
-      "city": "San Francisco",
-      // ADDED DESCRIPTION AND AGE
-      "age": "20",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat."
-    },
-    "profilePicture": {
-      "name": "default"
-    },
-    "consumerId": {
-      "$oid": "640991f2a761d1b5dfe02538"
-    },
-    "preferences": {
-      "skills": [],
-      "hoursPerWeek": [],
-      "hoursFlexibility": [],
-      "isInPerson": false,
-      "isHybrid": false,
-      "companySize": []
-    },
-    "status": {
-      "liked": {},
-      "interviewing": {},
-      "rejected": {}
-    },
-    "experience": [
-      {
-        "title": "Ninja killer",
-        "start": "2021",
-        "end": "2022",
-        "description": "Killed ninjas"
-      },
-      {
-        "title": "Curry farter",
-        "start": "2021",
-        "end": "2022",
-        "description": "Fart out curries"
-      },
-      {
-        "title": "Water supplier",
-        "start": "2021",
-        "end": "2022",
-        "description": "Supply water"
-      }
-    ],
-    "__v": {
-      "$numberInt": "0"
-    }
-  }
-
+  const businessInfo = route.params.businessInfo
 
   const handleDescClick = () => {
 
     navigation.navigate('Description', {
-      description: userInfo.personalInformation.description,
+      description: businessInfo.description,
       navigation: navigation
     })
 
@@ -127,7 +58,7 @@ const MyProfile = (props) => {
   }
 
   const filterExpData = () => {
-    experiences = userInfo.experience
+    experiences = businessInfo.experience
 
     let data = []
 
@@ -156,13 +87,13 @@ const MyProfile = (props) => {
       <ScrollView>
         <ImageUpload/>
         <View style={{flexDirection:"row", justifyContent:'center', alignContent:'center', width:horizontalScale(360), marginTop:moderateScale(-20), paddingBottom:moderateScale(20)}}>
-            <Text style={{fontSize: 20}}>{userInfo.personalInformation.firstName} {userInfo.personalInformation.lastName}, {userInfo.personalInformation.age}</Text>
+            <Text style={{fontSize: 20}}>{businessInfo.name}</Text>
         </View>
         
         <View style={{width:horizontalScale(360), flexDirection:'row', justifyContent:'center', alignContent:'center'}}>
           <TouchableOpacity onPress={handleDescClick}>
             <View>
-              <MLinputM name="Description" placeholder={userInfo.personalInformation.description} isEditable={false}/>
+              <MLinputM name="Description" placeholder={businessInfo.description} isEditable={false}/>
             </View>
             
           </TouchableOpacity>          
@@ -184,7 +115,7 @@ const MyProfile = (props) => {
      
 
         <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'center'}}>
-          <NinputM name="Location" placeholder={userInfo.personalInformation.city} width={horizontalScale(200)} isEditable={false}/>
+          <NinputM name="Location" placeholder={businessInfo.city} width={horizontalScale(200)} isEditable={false}/>
           <View style={{paddingTop: moderateScale(15)}}>
             <Button
               title=" Reset Location"
@@ -225,4 +156,4 @@ const MyProfile = (props) => {
   );
 };
 
-export default MyProfile;
+export default BusinessProfileSummary;
