@@ -5,11 +5,28 @@ import * as ImagePicker from 'expo-image-picker'
 import {styles} from '../../constants/styles'
 import { horizontalScale, moderateScale, verticalScale } from '../../components/helper/Metrics';
 import Icon from 'react-native-vector-icons/Entypo'
+import { fetchUnprotected, fetchProtected , uploadFile} from '../../hooks/webRequestHelper'
+import { Buffer } from "buffer";
+
 
 
 export default function ImageUpload (props) {
 
-  const [photo, setPhoto] = React.useState();
+  // if(! (props.photo && props.setPhoto) )
+
+  // [photo, setPhoto] = useState()
+  // [photoData, setPhotoData] = useState()
+
+
+  // const currentPhotoUrl = props.currentPhotoUrl;
+  const uploadUrl = props.uploadUrl;
+
+
+  // setPhoto(currentPhotoUrl);
+
+// currentPhotoUrl uploadUrl setErrorText ratio setIsCon
+
+  
 
 //   const createFormData = (photoUri, body = {}) => {
 //     const data = new FormData();
@@ -34,20 +51,52 @@ export default function ImageUpload (props) {
 
 
  const handleChoosePhoto = async () => {
+
+  try{
+    props.setErrorText('')
+
    // No permissions request is necessary for launching the image library
    let result = await ImagePicker.launchImageLibraryAsync({
-     mediaTypes: ImagePicker.MediaTypeOptions.All,
+     mediaTypes: ImagePicker.MediaTypeOptions.Images,
      allowsEditing: true,
-     aspect: [4, 3],
-     quality: 1,
+     base64: true,
+     aspect: props.ratio,
+     quality: 1
    });
 
-   console.log(result);
 
    if (!result.canceled) {
-      console.log('photo uri: ', result.assets[0].uri)
-     setPhoto(result.assets[0].uri);
+
+      const hello = result.assets[0].uri.split('.');
+      const extension = hello[hello.length - 1].toLowerCase();
+
+      // console.log("photo choosen", result.assets[0].uri, extension)
+
+
+      let type = '';
+
+      switch (extension){
+        case 'png': type='image/png'; break;
+        case 'gif': type='image/gif'; break;
+        case 'jpg':
+        case 'jpeg': type='image/jpeg'; break;
+        default: return props.setErrorText(`please upload a valid image (png/jpeg/gif), given ${extension}`);
+      }
+
+      await uploadFile(
+        uploadUrl, result.assets[0].uri
+        , props.setErrorText, 
+        () => console.log("ppoop"), props.navigation, type
+      );
+      
+      props.setPhoto(result.assets[0].uri);
+
+      
    }
+  }catch(err){
+    console.error(err)
+    props.setErrorText(err.message)
+  }
  };
 
 //   const handleUploadPhoto = () => {
@@ -73,7 +122,9 @@ export default function ImageUpload (props) {
  //<Image style={styles.usrProfileLogoImgStyle} source={require('../assets/images/test.jpg')}/>
 
  
-    const imageSource = (photo)? { uri: photo } : require('../../assets/images/test.jpg');
+    const imageSource = (props.photo)? { uri: props.photo } : require('../../assets/images/test.jpg');
+
+    // console.log(imageSource)
 
   return (
     <View style={{flexDirection:"row", justifyContent:'center', alignContent:'center', width:horizontalScale(360)}}>

@@ -73,7 +73,7 @@ const Experience = (props) => {
             </ScrollView>
             <View style={{paddingBottom:moderateScale(15)}}/>
             <ButtonM name={`Done (${skillCount}/5)`}  click={() => {
-              console.log(selectedSkills)
+              // console.log(selectedSkills)
               setSkillCount(selectedSkills.length)
               setModalVisible(!modalVisible)
             }}/>

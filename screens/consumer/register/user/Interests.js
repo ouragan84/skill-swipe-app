@@ -35,7 +35,7 @@ const Interests = (props) => {
     // console.log("4", workType);
     // console.log("5", flexib);
 
-    if(flexib.count(true) == 0)
+    if(flexib.indexOf(true) < 0)
       return setErrorText("Please add your flexibility")
 
 
@@ -46,7 +46,7 @@ const Interests = (props) => {
       isRemote: workType[0],
       isHybrid: workType[1],
       isInPerson: workType[2],
-      hoursFlexibility: [flexib.findIndex(true)+1, flexib.findIndex(true)+1]
+      hoursFlexibility: [flexib.indexOf(true)+1, flexib.indexOf(true)+1]
 
     }, setErrorText, () => props.navigation.navigate('Skills'), props.navigation)
 

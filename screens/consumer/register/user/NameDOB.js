@@ -17,7 +17,7 @@ const NameDOB = (props) => {
 
   const handleText = (text) => {
     if (text.length > 10) return text.substring(0,10)
-    console.log(text)
+    // console.log(text)
     let data = text.split("").filter(i => i !== '/')
     if (data.length === 3){
       return `${text.substring(0, 2)}/${text.substring(2)}`
@@ -49,7 +49,7 @@ const NameDOB = (props) => {
     {
       const location = await Location.getCurrentPositionAsync({}); 
 
-      console.log(location)
+      // console.log(location)
 
       fetchProtected('/user/set/location', 'POST', {
         latitude: location.coords.latitude,

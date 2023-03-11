@@ -8,15 +8,10 @@ import { horizontalScale, moderateScale, verticalScale } from '../../components/
 import * as auth from '../../hooks/authentication';
 import {fetchUnprotected, fetchProtected, checkConsumerStatusAndNavigate} from '../../hooks/webRequestHelper';
 
-
-function clickMe() {
-  console.log("b")
-}
-
 const Onboard = (props) => {
   const [dots, setDots] = useState(0)
 
-  // TODO: Do this on 
+  // TODO: Do this on start
   const checkSavedCredentials = async () => {
     try{
       const {email, password} = await auth.getCredentials();

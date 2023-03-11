@@ -8,17 +8,22 @@ import CButtonM from '../../../../components/common/CButtonM';
 import SRButtonM from '../../../../components/common/SRButtonM';
 import { Dimensions } from 'react-native';
 import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {fetchUnprotected, fetchProtected} from '../../../../hooks/webRequestHelper';
 
 const { screenWidth, screenHeight } = Dimensions.get('window');
 
+const Industry = (props) => {  
 
-function clickMe(){
-  console.log("poopy buttcrack")
-}
+  const confirm = () => {
+    
+    const i = refInd.indexOf(true);
+    const industry = industries[i] == "Other" ? other : industries[i];
+    fetchProtected('/company/set/industry', 'POST', {
+      industry 
+    }, setErrorText, () => props.navigation.navigate('AddLogo'), props.navigation);
 
-const Industry = (props) => {
-
-  const [skillCount, setSkillCount] = useState(0)
+    // () => props.navigation.navigate('AddLogo')
+  }
 
   //input - list of industries as an array
   let industryList = ["Agriculture",   
@@ -47,6 +52,9 @@ const Industry = (props) => {
   "Utilities", 
   "Wholesale", "Other"] 
   const [industries, setIndustries] = useState(industryList)
+  const [other, setOther] = useState()
+  const [errorText, setErrorText] = useState("");
+
 
   let ref = []
   for(let i = 0; i < industries.length; i++){
@@ -56,7 +64,7 @@ const Industry = (props) => {
 
   let otherComp;
   if(refInd[refInd.length-1]){
-    otherComp = <InputM name="Other" placeholder="Type your company's industry"/>
+    otherComp = <InputM name="Other" placeholder="Type your company's industry" value={other} onChangeValue={setOther}/>
   }else{
     otherComp = <View style={{paddingBottom:moderateScale(85)}}/>
   }
@@ -116,7 +124,8 @@ const Industry = (props) => {
       </ScrollView>
       <View style={{paddingBottom:moderateScale(10)}}/>
       {otherComp}
-      <ButtonM name="Confirm" click={() => props.navigation.navigate('AddLogo')}/>
+      <ButtonM name="Confirm" click={confirm}/>
+      <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
       <View style={{paddingBottom:moderateScale(10)}}/>
     </SafeAreaView>
   );
