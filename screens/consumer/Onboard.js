@@ -5,6 +5,9 @@ import SlideItem from '../../components/onboarding/SlideItem'
 import ButtonM from '../../components/common/ButtonM';
 import ThreeDotsM from '../../components/special/ThreeDotsM';
 import { horizontalScale, moderateScale, verticalScale } from '../../components/helper/Metrics';
+import * as auth from '../../hooks/authentication';
+import {fetchUnprotected, fetchProtected, checkConsumerStatusAndNavigate} from '../../hooks/webRequestHelper';
+
 
 function clickMe() {
   console.log("b")
@@ -12,6 +15,42 @@ function clickMe() {
 
 const Onboard = (props) => {
   const [dots, setDots] = useState(0)
+
+  // TODO: Do this on 
+  const checkSavedCredentials = async () => {
+    try{
+      const {email, password} = await auth.getCredentials();
+      if(email && password)
+        return signInConsumer(email, password);
+    }catch (err) {
+      // do nothing
+    }
+
+    // authentication not found: goto onboarding
+  }
+
+  const signInConsumer = async (email, password) => {
+    await fetchUnprotected('/consumer/login', 'POST', {
+      email: email.toLowerCase(),
+      password
+    }, resetCredentials, goToNextScreen)
+  }
+
+  const goToNextScreen = async (response) => {
+    try{
+      await auth.saveToken(response.token);
+      checkConsumerStatusAndNavigate(props.navigation);
+    } catch (err){
+      resetCredentials();
+    }
+  }
+
+  const resetCredentials = async () => {
+    auth.deleteCredentials();
+  }
+
+  checkSavedCredentials();
+
   return (
     <SafeAreaView>
       <View>

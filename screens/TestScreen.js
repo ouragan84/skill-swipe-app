@@ -2,7 +2,6 @@ import React from 'react';
 import {View,Text, SafeAreaView} from 'react-native';
 import InputM from '../components/common/InputM';
 import CButtonM from '../components/common/CButtonM';
-import NavbarM from '../components/common/NavbarM';
 import SRBoxM from '../components/common/SRBoxM';
 import LogoImageM from '../components/common/LogoImageM'
 import { horizontalScale, moderateScale } from '../components/helper/Metrics';
@@ -19,7 +18,8 @@ const TestScreen = (props) => {
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>TEST SCREEN</Text>
+      <InputM name="First Name" placeholder="Enter your first name"/>
+      <CButtonM/>
     </SafeAreaView>
   );
 };
