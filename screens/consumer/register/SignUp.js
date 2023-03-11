@@ -32,7 +32,7 @@ const SignUp = (props) => {
         <Text onPress={() => linkToPage('/terms-of-use')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Terms of use</Text>
         <Text onPress={() => linkToPage('/privacy-policy')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Privacy Policy</Text>
       </View>
-      <ButtonM name="Go to user profile since authenticated" click={() => goToUserProfile(false)} />
+      <ButtonM name="Go to user profile since authenticated" click={() => goToUserProfile(true)} />
     </SafeAreaView>
   )
 };
