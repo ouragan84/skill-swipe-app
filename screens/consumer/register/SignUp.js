@@ -16,7 +16,8 @@ const SignUp = (props) => {
     const screenToGoTo = isTypeUser? 'Main': 'Dashboard'
     props.navigation.navigate('BottomNavBar', { 
       screen: screenToGoTo,
-      isTypeUser: isTypeUser
+      isTypeUser: isTypeUser,
+      navigation: props.navigation
     })
   }
 

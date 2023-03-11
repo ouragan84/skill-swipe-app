@@ -58,6 +58,11 @@ export const styles = StyleSheet.create({
     width: horizontalScale(120),
     marginTop: moderateScale(30),
   },
+  usrProfileLogoImgStyle: {
+    borderRadius: moderateScale(25),
+    height: verticalScale(120),
+    width: horizontalScale(120),
+  },
   companyLogoImgStyle:{
     borderRadius: moderateScale(25),
     height: verticalScale(200),
@@ -98,6 +103,19 @@ export const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(15),
     paddingVertical: moderateScale(10),
   },
+
+  inputDescBoxStyle: {
+    width:horizontalScale(350),
+    height:verticalScale(200),
+    borderRadius: moderateScale(18),
+    margin: moderateScale(10),
+    borderWidth: 1,
+    borderColor: "#ADAFBB",
+    paddingHorizontal: moderateScale(15),
+    paddingVertical: moderateScale(10),
+  },
+
+
   inputTextStyle: {
     paddingHorizontal:5,
     backgroundColor:'white',
