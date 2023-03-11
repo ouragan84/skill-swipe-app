@@ -18,39 +18,47 @@ export default function Confirm(props) {
       return `${yrs} years, ${mths} months`
     }
 
-    for(let i = 0; i < experiences.length; i++){
-      expSkills = []
-      skills = experiences[i].skills
-      for (let j = 0; j < skills.length; j++){
-        expSkills.push(
-          <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>{skills[j]} {j != skills.length-1?"·":""} </Text>
+    if(experiences){
+      for(let i = 0; i < experiences.length; i++){
+        expSkills = []
+        skills = experiences[i].skills
+        for (let j = 0; j < skills.length; j++){
+          expSkills.push(
+            <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>{skills[j]} {j != skills.length-1?"·":""} </Text>
+          )
+        }
+
+        experienceCards.push(
+          
+          <View key={i} style={{marginHorizontal:moderateScale(15), marginBottom: moderateScale(15),}}>
+            <Text style={{fontSize:moderateScale(17),color: '#000',fontWeight:'bold',letterSpacing:.3,}}>
+              {experiences[i].title}
+            </Text>
+            <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>
+              {monthsToYM(experiences[i].months)}
+            </Text>
+            <View style={{paddingBottom:moderateScale(5)}}/>
+            <SeeMore linkStyle={{ fontWeight: '500' }} style={{
+              fontSize:moderateScale(16),
+              color: '#000',
+              fontWeight:'default',
+              letterSpacing:.3,
+            }} numberOfLines={2}>
+            {props.info.experiences[i].description}  
+            </SeeMore> 
+            <View style={{paddingBottom:moderateScale(5)}}/>
+            <View style={{flexDirection:'row'}}>
+              <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'bold',letterSpacing:.3,}}>Skills: </Text>
+              {expSkills}
+            </View>
+          </View>
         )
       }
-
+    }else{
       experienceCards.push(
-        
-        <View key={i} style={{marginHorizontal:moderateScale(15), marginBottom: moderateScale(15),}}>
-          <Text style={{fontSize:moderateScale(17),color: '#000',fontWeight:'bold',letterSpacing:.3,}}>
-            {experiences[i].title}
-          </Text>
-          <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>
-            {monthsToYM(experiences[i].months)}
-          </Text>
-          <View style={{paddingBottom:moderateScale(5)}}/>
-          <SeeMore linkStyle={{ fontWeight: '500' }} style={{
-            fontSize:moderateScale(16),
-            color: '#000',
-            fontWeight:'default',
-            letterSpacing:.3,
-          }} numberOfLines={2}>
-          {props.info.experiences[i].description}  
-          </SeeMore> 
-          <View style={{paddingBottom:moderateScale(5)}}/>
-          <View style={{flexDirection:'row'}}>
-            <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'bold',letterSpacing:.3,}}>Skills: </Text>
-            {expSkills}
-          </View>
-        </View>
+        <Text style={{marginHorizontal:moderateScale(15), marginBottom: moderateScale(15),fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>
+          No Experience
+        </Text>
       )
     }
 

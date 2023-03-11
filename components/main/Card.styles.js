@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 import { colors } from '../../constants/colors'
+import { moderateScale } from '../helper/Metrics'
 const { height } = Dimensions.get('window')
 export default StyleSheet.create({
   card: {
@@ -8,7 +9,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.white,
-    borderRadius: 5,
+    borderRadius: moderateScale(18),
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
