@@ -1,29 +1,23 @@
 import { StyleSheet, Dimensions } from 'react-native'
+import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics'
 
 const { height } = Dimensions.get('window')
 
 export const mainStyles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
+  mainContainer: {flex:1, alignItems: 'center', },
   swiperContainer: {
-    marginTop:-50,
-    height: height - 400,
+    width: horizontalScale(375),
+    height: verticalScale(375),
+    backgroundColor:"black",
+    marginBottom: moderateScale(150)
   },
   buttonsContainer: {
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: '15%',
+    width:horizontalScale(230)
   },
-  copyright: {
-    textAlign: 'center',
-    fontSize: 10,
-    color: 'black',
-    paddingBottom: 20,
-    fontFamily: 'Avenir',
-  },
+
   overlayWrapper: {
     flexDirection: 'column',
     alignItems: 'flex-end',

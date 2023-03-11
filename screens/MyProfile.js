@@ -30,7 +30,7 @@ const Profile = (props) => {
 
   return (
     <Text>
-          {'MY PROFILE'}
+      {'MY PROFILE'}
     </Text>
   );
 };

@@ -9,6 +9,7 @@ import OverlayLabel from './Overlaylabel'
 import {mainStyles} from './Main.styles'
 import { SafeAreaView } from 'react-navigation'
 import MainDescription from './MainDescription'
+import { moderateScale } from '../helper/Metrics'
 
 const Main = (props) => {
 
@@ -159,28 +160,10 @@ const handleLikeIconClick = () => {
         color="white"
         backgroundColor="#E5566D"
       />
-      <IconButton
-        name="profile"
-        onPress={() => handleDescIconClick()}
-        color="white"
-        backgroundColor="#3CA3FF"
-      />
-      <IconButton
-        name="heart"
-        onPress={() => handleLikeIconClick()}
-        color="white"
-        backgroundColor="#4CCC93"
-      />
-    </View>
-  )
-
-  const likeRejectButtons = (
-    <View style={mainStyles.buttonsContainer}>
-      <IconButton
-        name="close"
-        onPress={() => handleRejectIconClick()}
-        color="white"
-        backgroundColor="#E5566D"
+      <MainDescription 
+        onPress={() => handleDescIconClick()} 
+        info={userProfiles[cardIndex]} 
+        onModalButtonClick={()=>{}}
       />
       <IconButton
         name="heart"
@@ -239,8 +222,10 @@ return (
         }}
       />
     </View>
-    {!swipeStates.up? allButtons: likeRejectButtons}
-    {swipeStates.up? <MainDescription info={userProfiles[cardIndex]}/> : <Text></Text>}
+    {allButtons}
+    {/* {!swipeStates.up? allButtons: likeRejectButtons}
+    {swipeStates.up? <MainDescription onModalButtonClick={()=>{}} info={userProfiles[cardIndex]}/> : <Text></Text>} */}
+    
   </View>
 )}
 
