@@ -17,7 +17,7 @@ const Card = ({ card }) => (
     style={styles.card}
   >
     <Text style={styles.text}>
-        {`${card.name}, ${card.age}`}
+        {`${card.name}, ${card.lastExperience}`}
       </Text>
     <Image
       style={styles.image}
@@ -26,7 +26,7 @@ const Card = ({ card }) => (
     />
     <View style={styles.photoDescriptionContainer}>
       <Text style={styles.text}>
-        {`${card.name}, ${card.age}`}
+        {`${card.name}, ${card.lastExperience}`}
       </Text>
     </View>
   </View>
