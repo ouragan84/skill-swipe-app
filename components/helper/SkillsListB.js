@@ -6,7 +6,7 @@ import { horizontalScale, moderateScale } from './Metrics';
 export default function ButtonM(props) {
     let setSelected = props.callback
     let setCount = props.countCallback
-    let isUnlimited = props.isUnlimited ? true : false; //default true
+    let isUnlimited = props.isUnlimited ? true : false; //default false
     let maxCount = props.maxCount ? props.maxCount : 5; //default 5
 
     let skillsList=props.skillsList
@@ -24,7 +24,7 @@ export default function ButtonM(props) {
 
     const renderItem = (item,index) => {
         const isSelected = selected.includes(index)
-        const canSelect = selected.length <= isUnlimited || (maxCount-1)
+        const canSelect = selected.length <= (maxCount-1) || isUnlimited
         return(
             <TouchableWithoutFeedback key={index} style={{
                 paddingTop: moderateScale(15),

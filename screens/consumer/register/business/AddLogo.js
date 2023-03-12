@@ -10,6 +10,8 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import NinputM from '../../../../components/common/NinputM';
 import { styles } from '../../../../constants/styles';
 import ImageUpload from '../../../../components/common/ImageUpload'
+import { fetchUnprotected, fetchProtected , uploadFile} from '../../../../hooks/webRequestHelper'
+
 
 const AddLogo = (props) => {
 
@@ -21,6 +23,8 @@ const AddLogo = (props) => {
       
       setPhoto(response.pictureUrl);
 
+
+
     }, props.navigation);
   }
 
@@ -29,7 +33,7 @@ const AddLogo = (props) => {
 
   const confirm = () => {
     // console.log();
-    () => props.navigation.navigate('Position')
+    props.navigation.navigate('Position', {num: 1})
   }
 
   return (

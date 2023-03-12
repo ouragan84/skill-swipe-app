@@ -87,7 +87,7 @@ const Experience = (props) => {
       <View style={{paddingBottom:moderateScale(50)}}/>
       <Text onPress={() => props.navigation.navigate('Interests')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Done adding Experiences</Text>
       <View style={{paddingBottom:moderateScale(20)}}/>
-      <ButtonM name="Add another experience +" click={submitExperience}/>
+      <ButtonM name="Add experience +" click={submitExperience}/>
 
       <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
       
