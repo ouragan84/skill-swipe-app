@@ -13,7 +13,7 @@ const ProfileDetails = (props) => {
   const isTypeUser = props.route.params.isTypeUser;
 
   const registerConsumer = async () => {
-    console.log("about to register consumer")
+    // console.log("about to register consumer")
     await fetchUnprotected('/consumer/register', 'POST', {
       email: email.toLowerCase(),
       password,
@@ -30,13 +30,13 @@ const ProfileDetails = (props) => {
       await fetchProtected('/consumer/send/confirmation/email', 'GET', null, () => {}, 
       () => {props.navigation.navigate('EmailConfirmation', {email: email.toLowerCase(), password, isTypeUser})}, props.navigation)
     } catch (err){
-      console.log(err);
+      // console.log(err);
     }
   }
 
   const changeShowPassword = () => {
     setShowPassword(!showPassword)
-    console.log(showPassword)
+    // console.log(showPassword)
   }
 
   const [showPassword, setShowPassword] = useState(false)
