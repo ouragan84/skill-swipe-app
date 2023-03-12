@@ -162,7 +162,7 @@ const checkConsumerStatusAndNavigate = (navigation) => {
             } else {
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Logs' }], // company main
+                    routes: [{ name: 'Dashboard' }], // company main
                 });
             }
         }

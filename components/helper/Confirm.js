@@ -6,31 +6,29 @@ import ButtonM from '../common/ButtonM';
 import { horizontalScale, moderateScale } from './Metrics';
 
 export default function Confirm(props) {
-    const [modalVisible, setModalVisible] = useState(false);
-
     return (
         <SafeAreaView>
             <Modal
                 animationType="slide"
                 transparent={true}
-                visible={modalVisible}
+                visible={props.modalVisible}
                 onRequestClose={() => {
                 Alert.alert('Modal has been closed.');
-                setModalVisible(!modalVisible);
+                props.setModalVisible(!props.modalVisible);
                 }}>
                 <View style={stylez.centeredView}>
                 <View style={stylez.modalView}>  
                     <Text style={stylez.text}>{props.message}</Text>
 
                     <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
-                      <TouchableOpacity onPress={()=>{setModalVisible(!modalVisible)}} style={stylez.cancelButton}>
+                      <TouchableOpacity onPress={()=>{props.setModalVisible(!props.modalVisible);}} style={stylez.cancelButton}>
                         <Text style={stylez.cancelButtonTextStyle}>
                           Cancel
                         </Text>
                       </TouchableOpacity>
                       <TouchableOpacity onPress={()=>{
                         props.onModalButtonClick()
-                        setModalVisible(!modalVisible)
+                        props.setModalVisible(!props.modalVisible);
                       }} style={stylez.modalButton}>
                         <Text style={stylez.modalButtonTextStyle}>
                           Confirm
@@ -42,7 +40,6 @@ export default function Confirm(props) {
                 </View>
             </Modal>
             <View style={{paddingBottom:moderateScale(10)}}/>
-            <ButtonM name={props.buttonName} click={() => setModalVisible(!modalVisible)}/>
             
         </SafeAreaView>
     );

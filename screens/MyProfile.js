@@ -14,7 +14,8 @@ import {
   Image,
   TouchableOpacity,
   Button,
-  Keyboard
+  Keyboard,
+  StyleSheet,
 } from 'react-native';
 //import ProfileItem from '../components/main/ProfileItem';
 //import Icon from '../components/main/Icon';
@@ -31,6 +32,7 @@ import InputM from '../components/common/InputM';
 import ButtonM from '../components/common/ButtonM';
 import ExpItem from '../components/UserProfileMain/ExpItem';
 import ImageUpload from '../components/common/ImageUpload';
+import SeeMore from 'react-native-see-more-inline';
 
 
 
@@ -42,187 +44,262 @@ const MyProfile = (props) => {
     console.log("a")
   }
 
-  const userInfo = {
-    "_id": {
-      "$oid": "6409abe76c3633aa2ab021f2"
-    },
-    "personalInformation": {
-      "location": [
-        {
-          "$numberDouble": "37.785834"
-        },
-        {
-          "$numberDouble": "-122.406417"
-        }
-      ],
-      "firstName": "Edgar",
-      "lastName": "Baudry",
-      "DOB": {
-        "$date": {
-          "$numberLong": "969778800000"
-        }
-      },
-      "city": "San Francisco",
-      // ADDED DESCRIPTION AND AGE
-      "age": "20",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat."
-    },
-    "profilePicture": {
-      "name": "default"
-    },
-    "consumerId": {
-      "$oid": "640991f2a761d1b5dfe02538"
-    },
-    "preferences": {
-      "skills": [],
-      "hoursPerWeek": [],
-      "hoursFlexibility": [],
-      "isInPerson": false,
-      "isHybrid": false,
-      "companySize": []
-    },
-    "status": {
-      "liked": {},
-      "interviewing": {},
-      "rejected": {}
-    },
-    "experience": [
+  const userInfo =
+  {
+    name: 'Austin Wade',
+    lastExperience: "Software Engineer",
+    photo: require('../assets/images/test.jpg'), city: "San Francisco", state: "CA", description: "I am a sophomore at UCSC majoring in computer engineering with a concentration in systems programming interested in learning all facets of technology where I can gain real-world experience in areas like product management, AI/ML, full-stack development, and more.",
+    experiences: [
       {
-        "title": "Ninja killer",
-        "start": "2021",
-        "end": "2022",
-        "description": "Killed ninjas"
+        title: "Penis Inspector",
+        description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+        months: 131,
+        isCurrent: false,
+        skills: ["Java", 'Ruby', 'Go'],
       },
       {
-        "title": "Curry farter",
-        "start": "2021",
-        "end": "2022",
-        "description": "Fart out curries"
+        title: "Orgee Coordinator",
+        description: "Planned and organized various orgees with disabled people.",
+        months: 14,
+        isCurrent: false,
+        skills: ["HTML", 'C++', 'Cock'],
       },
-      {
-        "title": "Water supplier",
-        "start": "2021",
-        "end": "2022",
-        "description": "Supply water"
-      }
     ],
-    "__v": {
-      "$numberInt": "0"
-    }
+    key: 'caseex6qfO4TPMYyhorner',
+  }
+  let experienceCards = []
+  let experiences = userInfo.experiences
+
+  const monthsToYM = (m) => {
+    let mths = m % 12
+    let yrs = Math.floor(m / 12)
+    return `${yrs} years, ${mths} months`
   }
 
-
-  const handleDescClick = () => {
-
-    navigation.navigate('Description', {
-      description: userInfo.personalInformation.description,
-      navigation: navigation
-    })
-
-    Keyboard.dismiss()
-  }
-
-  const handleDeleteExp = () => {
-    console.log('deleted')
-  }
-
-  const filterExpData = () => {
-    experiences = userInfo.experience
-
-    let data = []
-
-    if(experiences)
-    {
-      for(let i=0;i<experiences.length; i++)
-      {
-        let temp = {
-          expNumber: i+1,
-          title: experiences[i]['title'],
-          start: experiences[i]['start'],
-          end: experiences[i]['end']
-        }
-        data.push(temp)
+  if(experiences){
+    for(let i = 0; i < experiences.length; i++){
+      expSkills = []
+      skills = experiences[i].skills
+      for (let j = 0; j < skills.length; j++){
+        expSkills.push(
+          <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>{skills[j]} {j != skills.length-1?"·":""} </Text>
+        )
       }
+
+      experienceCards.push(
+        
+        <View key={i} style={{marginHorizontal:moderateScale(15), marginBottom: moderateScale(15),}}>
+          <Text style={{fontSize:moderateScale(17),color: '#000',fontWeight:'bold',letterSpacing:.3,}}>
+            {experiences[i].title}
+          </Text>
+          <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>
+            {monthsToYM(experiences[i].months)}
+          </Text>
+          <View style={{paddingBottom:moderateScale(5)}}/>
+          <SeeMore linkStyle={{ fontWeight: '500' }} style={{
+            fontSize:moderateScale(16),
+            color: '#000',
+            fontWeight:'default',
+            letterSpacing:.3,
+          }} numberOfLines={2}>
+          {userInfo.experiences[i].description}  
+          </SeeMore> 
+          <View style={{paddingBottom:moderateScale(5)}}/>
+          <View style={{flexDirection:'row'}}>
+            <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'bold',letterSpacing:.3,}}>Skills: </Text>
+            {expSkills}
+          </View>
+        </View>
+      )
     }
-
-    return data
-
+  }else{
+    experienceCards.push(
+      <Text style={{marginHorizontal:moderateScale(15), marginBottom: moderateScale(15),fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>
+        No Experience
+      </Text>
+    )
   }
 
-  const expData = filterExpData()
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>  
+        <View style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{paddingBottom:moderateScale(50)}}/>
         <ImageUpload/>
-        <View style={{flexDirection:"row", justifyContent:'center', alignContent:'center', width:horizontalScale(360), marginTop:moderateScale(-20), paddingBottom:moderateScale(20)}}>
-            <Text style={{fontSize: 20}}>{userInfo.personalInformation.firstName} {userInfo.personalInformation.lastName}, {userInfo.personalInformation.age}</Text>
-        </View>
+        <Text style={{
+          fontSize:moderateScale(28),
+          fontWeight:'bold',
+          textAlign:'center'
+        }}>{userInfo.name}</Text>
         
-        <View style={{width:horizontalScale(360), flexDirection:'row', justifyContent:'center', alignContent:'center'}}>
-          <TouchableOpacity onPress={handleDescClick}>
-            <View>
-              <MLinputM name="Description" placeholder={userInfo.personalInformation.description} isEditable={false}/>
-            </View>
-            
-          </TouchableOpacity>          
-        </View> 
+        <Text style={{
+          fontSize:moderateScale(18),
+          color: '#000',
+          fontWeight:'default',
+          alignSelf:'center'
+        }}>{userInfo.city}, CA</Text> 
+        <View style={{paddingBottom:moderateScale(20)}}/>
 
-
-        <View
-          style={{
-            borderBottomColor: 'silver',
-            borderBottomWidth: '1%',
-          }}
-        />
-        <View style={{flexDirection:"row", justifyContent:'center', alignContent:'center', width:horizontalScale(360), paddingVertical:moderateScale(15)}}>
-          <Text style={{fontSize:moderateScale(20), fontWeight:'bold'}}>
-            Location
-          </Text>
-        </View>
-
-     
-
-        <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'center'}}>
-          <NinputM name="Location" placeholder={userInfo.personalInformation.city} width={horizontalScale(200)} isEditable={false}/>
-          <View style={{paddingTop: moderateScale(15)}}>
-            <Button
-              title=" Reset Location"
-              onPress={() => props.navigation.navigate('Location', {
-                navigation: props.navigation
-              })}
-            />
+        <View style={{width:horizontalScale(330), backgroundColor:'#f5f5f5', borderRadius:moderateScale(18)}}>
+          <Text style={{
+            fontSize:moderateScale(24),
+            fontWeight:'bold',
+            marginHorizontal:moderateScale(15),
+            marginTop:moderateScale(22),
+            marginBottom:moderateScale(10)
+          }}>About</Text>
+          <View style={{marginHorizontal:moderateScale(15), marginBottom: moderateScale(15),}}>
+            <SeeMore linkStyle={{ fontWeight: '500' }} style={{
+              fontSize:moderateScale(16),
+              color: '#000',
+              fontWeight:'default',
+              letterSpacing:.3,
+            }} numberOfLines={4}>
+            {userInfo.description}  
+            </SeeMore> 
           </View>
         </View>
+        <View style={{paddingBottom:moderateScale(10)}}/>
 
-
-        <View
-          style={{
-            borderBottomColor: 'silver',
-            borderBottomWidth: '1%',
-          }}
-        />
-        <View style={{flexDirection:"row", justifyContent:'center', alignContent:'center', width:horizontalScale(360), paddingVertical:moderateScale(15)}}>
-          <Text style={{fontSize:moderateScale(20), fontWeight:'bold'}}>
-            Experiences
-          </Text>
+        <View style={{width:horizontalScale(330), backgroundColor:'#f5f5f5', borderRadius:moderateScale(18)}}>
+          <Text style={{
+            fontSize:moderateScale(24),
+            fontWeight:'bold',
+            marginHorizontal:moderateScale(15),
+            marginTop:moderateScale(22),
+            marginBottom:moderateScale(10)
+          }}>Experience</Text>
+          {experienceCards}
         </View>
+        <View style={{paddingBottom:moderateScale(10)}}/>
 
-        {
-            expData.map((item, index)=> (
-        
-              <ExpItem
-                key={index}
-                name={'Experience ' + item.expNumber}
-                placeholder={item.title + " (" + item.start + "-" + item.end + ")"}
-                handleDeleteExp={handleDeleteExp}
-              />
-            ))
-          }
+        <ButtonM name="Edit Profile & Preferences" click={()=>navigation.navigate("NameDOB")}/>
+        <View style={{paddingBottom:moderateScale(10)}}/>
 
+        </View>
       </ScrollView>
+
     </SafeAreaView>
   );
 };
 
 export default MyProfile;
+
+
+const stylez = StyleSheet.create({
+  image:{
+    height: verticalScale(125),
+    width: verticalScale(125),
+    borderRadius:moderateScale(18),
+    alignSelf:'center'
+  },
+  modalButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: moderateScale(20),
+    width:horizontalScale(140),
+    borderRadius: moderateScale(18),
+    elevation: 3,
+    backgroundColor: '#28A0BB',
+  },
+  modalButtonTextStyle: {
+    fontSize: moderateScale(16),
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
+  cancelButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: moderateScale(20),
+    width:horizontalScale(140),
+    borderRadius: moderateScale(18),
+    elevation: 3,
+    backgroundColor: '#eeeeee',
+    borderWidth:1,
+    borderColor:'#bbb'
+  },
+    cancelButtonTextStyle: {
+      fontSize: moderateScale(16),
+      fontWeight: 'default',
+      letterSpacing: 0.25,
+      color: '#111',
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 0,
+      width:'100%'
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: 'white',
+      padding: 15,
+      alignItems: 'center',
+      flex:1,
+      justifyContent:'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+      width:'100%',//horizontalScale(350)
+      height:'100%'
+    },
+    button: {
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2,
+    },
+    buttonOpen: {
+      backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+      backgroundColor: '#2196F3',
+    },
+    textStyle: {
+      color: 'white',
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: 'center',
+    },
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    sliders: {
+      margin: moderateScale(20),
+      width: horizontalScale(300),
+      justifyContent:'center',
+      alignContent:'center'
+    },
+    text: {
+      alignSelf: 'center',
+      paddingTop: moderateScale(20),
+      paddingBottom: moderateScale(20),
+      fontSize:moderateScale(15)
+    },
+    textS: {
+      alignSelf: 'center',
+      paddingTop: moderateScale(5),
+      paddingBottom: moderateScale(5),
+      fontSize:moderateScale(15),
+    },
+    sliderOne: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignContent:'center'
+    },
+  });
+  
+  

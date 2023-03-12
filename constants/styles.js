@@ -105,8 +105,8 @@ export const styles = StyleSheet.create({
   },
 
   inputDescBoxStyle: {
-    width:horizontalScale(350),
-    height:verticalScale(200),
+    width:horizontalScale(300),
+    height:verticalScale(150),
     borderRadius: moderateScale(18),
     margin: moderateScale(10),
     borderWidth: 1,

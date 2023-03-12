@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 import MyProfile from '../../screens/MyProfile';
-import Dashboard from '../../screens/Dashboard';
+// import Dashboard from '../../screens/Dashboard';
 import Likes from '../../screens/Likes';
 import Messages from '../../screens/Messages';
 import Explore from './Explore';
@@ -14,6 +14,9 @@ import Main from './Main';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import EditCurrentPosition from './EditCurrentPosition';
+import Feather from 'react-native-vector-icons/Feather';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -69,22 +72,6 @@ function BottomNavBar({route}) {
           tabBarActiveTintColor: '#e91e63',
         }}
       >
-
-        <Tab.Screen
-              name="Dashboard"
-              component={Dashboard}
-              options={{
-                tabBarLabel: 'Dashboard',
-                tabBarIcon: ({ color, size }) => (
-                  <FontAwesome name="user" size={24} color="black" />
-                ),
-              }}
-            />
-
-        <Tab.Screen
-          name="Main"
-          component={Main}
-        />
         <Tab.Screen
           name="Messages"
           component={Messages}
@@ -92,6 +79,20 @@ function BottomNavBar({route}) {
             tabBarLabel: 'Matches',
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="chatbubbles" size={24} color="black" />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Main"
+          component={Main}
+        />
+        <Tab.Screen
+          name="EditCurrentPosition"
+          component={EditCurrentPosition}
+          options={{
+            tabBarLabel: 'Edit Position',
+            tabBarIcon: ({ color, size }) => (
+              <Feather name="edit" size={24} color="black" />
             ),
           }}
         />
