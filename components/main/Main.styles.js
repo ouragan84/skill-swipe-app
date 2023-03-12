@@ -4,7 +4,7 @@ import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics
 const { height } = Dimensions.get('window')
 
 export const mainStyles = StyleSheet.create({
-  mainContainer: {flex:1, alignItems: 'center', },
+  mainContainer: {flex:1, alignItems: 'center', paddingTop:moderateScale(50)},
   swiperContainer: {
     width: horizontalScale(375),
     height: verticalScale(375),

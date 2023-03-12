@@ -14,7 +14,8 @@ import {
   Image,
   TouchableOpacity,
   Button,
-  Keyboard
+  Keyboard,
+  StyleSheet,
 } from 'react-native';
 //import ProfileItem from '../components/main/ProfileItem';
 //import Icon from '../components/main/Icon';
@@ -221,8 +222,127 @@ const MyProfile = (props) => {
           }
 
       </ScrollView>
+
     </SafeAreaView>
   );
 };
 
 export default MyProfile;
+
+
+const stylez = StyleSheet.create({
+  image:{
+    height: verticalScale(125),
+    width: verticalScale(125),
+    borderRadius:moderateScale(18),
+    alignSelf:'center'
+  },
+  modalButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: moderateScale(20),
+    width:horizontalScale(140),
+    borderRadius: moderateScale(18),
+    elevation: 3,
+    backgroundColor: '#28A0BB',
+  },
+  modalButtonTextStyle: {
+    fontSize: moderateScale(16),
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
+  cancelButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: moderateScale(20),
+    width:horizontalScale(140),
+    borderRadius: moderateScale(18),
+    elevation: 3,
+    backgroundColor: '#eeeeee',
+    borderWidth:1,
+    borderColor:'#bbb'
+  },
+    cancelButtonTextStyle: {
+      fontSize: moderateScale(16),
+      fontWeight: 'default',
+      letterSpacing: 0.25,
+      color: '#111',
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 0,
+      width:'100%'
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: 'white',
+      padding: 15,
+      alignItems: 'center',
+      flex:1,
+      justifyContent:'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+      width:'100%',//horizontalScale(350)
+      height:'100%'
+    },
+    button: {
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2,
+    },
+    buttonOpen: {
+      backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+      backgroundColor: '#2196F3',
+    },
+    textStyle: {
+      color: 'white',
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: 'center',
+    },
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    sliders: {
+      margin: moderateScale(20),
+      width: horizontalScale(300),
+      justifyContent:'center',
+      alignContent:'center'
+    },
+    text: {
+      alignSelf: 'center',
+      paddingTop: moderateScale(20),
+      paddingBottom: moderateScale(20),
+      fontSize:moderateScale(15)
+    },
+    textS: {
+      alignSelf: 'center',
+      paddingTop: moderateScale(5),
+      paddingBottom: moderateScale(5),
+      fontSize:moderateScale(15),
+    },
+    sliderOne: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignContent:'center'
+    },
+  });
+  
+  

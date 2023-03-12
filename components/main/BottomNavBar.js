@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 import MyProfile from '../../screens/MyProfile';
-import Dashboard from '../../screens/Dashboard';
+// import Dashboard from '../../screens/Dashboard';
 import Likes from '../../screens/Likes';
 import Messages from '../../screens/Messages';
 import Explore from './Explore';
@@ -70,16 +70,7 @@ function BottomNavBar({route}) {
         }}
       >
 
-        <Tab.Screen
-              name="Dashboard"
-              component={Dashboard}
-              options={{
-                tabBarLabel: 'Dashboard',
-                tabBarIcon: ({ color, size }) => (
-                  <FontAwesome name="user" size={24} color="black" />
-                ),
-              }}
-            />
+        
 
         <Tab.Screen
           name="Main"
@@ -101,7 +92,7 @@ function BottomNavBar({route}) {
 
   return (
     <>
-        {isTypeUser ? userNavBar: busNavBar}
+        {isTypeUser ? userNavBar: <></>}
     </>
     
   );
