@@ -40,6 +40,7 @@ import Position from './screens/consumer/register/business/Position';
 import BusinessProfileSummary from './screens/BusinessMain/BusinessProfileSummary';
 import EditIndustry from './screens/BusinessMain/editprofile/EditIndustry';
 import EditNameDescSize from './screens/BusinessMain/editprofile/EditNameDescSize';
+import AddPosition from './screens/BusinessMain/AddPosition'
 
 const Stack = createStackNavigator();
 
@@ -207,6 +208,12 @@ function NavStack(props) {
        
        component={ EditNameDescSize } 
        options={{ title: 'EditNameDescSize', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="AddPosition" 
+       
+       component={ AddPosition } 
+       options={{ title: 'AddPosition', headerShown: false, gestureEnabled:false }}
       />
       <Stack.Screen
         name="Dashboard"

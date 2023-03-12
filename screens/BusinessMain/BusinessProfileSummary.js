@@ -133,7 +133,7 @@ const BusinessProfileSummary = ({route}) => {
             marginBottom:moderateScale(10)
           }}>Location</Text>
           <View style={{flexDirection:'row', marginHorizontal:moderateScale(15), marginBottom: moderateScale(15),}}>
-            <Text style={{fontSize:moderateScale(16), color: '#000',fontWeight:'bold'}}>Company Size: </Text>
+            <Text style={{fontSize:moderateScale(16), color: '#000',fontWeight:'bold'}}>Location: </Text>
             <Text style={{
               fontSize:moderateScale(16),
               color: '#000',

@@ -14,6 +14,9 @@ import Main from './Main';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import EditCurrentPosition from './EditCurrentPosition';
+import Feather from 'react-native-vector-icons/Feather';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -69,13 +72,6 @@ function BottomNavBar({route}) {
           tabBarActiveTintColor: '#e91e63',
         }}
       >
-
-        
-
-        <Tab.Screen
-          name="Main"
-          component={Main}
-        />
         <Tab.Screen
           name="Messages"
           component={Messages}
@@ -86,13 +82,27 @@ function BottomNavBar({route}) {
             ),
           }}
         />
+        <Tab.Screen
+          name="Main"
+          component={Main}
+        />
+        <Tab.Screen
+          name="EditCurrentPosition"
+          component={EditCurrentPosition}
+          options={{
+            tabBarLabel: 'Edit Position',
+            tabBarIcon: ({ color, size }) => (
+              <Feather name="edit" size={24} color="black" />
+            ),
+          }}
+        />
       </Tab.Navigator>
   )
   
 
   return (
     <>
-        {isTypeUser ? userNavBar: <></>}
+        {isTypeUser ? userNavBar: busNavBar}
     </>
     
   );

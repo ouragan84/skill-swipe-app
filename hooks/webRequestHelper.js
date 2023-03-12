@@ -31,6 +31,7 @@ const fetchUnprotected = async (url, method, body, errorDisplay, next, log=false
 }
 
 const fetchProtected = async (url, method, body, errorDisplay, next, navigation, isRecursiveCall=false) => {
+    console.log(API_URL)
     const token = await auth.getToken();
     if(!token)
         getNewToken(navigation);
@@ -118,7 +119,7 @@ const checkConsumerStatusAndNavigate = (navigation) => {
             } else {
                 navigation.reset({
                     index: 0,
-                    routes: [{name: 'Logs'}], // company main
+                    routes: [{name: 'Dashboard'}], // company main
                   });
             }
         }

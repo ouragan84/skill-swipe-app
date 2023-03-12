@@ -39,11 +39,11 @@ import Confirm from '../components/helper/Confirm';
 const Dashboard = (props) => {
 
   const navigation = useNavigation();
-
-  const goToCompanyProfile = () => {
+  const [busProfileData, setBusProfileData] = useState(businessProfile)
+  const goToCompanyProfile = (prof) => {
 
     navigation.navigate('BusinessProfileSummary', {
-      businessInfo: businessProfile
+      businessInfo: prof
     })
 
     Keyboard.dismiss()
@@ -51,13 +51,13 @@ const Dashboard = (props) => {
 
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
 
+
   const handleDelete = (i) => {
-    businessProfile.positions.splice(i,1)
+    console.log("deleted")
   }
 
   let businessPositionsComp = []
-  let positions = businessProfile.positions
-  for (let i = 0; i < positions.length; i++){
+  for (let i = 0; i < busProfileData.positions.length; i++){
     businessPositionsComp.push(
       <View key={i} style={{paddingBottom:15}}>
       <View
@@ -67,7 +67,7 @@ const Dashboard = (props) => {
         }}
       >
         <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-        <Text style={{paddingLeft:moderateScale(25), fontSize:moderateScale(16)}}>{positions[i].title}</Text>
+        <Text style={{paddingLeft:moderateScale(25), fontSize:moderateScale(16)}}>{busProfileData.positions[i].title}</Text>
         
         <View style={{flexDirection:'row'}}>
         <FontAwesome5 name="trash" onPress={()=>setConfirmModalVisible(!confirmModalVisible)} style={{
@@ -75,7 +75,13 @@ const Dashboard = (props) => {
         }}/>
         <Confirm modalVisible={confirmModalVisible} setModalVisible={setConfirmModalVisible} message="Are you sure you want to do this?" onModalButtonClick={()=>handleDelete(i)}/>
 
-        <EntypoIcon name="chevron-right" onPress={()=>console.log('poop')} style={{
+        <EntypoIcon name="chevron-right" onPress={()=>{
+          const screenToGoTo = 'Main'
+          props.navigation.navigate('BottomNavBar', { 
+            screen: screenToGoTo,
+            isTypeUser: false,
+          })
+        }} style={{
           paddingRight:moderateScale(25), fontSize:moderateScale(20)
         }}/>
         </View>
@@ -91,9 +97,9 @@ const Dashboard = (props) => {
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', backgroundColor:'#28A0BB', justifyContent: 'center' }}>
       <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'center', height:verticalScale(85), width:horizontalScale(320)}}>        
-        <Text style={{textAlign:'center',alignSelf:'center', fontSize:moderateScale(20), fontWeight:'bold', color:'white', top:7}}>Dashboard</Text>   
-        <View style={{alignSelf:'center',top:5}}>
-          <FontAwesome5 name="user-edit" style={{ fontSize: moderateScale(25), color: "white"}} onPress={goToCompanyProfile}/>
+        <Text style={{textAlign:'center',alignSelf:'center', fontSize:moderateScale(20), fontWeight:'bold', color:'white', top:12}}>Dashboard</Text>   
+        <View style={{alignSelf:'center',top:10}}>
+          <FontAwesome5 name="user-edit" style={{ fontSize: moderateScale(25), color: "white"}} onPress={()=>goToCompanyProfile(busProfileData)}/>
         </View>
       </View>
       <ScrollView style={{backgroundColor:'white', width:'100%'}}>
@@ -109,6 +115,10 @@ const Dashboard = (props) => {
         </View>
 
       </ScrollView>
+      <View style={{backgroundColor:'#f5f5f5', width:'100%', height:verticalScale(100), flex:1, alignItems:'center'}}>
+        <View style={{paddingBottom:moderateScale(20)}}/>
+        <ButtonM name="Add position +" click={()=>navigation.navigate("AddPosition")}/>
+      </View>
     </SafeAreaView>
   );
 };
