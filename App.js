@@ -207,7 +207,7 @@ function NavStack(props) {
       <Stack.Screen 
        name="BottomNavBar"  
        component={ BottomNavBar }
-       options={{ title: 'BottomNavBar', headerShown: false}}
+       options={{ title: 'BottomNavBar', headerShown: false, }}
       />
       {/* <Stack.Screen
         name="Profile"

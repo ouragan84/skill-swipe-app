@@ -57,48 +57,17 @@ const BusinessProfileSummary = ({route}) => {
     console.log('deleted')
   }
 
-  const filterExpData = () => {
-    experiences = businessInfo.experience
-
-    let data = []
-
-    if(experiences)
-    {
-      for(let i=0;i<experiences.length; i++)
-      {
-        let temp = {
-          expNumber: i+1,
-          title: experiences[i]['title'],
-          start: experiences[i]['start'],
-          end: experiences[i]['end']
-        }
-        data.push(temp)
-      }
-    }
-
-    return data
-
-  }
-
-  const expData = filterExpData()
-
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
       <ScrollView>
-        <ImageUpload/>
+        <ImageUpload/>        
         <View style={{flexDirection:"row", justifyContent:'center', alignContent:'center', width:horizontalScale(360), marginTop:moderateScale(-20), paddingBottom:moderateScale(20)}}>
             <Text style={{fontSize: 20}}>{businessInfo.name}</Text>
         </View>
         
-        <View style={{width:horizontalScale(360), flexDirection:'row', justifyContent:'center', alignContent:'center'}}>
-          <TouchableOpacity onPress={handleDescClick}>
-            <View>
-              <MLinputM name="Description" placeholder={businessInfo.description} isEditable={false}/>
-            </View>
-            
-          </TouchableOpacity>          
-        </View> 
+        <MLinputM name="Company Description" defaultValue={businessInfo.description}/>
 
+        <InputM name="Company Size" defaultValue={businessInfo.size} numeric={true}/> 
 
         <View
           style={{
@@ -112,8 +81,6 @@ const BusinessProfileSummary = ({route}) => {
           </Text>
         </View>
 
-     
-
         <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'center'}}>
           <NinputM name="Location" placeholder={businessInfo.city} width={horizontalScale(200)} isEditable={false}/>
           <View style={{paddingTop: moderateScale(15)}}>
@@ -125,31 +92,6 @@ const BusinessProfileSummary = ({route}) => {
             />
           </View>
         </View>
-
-
-        <View
-          style={{
-            borderBottomColor: 'silver',
-            borderBottomWidth: '1%',
-          }}
-        />
-        <View style={{flexDirection:"row", justifyContent:'center', alignContent:'center', width:horizontalScale(360), paddingVertical:moderateScale(15)}}>
-          <Text style={{fontSize:moderateScale(20), fontWeight:'bold'}}>
-            Experiences
-          </Text>
-        </View>
-
-        {
-            expData.map((item, index)=> (
-        
-              <ExpItem
-                key={index}
-                name={'Experience ' + item.expNumber}
-                placeholder={item.title + " (" + item.start + "-" + item.end + ")"}
-                handleDeleteExp={handleDeleteExp}
-              />
-            ))
-          }
 
       </ScrollView>
     </SafeAreaView>

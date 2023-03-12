@@ -122,8 +122,7 @@ const Dashboard = (props) => {
                     width: 48, 
                     borderRadius: 24, 
                     marginTop: moderateScale(10)
-                  }}
-            
+                  }}          
             />
 
           <View style={{

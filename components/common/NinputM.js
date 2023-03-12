@@ -29,6 +29,7 @@ export default function NinputM(props) {
                 keyboardType="numeric"
                 onChangeText={props.onChangeValue}
                 value={props.value}
+                defaultValue={props.defaultValue}
                 placeholder={props.placeholder}
                 autoCapitalize={props.autoCapitalize}
                 autoCorrect={props.autoCorrect}
