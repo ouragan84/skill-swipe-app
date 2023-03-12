@@ -3,7 +3,7 @@ import { Linking } from 'react-native';
 import * as auth from './authentication';
 import * as FileSystem from 'expo-file-system';
 
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
 
 // const getUrl = (url) => {
