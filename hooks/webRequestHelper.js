@@ -3,10 +3,12 @@ import { Linking } from 'react-native';
 import * as auth from './authentication';
 import * as FileSystem from 'expo-file-system';
 
+import fetch from "node-fetch";
+
+
 // const getUrl = (url) => {
 //     return `${API_URL}${url}`;
 // }
-
 
 const fetchUnprotected = async (url, method, body, errorDisplay, next, log = false) => {
 

@@ -134,7 +134,7 @@ const Position = (props) => {
 
   }
 
-  const doneAdding = () => {
+  const çdoneAdding = () => {
     fetchProtected('/company/check-complete', 'GET', null, setErrorText, () => {
       checkConsumerStatusAndNavigate(props.navigation);
     }, props.navigation)
