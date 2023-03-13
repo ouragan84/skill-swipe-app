@@ -1,29 +1,63 @@
-export default [
-    {
-        id: 1,
-        img: require('../assets/images/handyman.png'),
-        title: `McDonald's`,
-        description: 'Cook',
-        pay: '$ 17/hr',
-        distance: '1 mile away',
-        name:[true,false,false]
-    },
-    {
-        id: 2,
-        img: require('../assets/images/meeting.png'),
-        title: `Carl's Jr`,
-        description: 'Cook',
-        pay: '$ 17/hr',
-        distance: '1 mile away',
-        name:[false,true,false]
-    },
-    {
-        id: 3,
-        img: require('../assets/images/techjob.png'),
-        title: `Tulsi`,
-        description: 'Cook',
-        pay: '$ 17/hr',
-        distance: '1 mile away',
-        name:[false,false,true]
-    },
-];
+export default {
+    id: 1,
+    name: "SC Corporation",
+    description: "Fishing Company Based in Long Beach",
+    size: 25,
+    industry:"Fishing",
+    profilePicture: require('../assets/images/test.jpg'),
+    bannerPicture: require('../assets/images/test.jpg'),
+    positions: [
+        {
+            title: "Fish Salesman",
+            description: "You will use your special sales skills to convice clients of investing in our rare fishes", 
+            payRange: [20,25],
+            hoursPerWeek: [30,40],
+            skills: ["C++", "Java", "Cleaning"],
+            hoursFlexibility: 2,
+            isInPerson: true,
+            isHybrid: false,
+            isRemote: false,
+            branchSize: 25,
+            city: "Long Beach"
+        },
+        {
+            title: "Cashier",
+            description: "You will use your special sales skills to convice clients of investing in our rare fishes", 
+            payRange: [20,25],
+            hoursPerWeek: [30,40],
+            skills: ["C++", "Java", "Cleaning"],
+            hoursFlexibility: 2,
+            isInPerson: true,
+            isHybrid: false,
+            isRemote: false,
+            branchSize: 25,
+            city: "Long Beach"
+        },
+        {
+            title: "Salesman",
+            description: "You will use your special sales skills to convice clients of investing in our rare fishes", 
+            payRange: [20,25],
+            hoursPerWeek: [30,40],
+            skills: ["C++", "Java", "Cleaning"],
+            hoursFlexibility: 2,
+            isInPerson: true,
+            isHybrid: false,
+            isRemote: false,
+            branchSize: 25,
+            city: "Long Beach"
+        },
+        {
+            title: "Bee Keeper",
+            description: "You will use your special sales skills to convice clients of investing in our rare fishes", 
+            payRange: [20,25],
+            hoursPerWeek: [30,40],
+            skills: ["C++", "Java", "Cleaning"],
+            hoursFlexibility: 2,
+            isInPerson: true,
+            isHybrid: false,
+            isRemote: false,
+            branchSize: 25,
+            city: "Long Beach"
+        },
+    ]
+}

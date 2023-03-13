@@ -1,74 +1,52 @@
-import React, { useEffect } from 'react'
-import { View, Text, Image, ImageSourcePropType, StyleSheet } from 'react-native'
-import { shape, string, number } from 'prop-types'
-import styles from './Card.styles'
-import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics'
-const Card = ({ card }) => (
+import React, { useState } from 'react';
+import {Text, TouchableOpacity, StyleSheet, Modal, View} from 'react-native';
+import { SafeAreaView } from 'react-navigation';
+import {styles} from '../../constants/styles';
+import ButtonM from '../common/ButtonM';
+import { horizontalScale, moderateScale } from './Metrics';
 
-  // console.log('CARD', card)
+export default function Confirm(props) {
+    return (
+        <SafeAreaView>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={props.modalVisible}
+                onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                props.setModalVisible(!props.modalVisible);
+                }}>
+                <View style={stylez.centeredView}>
+                <View style={stylez.modalView}>  
+                    <Text style={stylez.text}>{props.message}</Text>
 
-  // useEffect(() => {
-  //   // This effect uses the `value` variable,
-  //   // so it "depends on" `value`.
-  //   console.log(value);
-  // }, [value])
+                    <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
+                      <TouchableOpacity onPress={()=>{props.setModalVisible(!props.modalVisible);}} style={stylez.cancelButton}>
+                        <Text style={stylez.cancelButtonTextStyle}>
+                          Cancel
+                        </Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={()=>{
+                        props.onModalButtonClick()
+                        props.setModalVisible(!props.modalVisible);
+                      }} style={stylez.modalButton}>
+                        <Text style={stylez.modalButtonTextStyle}>
+                          Confirm
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
 
-  <View
-    activeOpacity={1}
-    style={styles.card}
-  >
-    {/* <Text style={styles.text}>
-        {`${card.name}, ${card.lastExperience}`}
-      </Text> */}
-    {/* <Image
-      style={styles.image}
-      source={card.photo}
-      resizeMode="cover"
-    />
-    <View style={styles.photoDescriptionContainer}>
-      <Text style={styles.text}>
-        {`${card.name}, ${card.experiences[0].title}`}
-      </Text>
-    </View> */}
-      <Image style={stylez.image} source={card.photo}/>
-      <View style={{paddingBottom:moderateScale(250)}}/>
-      <Text style={{
-        fontSize:moderateScale(32),
-        fontWeight:'bold',
-        textAlign:'center'
-      }}>{card.name}</Text>
-      <Text style={{
-        fontSize:moderateScale(24),
-        fontWeight:'default',
-        textAlign:'center'
-      }}>{card.city}, CA</Text>
-      <Text style={{
-        fontSize:moderateScale(24),
-        fontWeight:'default',
-        textAlign:'center',
-        width:horizontalScale(320)
-      }}>{card.experiences ? card.experiences[0].title : card.description.substr(0,23)+"..."}</Text>
-    </View>
-)
-
-Card.propTypes = { 
-  card: shape({
-    photo: ImageSourcePropType,
-    name: string,
-    age: number,
-  }).isRequired,
-}
+                </View>
+                </View>
+            </Modal>
+            <View style={{paddingBottom:moderateScale(10)}}/>
+            
+        </SafeAreaView>
+    );
+};
 
 
 const stylez = StyleSheet.create({
-  image:{
-    position:'absolute',
-    top:verticalScale(-10),
-    height: verticalScale(280),
-    width: '100%',
-    borderTopLeftRadius:moderateScale(18),
-    borderTopRightRadius:moderateScale(18)
-  },
   modalButton: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -106,15 +84,13 @@ const stylez = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 0,
-      width:'100%'
     },
     modalView: {
       margin: 20,
       backgroundColor: 'white',
+      borderRadius: 20,
       padding: 15,
       alignItems: 'center',
-      flex:1,
-      justifyContent:'center',
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
@@ -123,8 +99,7 @@ const stylez = StyleSheet.create({
       shadowOpacity: 0.25,
       shadowRadius: 4,
       elevation: 5,
-      width:'100%',//horizontalScale(350)
-      height:'100%'
+      width:horizontalScale(330)
     },
     button: {
       borderRadius: 20,
@@ -178,4 +153,3 @@ const stylez = StyleSheet.create({
   });
   
   
-export default Card
