@@ -35,7 +35,7 @@ export default [
                 __v: 0,
                 description: "Fishing Company Based in Long Beach",
                 industry: "Fishing",
-                name: "Ye'ol booty co",
+                name: "Fish 'Argh Us!",
                 size: 25
             }
         }
@@ -63,7 +63,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 20,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "ljeqevszhkusb9ok26v0pnpj",
                 city: "Los Angeles"
             },
             companyInfo: {
@@ -73,7 +73,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "ljeqevszhkusb9ok26v0pnpj",
                 __v: 0,
                 description: "Gourmet Taco Restaurant based in Los Angeles",
                 industry: "Food Service",
@@ -105,7 +105,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 35,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "lkjxnd1ikdjxg7ye37ubvo58",
                 city: "Costa Mesa"
             },
             companyInfo: {
@@ -115,7 +115,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "lkjxnd1ikdjxg7ye37ubvo58",
                 __v: 0,
                 description: "A restaurant serving good food for good people",
                 industry: "Food Service",
@@ -148,7 +148,7 @@ export default [
                 isHybrid: true,
                 isRemote: true,
                 branchSize: 150,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "9ddgn3kaimwxa75kp4tsn8i1",
                 city: "San Francisco"
             },
             companyInfo: {
@@ -158,7 +158,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "9ddgn3kaimwxa75kp4tsn8i1",
                 __v: 0,
                 description: "Global technology company that specializes in internet related services and products",
                 industry: "Technology",
@@ -190,7 +190,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 100,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "ioqyn8vfaj8kfm7wzp96evbt",
                 city: "Westwood"
             },
             companyInfo: {
@@ -200,7 +200,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "ioqyn8vfaj8kfm7wzp96evbt",
                 __v: 0,
                 description: "A student-run service that delivers goods such as snacks, vapes, alcohol and household essentials on electric scooters.",
                 industry: "Delivery",
@@ -232,7 +232,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 80,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "pcxex2bkeetirgrj11mok0zn",
                 city: "San Diego"
             },
             companyInfo: {
@@ -242,7 +242,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "pcxex2bkeetirgrj11mok0zn",
                 __v: 0,
                 description: "Engages in the retailing business of natural and organic foods",
                 industry: "Retail",
@@ -274,7 +274,7 @@ export default [
                 isHybrid: true,
                 isRemote: true,
                 branchSize: 50,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "5rhfa38wf0mzcbne6fk93azb",
                 city: "Sacramento"
             },
             companyInfo: {
@@ -284,7 +284,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "5rhfa38wf0mzcbne6fk93azb",
                 __v: 0,
                 description: "A diversified financial service holding company that offers retail and wholesale banking, and wealth management services to individuals, businesses, high-net-worth individuals, and institutions, through its subsidiaries.",
                 industry: "Banking",
@@ -316,7 +316,7 @@ export default [
                 isHybrid: true,
                 isRemote: false,
                 branchSize: 1000,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "b8d0bmsnsoh7i0pvcb2b21l0",
                 city: "London"
             },
             companyInfo: {
@@ -326,7 +326,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "b8d0bmsnsoh7i0pvcb2b21l0",
                 __v: 0,
                 description: "We are a leading global provider of audit and assurance, consulting, financial advisory, risk advisory, tax, and related services.",
                 industry: "Accounting",
@@ -358,7 +358,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 40,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "3dko4k4a8gecncxo30jk0wfa",
                 city: "Chicago"
             },
             companyInfo: {
@@ -368,7 +368,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "3dko4k4a8gecncxo30jk0wfa",
                 __v: 0,
                 description: "We provide our customers with the freshest, highest quality sub sandwiches available, prepared right in front of them and served with energy and enthusiasm.",
                 industry: "Food Service",
@@ -400,7 +400,7 @@ export default [
                 isHybrid: true,
                 isRemote: false,
                 branchSize: 1300,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "9o4miv7nkjf0bk8m085giawb",
                 city: "Los Angeles"
             },
             companyInfo: {
@@ -410,7 +410,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "9o4miv7nkjf0bk8m085giawb",
                 __v: 0,
                 description: "We house and display European paintings, drawings, sculptures, illuminated manuscripts, decorative arts, and photography from its beginnings to the present, gathered internationally.",
                 industry: "Museums",
@@ -442,7 +442,7 @@ export default [
                 isHybrid: true,
                 isRemote: false,
                 branchSize: 300,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "ciaxh3ujovfqrdjc27bd6k0r",
                 city: "Houston"
             },
             companyInfo: {
@@ -452,7 +452,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "ciaxh3ujovfqrdjc27bd6k0r",
                 __v: 0,
                 description: "We conduct research, testing, and development to advance aeronautics, including electric propulsion and supersonic flight as well as develop and fund space technologies that will enable future exploration and benefit life on Earth.",
                 industry: "Defense",
@@ -482,7 +482,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 80,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "aw8cm7ohebcjse1qvlna6nk2",
                 city: "Victorville"
             },
             companyInfo: {
@@ -492,7 +492,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "aw8cm7ohebcjse1qvlna6nk2",
                 __v: 0,
                 description: "The leading provider of automotive preventative maintenance",
                 industry: "Automotive",
@@ -523,7 +523,7 @@ export default [
                 isHybrid: true,
                 isRemote: false,
                 branchSize: 250,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "zu3x5ghhvbsholshuaxbcmyh",
                 city: "Boston"
             },
             companyInfo: {
@@ -533,7 +533,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "zu3x5ghhvbsholshuaxbcmyh",
                 __v: 0,
                 description: "We are a global consulting firm that partners with leaders in business and society to tackle their most important challenges and capture their greatest opportunities.",
                 industry: "Consulting",
@@ -564,7 +564,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 100,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "8nxcdj48x4jdp30vuj9b65as",
                 city: "Culver City"
             },
             companyInfo: {
@@ -574,7 +574,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "8nxcdj48x4jdp30vuj9b65as",
                 __v: 0,
                 description: "We design, manufacture and sell passenger cars, buses, minivans, trucks, specialty cars, recreational and sport-utility vehicles as well as provide financing to dealers and customers for the purchase or lease of vehicles.",
                 industry: "Automotive",
@@ -605,7 +605,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 200,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "8iv8wx720ke48j4amu8p8fzl",
                 city: "Davis"
             },
             companyInfo: {
@@ -615,7 +615,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "8iv8wx720ke48j4amu8p8fzl",
                 __v: 0,
                 description: "We are the leading designers of technology through the production of smart phones, laptops, tablets and more.",
                 industry: "Technology",
@@ -646,7 +646,7 @@ export default [
                 isHybrid: true,
                 isRemote: false,
                 branchSize: 100,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "5wd2lyucnqvld71q7hu30luw",
                 city: "Los Angeles"
             },
             companyInfo: {
@@ -656,7 +656,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "5wd2lyucnqvld71q7hu30luw",
                 __v: 0,
                 description: "We provide full-service representation and management to models, entertainers, artists, musicians, and athletes.",
                 industry: "Entertainment",
@@ -688,7 +688,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 100,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "90311k4eugbgmxulvlu61091",
                 city: "Los Angeles"
             },
             companyInfo: {
@@ -698,7 +698,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "90311k4eugbgmxulvlu61091",
                 __v: 0,
                 description: "We offer clients extensive capabilities in health care and life sciences, employee benefits and executive compensation, and cybersecurity, privacy and data protection matters.",
                 industry: "Law",
@@ -729,7 +729,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 200,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "hj1uf1x8jcuuqjg95y6d6n85",
                 city: "Studio City"
             },
             companyInfo: {
@@ -739,7 +739,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "hj1uf1x8jcuuqjg95y6d6n85",
                 __v: 0,
                 description: "We are a multi-employer trust funds established by collective bargaining agreements between various employers and over 30 Unions and Guilds representing employees in the motion picture industry.",
                 industry: "Healthcare",
@@ -771,7 +771,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 50,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "ikgqei2xm5l851sln7rl9h4m",
                 city: "Seattle"
             },
             companyInfo: {
@@ -781,7 +781,7 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "ikgqei2xm5l851sln7rl9h4m",
                 __v: 0,
                 description: "We are a specialty coffee resailer. We offer several blends of coffee, handcrafted beverages, merchandise, and food items.",
                 industry: "Food Service",
@@ -813,7 +813,7 @@ export default [
                 isHybrid: false,
                 isRemote: false,
                 branchSize: 80,
-                companyId: "640ba61898949b8a89e61cc6",
+                companyId: "hvqsic3rhjl3ccah2toui1gm",
                 city: "Pasadena"
             },
             companyInfo: {
@@ -823,12 +823,215 @@ export default [
                 bannerPicture: {
                     name: "default"
                 },
-                _id: "640ba61898949b8a89e61cc6",
+                _id: "hvqsic3rhjl3ccah2toui1gm",
                 __v: 0,
                 description: "We operate a chain of guitars, amplifiers, percussion instruments, pro-audio and recording equipment stores.",
                 industry: "Retail",
                 name: "Guitar Center",
                 size: 10000,
+            },
+        },
+    },
+    {
+        position: {
+            positionInfo: {
+                title: "Usher",
+                description: "You will greet patrons and assist them in finding their seats as well as assist guests with locating exits and amenities such as restrooms and concession areas.",
+                payRange: [
+                    17,
+                    22
+                ],
+                hoursPerWeek: [
+                    15,
+                    35
+                ],
+                skills: [
+                    "Customer Service",
+                    "Team Player"
+                ],
+                hoursFlexibility: 5,
+                isInPerson: true,
+                isHybrid: false,
+                isRemote: false,
+                branchSize: 50,
+                companyId: "6nbjecseofqo9y95omhnzl6b",
+                city: "Los Angeles"
+            },
+            companyInfo: {
+                profilePicture: {
+                    name: "73e7ce56aed0b7b87d5faa6ef752a8443da756bd27bf179babd227e2d627efe3"
+                },
+                bannerPicture: {
+                    name: "default"
+                },
+                _id: "6nbjecseofqo9y95omhnzl6b",
+                __v: 0,
+                description: "The Hollywood Bowl is a venue for showcasing artistic greatness and celebrating our global cultural heritage.",
+                industry: "Entertainment",
+                name: "The Hollywood Bowl",
+                size: 50,
+            },
+        },
+    },
+    {
+        position: {
+            positionInfo: {
+                title: "Real Estate Agent",
+                description: "You will help our clients purchase, rent, or sell properties as well as advise clients about market conditions, conduct walkthroughs, and provide guidance and assistance through the process of buying, selling, or leasing properties.",
+                payRange: [
+                    50,
+                    70
+                ],
+                hoursPerWeek: [
+                    30,
+                    40
+                ],
+                skills: [
+                    "Industry Experience",
+                    "Time Management"
+                ],
+                hoursFlexibility: 3,
+                isInPerson: true,
+                isHybrid: true,
+                isRemote: false,
+                branchSize: 50,
+                companyId: "w4qeqg4ffx513yfy9iydtrca",
+                city: "Madison"
+            },
+            companyInfo: {
+                profilePicture: {
+                    name: "73e7ce56aed0b7b87d5faa6ef752a8443da756bd27bf179babd227e2d627efe3"
+                },
+                bannerPicture: {
+                    name: "default"
+                },
+                _id: "w4qeqg4ffx513yfy9iydtrca",
+                __v: 0,
+                description: "The Coldwell Banker brand is the oldest and most established residential real estate franchise system in North America.",
+                industry: "Real Estate",
+                name: "Coldwell Banker",
+                size: 10000,
+            },
+        },
+    },
+    {
+        position: {
+            positionInfo: {
+                title: "Teacher",
+                description: "You will be teaching 7th grade English to our students.",
+                payRange: [
+                    23,
+                    28
+                ],
+                hoursPerWeek: [
+                    35,
+                    40
+                ],
+                skills: [
+                    "Education Credentials",
+                    "Language Arts"
+                ],
+                hoursFlexibility: 0,
+                isInPerson: true,
+                isHybrid: true,
+                isRemote: false,
+                branchSize: 100,
+                companyId: "u6e5dyy8nmrjn5k60vuq5c6d",
+                city: "Los Angeles"
+            },
+            companyInfo: {
+                profilePicture: {
+                    name: "73e7ce56aed0b7b87d5faa6ef752a8443da756bd27bf179babd227e2d627efe3"
+                },
+                bannerPicture: {
+                    name: "default"
+                },
+                _id: "u6e5dyy8nmrjn5k60vuq5c6d",
+                __v: 0,
+                description: "Los Angeles's public school system serving Los Angeles residents from grades K-12.",
+                industry: "Education",
+                name: "Los Angeles Unified School District",
+                size: 50000,
+            },
+        },
+    },
+    {
+        position: {
+            positionInfo: {
+                title: "Bus Driver",
+                description: "You will be driving Los Angeles residents on the public bus.",
+                payRange: [
+                    18,
+                    22
+                ],
+                hoursPerWeek: [
+                    35,
+                    40
+                ],
+                skills: [
+                    "Driver's License",
+                ],
+                hoursFlexibility: 2,
+                isInPerson: true,
+                isHybrid: false,
+                isRemote: false,
+                branchSize: 50,
+                companyId: "l4efv2jzfogiww87mmogq3rs",
+                city: "Los Angeles"
+            },
+            companyInfo: {
+                profilePicture: {
+                    name: "73e7ce56aed0b7b87d5faa6ef752a8443da756bd27bf179babd227e2d627efe3"
+                },
+                bannerPicture: {
+                    name: "default"
+                },
+                _id: "l4efv2jzfogiww87mmogq3rs",
+                __v: 0,
+                description: "The Metro Rail is a rail mass transit system with two subway and five light rail lines. As of October 2022, the system runs a total of 113.5 miles (182.7 km), with 99 stations.",
+                industry: "Transportation",
+                name: "LA Metro",
+                size: 9600,
+            },
+        },
+    },
+    {
+        position: {
+            positionInfo: {
+                title: "Human Resources Generalist",
+                description: "You will assist and support management and the leadership team with handling and resolving Human Resources issues as well as assist employees with internal and external transfer requests and procedures. ",
+                payRange: [
+                    24,
+                    27
+                ],
+                hoursPerWeek: [
+                    35,
+                    40
+                ],
+                skills: [
+                    "Conflict Resolution",
+                ],
+                hoursFlexibility: 2,
+                isInPerson: true,
+                isHybrid: false,
+                isRemote: false,
+                branchSize: 100,
+                companyId: "h51i3kr6oz2uhuf5d2xwea5h",
+                city: "Los Angeles"
+            },
+            companyInfo: {
+                profilePicture: {
+                    name: "73e7ce56aed0b7b87d5faa6ef752a8443da756bd27bf179babd227e2d627efe3"
+                },
+                bannerPicture: {
+                    name: "default"
+                },
+                _id: "h51i3kr6oz2uhuf5d2xwea5h",
+                __v: 0,
+                description: "We are a hospitality service provider that operates hotels and restaurants.",
+                industry: "Human Resources",
+                name: "Marriot International",
+                size: 30000,
             },
         },
     },
