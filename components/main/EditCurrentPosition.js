@@ -9,7 +9,7 @@ import NinputM from '../common/NinputM';
 import SRButtonM from '../common/SRButtonM';
 import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics';
 import { styles } from '../../constants/styles';
-import SkillsListB from '../../screens/consumer/register/business/helper-components/SkillsListB';
+import SkillsListB from '../../components/helper/SkillsListB';
 import SkillsListItem from '../../screens/consumer/register/business/helper-components/SkillsListItem';
 import Icon from 'react-native-vector-icons/Entypo';
 import {fetchUnprotected, fetchProtected, checkConsumerStatusAndNavigate} from '../../hooks/webRequestHelper';
