@@ -39,6 +39,8 @@ import AddLogo from './screens/consumer/register/business/AddLogo';
 import Position from './screens/consumer/register/business/Position';
 import BusinessProfileSummary from './screens/BusinessMain/BusinessProfileSummary';
 
+// import {socket} from '/hooks/webRequestHelper'
+
 const Stack = createStackNavigator();
 
 const MyTheme = {

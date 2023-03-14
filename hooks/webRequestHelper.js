@@ -2,6 +2,8 @@ import { API_URL } from '@env';
 import { Linking } from 'react-native';
 import * as auth from './authentication';
 import * as FileSystem from 'expo-file-system';
+import SocketIOClient from 'socket.io-client';
+// import './UserAgent';
 
 // import fetch from "node-fetch";
 
@@ -154,6 +156,9 @@ const checkConsumerStatusAndNavigate = (navigation) => {
                 });
             }
         } else {
+            const token = await auth.getToken();
+            logIntoSocketIO(token);
+            
             if (response.consumer.isTypeUser) {
                 navigation.reset({
                     index: 0,
@@ -193,4 +198,16 @@ const fetchCustomToken = async (url, method, token, body, errorDisplay, next) =>
     return response;
 }
 
-module.exports = { fetchProtected, fetchUnprotected, linkToPage, checkConsumerStatusAndNavigate, fetchCustomToken, uploadFile };
+const logIntoSocketIO = (token) => {
+    socket.emit('login', {
+        headers:{
+            authorization: `Bearer ${token}`
+        }
+    });
+}
+
+const socket = SocketIOClient(`${API_URL}`);
+
+
+
+module.exports = { fetchProtected, fetchUnprotected, linkToPage, checkConsumerStatusAndNavigate, fetchCustomToken, uploadFile, socket, logIntoSocketIO};
