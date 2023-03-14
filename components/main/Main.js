@@ -15,7 +15,9 @@ import { useNavigation } from '@react-navigation/native';
 
 import { colors } from '../../constants/colors'
 
-const { height } = Dimensions.get('window')
+const { height } = Dimensions.get('screen')
+
+const { width } = Dimensions.get('screen')
 
 const Main = (props) => {
 
@@ -214,7 +216,7 @@ const handleAllSwipesDone = () => {
           elevation: 2,
         }}
       >
-      <View style={{paddingBottom:moderateScale(250)}}/>
+      {/* <View style={{paddingBottom:moderateScale(250)}}/> */}
       <Text style={{
         fontSize:moderateScale(24),
         fontWeight:'bold',
@@ -240,14 +242,13 @@ const handleAllSwipesDone = () => {
   //   };
    
   // }, []);
-  
 
 return (
   <View
     style={mainStyles.mainContainer}
   >
     <View style={mainStyles.swiperContainer}>
-      <Swiper
+    <Swiper
         ref={useSwiper}
         //onSwipedTop={(index) => handleOnSwipedTop(index)}
         disableBottomSwipe={true}
@@ -257,34 +258,15 @@ return (
         animateCardOpacity
         containerStyle={mainStyles.container}
         cards={props.data}
-        renderCard={(card) => 
-          card? (
-              <Card card={card} isTypeUser={props.isTypeUser}/>
-            ) : (
-              <View>
-            <View style={{paddingBottom:moderateScale(250)}}/>
-            <Text style={{
-              fontSize:moderateScale(24),
-              fontWeight:'bold',
-              textAlign:'center'
-            }}>No more profiles</Text>
-            <Image style={{
-                height: 20,
-                width: '100%',
-              }}
-              height={100}
-              width={100}
-              source={{uri: "https://links.papareact.com/6gb"}}
-            />
-            
-          </View>
-            )
-
-        }
+        renderCard={(card) => cardIndex<props.data.length? (
+          <Card card={card} isTypeUser={props.isTypeUser}/>
+        ): (
+          noMoreContentCard
+        )}
+        infinite
         cardIndex={cardIndex}
         backgroundColor="white"
         stackSize={2}
-        showSecondCard
         animateOverlayLabelsOpacity
         overlayLabels={{
           left: {
@@ -308,7 +290,8 @@ return (
         }}
       />
     </View>
-    {allButtons? allButtons: <Text>F</Text>}
+    
+    {allButtons? allButtons: <View></View>}
     {/* {!swipeStates.up? allButtons: likeRejectButtons}
     {swipeStates.up? <MainDescription onModalButtonClick={()=>{}} info={userProfiles[cardIndex]}/> : <Text></Text>} */}
     
@@ -316,3 +299,4 @@ return (
 )}
 
 export default Main
+
