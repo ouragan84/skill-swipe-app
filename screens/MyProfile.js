@@ -51,8 +51,8 @@ const MyProfile = (props) => {
     photo: require('../assets/images/test.jpg'), city: "San Francisco", state: "CA", description: "I am a sophomore at UCSC majoring in computer engineering with a concentration in systems programming interested in learning all facets of technology where I can gain real-world experience in areas like product management, AI/ML, full-stack development, and more.",
     experiences: [
       {
-        title: "Penis Inspector",
-        description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+        title: "Math Inspector",
+        description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
         months: 131,
         isCurrent: false,
         skills: ["Java", 'Ruby', 'Go'],

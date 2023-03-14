@@ -227,6 +227,10 @@ export const styles = StyleSheet.create({
 		paddingHorizontal: 10,
 		width: DIMENSION_WIDTH - 100
 	},
+
+	messageContent: {
+		width: DIMENSION_WIDTH - 150
+	},
 	avatar: {
 		borderRadius: 30,
 		width: 60,

@@ -47,7 +47,7 @@ function BottomNavBar({route}) {
         <Tab.Screen
           name="Main"
           //children={props => <Main {...props} />}
-          component={Main}
+          children={() => <Main data={route.params.data} isTypeUser={route.params.isTypeUser}/>}
         />
         <Tab.Screen
           name="Messages"
@@ -64,45 +64,9 @@ function BottomNavBar({route}) {
       </Tab.Navigator>
   )
   
-  const busNavBar = (
-    <Tab.Navigator
-        initialRouteName="Dashboard"
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: '#e91e63',
-        }}
-      >
-        <Tab.Screen
-          name="Messages"
-          component={Messages}
-          options={{
-            tabBarLabel: 'Matches',
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="chatbubbles" size={24} color="black" />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Main"
-          component={Main}
-        />
-        <Tab.Screen
-          name="EditCurrentPosition"
-          component={EditCurrentPosition}
-          options={{
-            tabBarLabel: 'Edit Position',
-            tabBarIcon: ({ color, size }) => (
-              <Feather name="edit" size={24} color="black" />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-  )
-  
-
   return (
     <>
-        {isTypeUser ? userNavBar: busNavBar}
+        {userNavBar}
     </>
     
   );

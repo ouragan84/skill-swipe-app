@@ -3,17 +3,50 @@ import { View, Text, Image, ImageSourcePropType, StyleSheet } from 'react-native
 import { shape, string, number } from 'prop-types'
 import styles from './Card.styles'
 import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics'
-const Card = ({ card }) => (
+const Card = ({ card, isTypeUser }) => {
 
-  // console.log('CARD', card)
+  let displayInfo = {} 
 
-  // useEffect(() => {
-  //   // This effect uses the `value` variable,
-  //   // so it "depends on" `value`.
-  //   console.log(value);
-  // }, [value])
+  // BUSINESSES SEE USER INFO
+  if(!isTypeUser)
+  {
+      displayInfo= {
+        "title": card.name,
+        "location": card.city + ", " + card.state,
+        "skills": card.experiences ? card.experiences[0].title : card.description.substr(0,23)+"...",
+        "supportInfo": "Last Experience: " + card.lastExperience
+      }
+  }
 
-  <View
+  // USERS SEE BUSINESS INFO
+  else {
+    // - Job Type: IP, Hybrid, Remote
+    // - City, ST
+    // - hours per week
+    // - Branch Size
+    // - skills -> format = Preferred Skills: X, Y, Z
+
+      let skills = 'Preferred Skills: '
+
+      for(let i=0;i<card.positionInfo.skills.length; i++)
+      {
+        if(i!=0)
+        {
+          skills += ', '
+        }
+        skills += card.positionInfo.skills[i]
+      }
+
+     displayInfo = {
+      "title": card.positionInfo.title,
+      "location": card.positionInfo.city,
+      "skills": skills,
+      "supportInfo": "$ " + card.positionInfo.payRange[0] + '-' + card.positionInfo.payRange[1] + "/hr, " + card.positionInfo.hoursPerWeek[0] + '-' + card.positionInfo.hoursPerWeek[1] + " hrs/week"
+     }
+  }
+
+  return (
+    <View
     activeOpacity={1}
     style={styles.card}
   >
@@ -33,23 +66,30 @@ const Card = ({ card }) => (
       <Image style={stylez.image} source={card.photo}/>
       <View style={{paddingBottom:moderateScale(250)}}/>
       <Text style={{
-        fontSize:moderateScale(32),
+        fontSize:moderateScale(24),
         fontWeight:'bold',
         textAlign:'center'
-      }}>{card.name}</Text>
+      }}>{displayInfo.title}</Text>
       <Text style={{
-        fontSize:moderateScale(24),
+        fontSize:moderateScale(16),
         fontWeight:'default',
         textAlign:'center'
-      }}>{card.city}, CA</Text>
+      }}>{displayInfo.location}</Text>
       <Text style={{
-        fontSize:moderateScale(24),
+        fontSize:moderateScale(16),
         fontWeight:'default',
         textAlign:'center',
         width:horizontalScale(320)
-      }}>{card.experiences ? card.experiences[0].title : card.description.substr(0,23)+"..."}</Text>
-    </View>
-)
+      }}>{displayInfo.skills}</Text>
+      <Text style={{
+        fontSize:moderateScale(16),
+        fontWeight:'default',
+        textAlign:'center',
+        width:horizontalScale(320)
+      }}>{displayInfo.supportInfo}</Text>
+  </View>
+  )
+}
 
 Card.propTypes = { 
   card: shape({

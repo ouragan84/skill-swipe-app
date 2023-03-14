@@ -17,6 +17,7 @@ import {
   Keyboard
 } from 'react-native';
 import businessProfile from '../data/businessProfiles'
+import userProfiles from '../data/userProfiles'
 
 import Icon from 'react-native-vector-icons/Entypo';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -57,7 +58,7 @@ const Dashboard = (props) => {
   }
 
   let businessPositionsComp = []
-  for (let i = 0; i < busProfileData.positions.length; i++){
+  for (let i = 0; i < busProfileData.length; i++){
     businessPositionsComp.push(
       <View key={i} style={{paddingBottom:15}}>
       <View
@@ -67,7 +68,7 @@ const Dashboard = (props) => {
         }}
       >
         <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-        <Text style={{paddingLeft:moderateScale(25), fontSize:moderateScale(16)}}>{busProfileData.positions[i].title}</Text>
+        <Text style={{paddingLeft:moderateScale(25), fontSize:moderateScale(16)}}>{busProfileData[i].positionInfo.title}</Text>
         
         <View style={{flexDirection:'row'}}>
         <FontAwesome5 name="trash" onPress={()=>setConfirmModalVisible(!confirmModalVisible)} style={{
@@ -77,8 +78,9 @@ const Dashboard = (props) => {
 
         <EntypoIcon name="chevron-right" onPress={()=>{
           const screenToGoTo = 'Main'
-          props.navigation.navigate('BottomNavBar', { 
+          props.navigation.navigate('TopNavBar', { 
             screen: screenToGoTo,
+            data: userProfiles, // TODO REPLACE WITH PARTICULAR USERS WHO MIGHT BE INTERESTED IN THAT POSITION
             isTypeUser: false,
           })
         }} style={{

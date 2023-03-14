@@ -41,6 +41,7 @@ import BusinessProfileSummary from './screens/BusinessMain/BusinessProfileSummar
 import EditIndustry from './screens/BusinessMain/editprofile/EditIndustry';
 import EditNameDescSize from './screens/BusinessMain/editprofile/EditNameDescSize';
 import AddPosition from './screens/BusinessMain/AddPosition'
+import TopNavBar from './components/main/TopNavBar';
 
 const Stack = createStackNavigator();
 
@@ -240,6 +241,11 @@ function NavStack(props) {
        name="BottomNavBar"  
        component={ BottomNavBar }
        options={{ title: 'BottomNavBar', headerShown: false, }}
+      />
+      <Stack.Screen 
+       name="TopNavBar"  
+       component={ TopNavBar }
+       options={{ title: 'TopNavBar', headerShown: true }}
       />
       {/* <Stack.Screen
         name="Profile"
