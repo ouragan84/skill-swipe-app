@@ -5,6 +5,9 @@ import { horizontalScale, moderateScale } from '../../../components/helper/Metri
 import ButtonM from '../../../components/common/ButtonM';
 import {linkToPage} from '../../../hooks/webRequestHelper'
 
+import userProfiles from '../../../data/userProfiles'
+import businessProfiles from '../../../data/businessProfiles'
+
 const SignUp = (props) => {
   const clkMe = (isTypeUser) => {
     props.navigation.navigate('ProfileDetails', {isTypeUser})
@@ -13,12 +16,23 @@ const SignUp = (props) => {
   const goToUserProfile = (isTypeUser) => {
     // console.log('is user: ', isTypeUser)
 
-    const screenToGoTo = isTypeUser? 'Main': 'Dashboard'
-    props.navigation.navigate('BottomNavBar', { 
-      screen: screenToGoTo,
-      isTypeUser: isTypeUser,
-      navigation: props.navigation
-    })
+    if (isTypeUser){
+      const screenToGoTo = 'Main'
+      props.navigation.navigate('BottomNavBar', { 
+        screen: screenToGoTo,
+        isTypeUser: isTypeUser,
+        navigation: props.navigation,
+        data: businessProfiles
+      })
+    }else{
+      // props.navigation.navigate('TopNavBar', {
+      //   isTypeUser: isTypeUser,
+      //   data: businessProfiles
+      // })
+      props.navigation.navigate('Dashboard', {
+          isTypeUser: isTypeUser 
+      })
+    }
   }
 
   return (
@@ -32,7 +46,8 @@ const SignUp = (props) => {
         <Text onPress={() => linkToPage('/terms-of-use')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Terms of use</Text>
         <Text onPress={() => linkToPage('/privacy-policy')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Privacy Policy</Text>
       </View>
-      <ButtonM name="Go to user profile since authenticated" click={() => goToUserProfile(true)} />
+      <ButtonM name="Go to user view" click={() => goToUserProfile(true)} />
+      <ButtonM name="Go to business view" click={() => goToUserProfile(false)} />
     </SafeAreaView>
   )
 };

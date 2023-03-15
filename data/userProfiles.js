@@ -2,11 +2,14 @@ export default [
     {
       name: 'Austin Wade',
       lastExperience: "Software Engineer",
-      photo: require('../assets/images/test.jpg'), city: "San Francisco", state: "CA", description: "I am a sophomore at UCSC majoring in computer engineering with a concentration in systems programming interested in learning all facets of technology where I can gain real-world experience in areas like product management, AI/ML, full-stack development, and more.",
+      photo: require('../assets/images/test.jpg'), 
+      city: "San Francisco", 
+      state: "CA", 
+      description: "I am a sophomore at UCSC majoring in computer engineering with a concentration in systems programming interested in learning all facets of technology where I can gain real-world experience in areas like product management, AI/ML, full-stack development, and more.",
       experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -28,8 +31,8 @@ export default [
       key: 'ozda-XbeP0k',
       experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -50,8 +53,8 @@ export default [
       key: 'nBywXevf_jE-',
       experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -72,8 +75,8 @@ export default [
       key: 'ZHy0efLnzVc',
       //       experiences: [
       //   {
-      //     title: "Penis Inspector",
-      //     description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+      //     title: "Math Inspector",
+      //     description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
       //     months: 131,
       //     isCurrent: false,
       //     skills: ["Java", 'Ruby', 'Go'],
@@ -94,8 +97,8 @@ export default [
       key: 'TvPCUHten1o',
             experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -116,8 +119,8 @@ export default [
       key: 'dlbiYGwEe9U',
             experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -138,8 +141,8 @@ export default [
       key: 'Ml4tr2WO7JE',
             experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -160,8 +163,8 @@ export default [
       key: 'mFcc5b_t74Q',
             experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -182,8 +185,8 @@ export default [
       key: "Ty4f_NOFO60'",
             experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -204,8 +207,8 @@ export default [
       key: "AvLHH8qYbAI'",
             experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -226,8 +229,8 @@ export default [
       key: "3ujVzg9i2EI'",
             experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],
@@ -248,8 +251,8 @@ export default [
       key: "5AoO7dBurMw'",
             experiences: [
         {
-          title: "Penis Inspector",
-          description: "10+ years experience in inspecting penises varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of penises including one that had a 180 degree curve.",
+          title: "Math Inspector",
+          description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
           months: 131,
           isCurrent: false,
           skills: ["Java", 'Ruby', 'Go'],

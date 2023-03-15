@@ -105,8 +105,8 @@ export const styles = StyleSheet.create({
   },
 
   inputDescBoxStyle: {
-    width:horizontalScale(350),
-    height:verticalScale(200),
+    width:horizontalScale(300),
+    height:verticalScale(150),
     borderRadius: moderateScale(18),
     margin: moderateScale(10),
     borderWidth: 1,
@@ -226,6 +226,10 @@ export const styles = StyleSheet.create({
 		flexDirection: "row",
 		paddingHorizontal: 10,
 		width: DIMENSION_WIDTH - 100
+	},
+
+	messageContent: {
+		width: DIMENSION_WIDTH - 150
 	},
 	avatar: {
 		borderRadius: 30,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
 
 import MyProfile from '../../screens/MyProfile';
@@ -16,39 +16,25 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import EditCurrentPosition from './EditCurrentPosition';
 import Feather from 'react-native-vector-icons/Feather';
+import { moderateScale } from '../helper/Metrics';
 
+const Tab = createMaterialTopTabNavigator();
 
+function TopNavBar({route}) {
 
-const Tab = createBottomTabNavigator();
-
-function BottomNavBar({route}) {
-
-  console.log('route isTypeUser: ', route.params.isTypeUser)
+  //console.log('route isTypeUser: ', route.params.isTypeUser)
   //const isTypeUser = props.route.params.isTypeUser;
-  const isTypeUser=route.params.isTypeUser
-
-  const userNavBar = (
+  //const isTypeUser=route.params.isTypeUser
+  
+  const busNavBar = (
     <Tab.Navigator
         initialRouteName="Main"
         screenOptions={{
+          headerShown: false,
           tabBarActiveTintColor: '#e91e63',
-          headerShown: false
         }}
+        
       >
-        <Tab.Screen
-          name="MyProfile"
-          component={MyProfile}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="user" size={24} color="black" />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Main"
-          //children={props => <Main {...props} />}
-          children={() => <Main data={route.params.data} isTypeUser={route.params.isTypeUser}/>}
-        />
         <Tab.Screen
           name="Messages"
           component={Messages}
@@ -59,17 +45,30 @@ function BottomNavBar({route}) {
             ),
           }}
         />
-        
-        
+        <Tab.Screen
+          name="Main"
+          children={() => <Main data={route.params.data} isTypeUser={route.params.isTypeUser}/>}
+        />
+        <Tab.Screen
+          name="EditCurrentPosition"
+          component={EditCurrentPosition}
+          options={{
+            tabBarLabel: 'Edit Position',
+            tabBarIcon: ({ color, size }) => (
+              <Feather name="edit" size={24} color="black" />
+            ),
+          }}
+        />
       </Tab.Navigator>
   )
   
+
   return (
     <>
-        {userNavBar}
+        {busNavBar}
     </>
     
   );
 }
 
-export default BottomNavBar;
+export default TopNavBar;
