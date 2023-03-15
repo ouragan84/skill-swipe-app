@@ -16,6 +16,7 @@ import { useNavigation } from '@react-navigation/native';
 import {socket, fetchProtected, fetchUnrotected} from '../../hooks/webRequestHelper'
 
 import { colors } from '../../constants/colors'
+import CardItem from './CardItem'
 
 const { height } = Dimensions.get('screen')
 
@@ -26,7 +27,7 @@ const Main = (props) => {
   const useSwiper = useRef()
   const navigation = useNavigation();
 
-  //const [cardIndex, setCardIndex] = React.useState(0);
+  const [myCardIndex, setmyCardIndex] = React.useState(0);
   const [swipeStates, setSwipeStates] = React.useState({});
   
   const [cardList, setCardList] = useState([])
@@ -84,9 +85,9 @@ const Main = (props) => {
     setCardList(cardListCopy);
   }
 
-  // const handleOnSwipedTop = (cardIndex) => {
+  // const handleOnSwipedTop = (myCardIndex) => {
 
-  //   console.log('card index: ', cardIndex)
+  //   console.log('card index: ', myCardIndex)
     
   //   if(!tempStates.up)
   //   {
@@ -105,8 +106,9 @@ const Main = (props) => {
 
 
 const handleOnSwipedLeft = (index) => {
-  rejectCurrentCard();
-
+  console.log('INDEX is: ', index)
+  //rejectCurrentCard();
+  console.log('left')
   // if(!tempStates.left)
   // {
     
@@ -121,14 +123,15 @@ const handleOnSwipedLeft = (index) => {
     // // console.log('card index rejected: ', index)
 
   //to the next card
-  //setCardIndex(index+1)
+  setmyCardIndex(index+1)
     // setSwipeStates(tempStates)
   // }
   
 }
 
 const handleOnSwipedRight = (index ) => {
-  acceptCurrentCard();
+  //acceptCurrentCard();
+  console.log('right')
   // if(!tempStates.right)
   // {
     
@@ -143,7 +146,7 @@ const handleOnSwipedRight = (index ) => {
   //   // console.log('card index liked: ', index)
 
   // //to the next card
-  // //setCardIndex(index+1)
+  setmyCardIndex(index+1)
   // // setSwipeStates(tempStates)
   // }
   
@@ -152,8 +155,9 @@ const handleOnSwipedRight = (index ) => {
 // Icon click handle
 const handleRejectIconClick = () => {
 
-  rejectCurrentCard();
+  //rejectCurrentCard();
   useSwiper.current.swipeLeft()
+  console.log('left icon')
   // if(!tempStates.left)
   // {
     
@@ -168,10 +172,10 @@ const handleRejectIconClick = () => {
     
     // useSwiper.current.swipeLeft()
 
-    // console.log('card index rejected: ', cardIndex)
+    // console.log('card index rejected: ', myCardIndex)
 
     //to the next card
-    //setCardIndex(cardIndex+1)
+    setmyCardIndex(myCardIndex+1)
     // setSwipeStates(tempStates)
   // }
   
@@ -189,7 +193,7 @@ const handleDescIconClick = () => {
     //   right: false
     // }
 
-    // console.log('desc for card index: ', cardIndex, ', name: ', cardList[cardIndex].name)
+    // console.log('desc for card index: ', myCardIndex, ', name: ', cardList[myCardIndex].name)
   // setSwipeStates(tempStates) 
   // }
   
@@ -198,7 +202,8 @@ const handleLikeIconClick = () => {
 
   // if(!tempStates.right)
   // {
-    acceptCurrentCard();
+    //acceptCurrentCard();
+    console.log('right icon')
     // console.log('right')
     //setSwipeState(false)
 
@@ -210,10 +215,10 @@ const handleLikeIconClick = () => {
     // }
     useSwiper.current.swipeRight()
 
-    // console.log('card index liked: ', cardIndex)
+    // console.log('card index liked: ', myCardIndex)
 
   //to the next card
-  //setCardIndex(cardIndex+1)
+  setmyCardIndex(myCardIndex+1)
   // setSwipeStates(tempStates)
   // } 
   
@@ -226,8 +231,9 @@ const handleAllSwipesDone = () => {
 
   let allButtons;
 
-  if(cardList.length > 0)
+  if(myCardIndex < cardList.length-1)
   {
+    console.log('desc: ', cardList[0].positionInfo.description)
     allButtons = (
       <View style={mainStyles.buttonsContainer}>
         <IconButton
@@ -238,7 +244,7 @@ const handleAllSwipesDone = () => {
         />
         <MainDescription 
           onPress={() => handleDescIconClick()} 
-          info={cardList[0]} 
+          info={cardList[myCardIndex].positionInfo.description} 
           onModalButtonClick={()=>{}}
         />
         <IconButton
@@ -294,7 +300,7 @@ const handleAllSwipesDone = () => {
     
 
   // useEffect(() => {
-  //   if(cardIndex==userProfiles.length)
+  //   if(myCardIndex==userProfiles.length)
   //   {
   //     console.log('last card done')
   //   };
@@ -308,21 +314,23 @@ return (
     <View style={mainStyles.swiperContainer}>
     <Swiper
         ref={useSwiper}
+        myCardIndex={0}
         //onSwipedTop={(index) => handleOnSwipedTop(index)}
         disableBottomSwipe={true}
         disableTopSwipe={true}
+        disableLeftSwipe={myCardIndex==cardList.length-1}
+        disableRightSwipe={myCardIndex==cardList.length-1}
         onSwipedLeft={(index) => handleOnSwipedLeft(index)}
         onSwipedRight={(index) => handleOnSwipedRight(index)}
         animateCardOpacity
         containerStyle={mainStyles.container}
         cards={cardList}
-        renderCard={(card) => card? (
+        renderCard={(card) => myCardIndex<cardList.length-1? (
           <Card card={card} isTypeUser={props.isTypeUser}/>
         ): (
           noMoreContentCard
         )}
         
-        cardIndex={0}
         backgroundColor="white"
         stackSize={2}
         animateOverlayLabelsOpacity
@@ -351,7 +359,7 @@ return (
     
     {allButtons? allButtons: <View></View>}
     {/* {!swipeStates.up? allButtons: likeRejectButtons}
-    {swipeStates.up? <MainDescription onModalButtonClick={()=>{}} info={userProfiles[cardIndex]}/> : <Text></Text>} */}
+    {swipeStates.up? <MainDescription onModalButtonClick={()=>{}} info={userProfiles[myCardIndex]}/> : <Text></Text>} */}
     
   </View>
 )}

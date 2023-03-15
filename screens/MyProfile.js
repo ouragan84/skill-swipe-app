@@ -156,7 +156,7 @@ const MyProfile = (props) => {
               fontWeight:'default',
               letterSpacing:.3,
             }} numberOfLines={4}>
-            {userInfo.description}  
+            {userInfo.experiences[0].description}  
             </SeeMore> 
           </View>
         </View>

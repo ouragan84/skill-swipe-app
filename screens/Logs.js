@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {StyleSheet, TouchableOpacity, Text, View, Platform, TextInput} from 'react-native';
 import {API_URL} from '@env';
-import {socket} from '../hooks/webRequestHelper'
+import {socket, fetchUnprotected} from '../hooks/webRequestHelper'
 
 export default function Logs (props) {
   const [logsText, setLogsText] = useState('Press FETCH and logs will appear here.\n');
@@ -24,7 +24,11 @@ export default function Logs (props) {
   }, []);
 
   const sendLogs = () => {
-    socket.emit('message', logSendMessage)
+    // socket.emit('message', logSendMessage)
+
+    fetchUnprotected('/get/image-url/3feacfc5d4463a64bb7722cdd2526b89fd532f0db23cd02ae693d7ddee1d8e4b', 'GET', null, 
+    (response)=>{console.log("EROOR " + response)}
+    , (response)=>{console.log("WORKED " + response.url)})
   }
 
   return (
