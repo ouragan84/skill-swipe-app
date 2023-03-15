@@ -158,16 +158,30 @@ const checkConsumerStatusAndNavigate = (navigation) => {
         } else {
             const token = await auth.getToken();
             logIntoSocketIO(token);
-            
+
             if (response.consumer.isTypeUser) {
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Logs' }], // user main
+                    routes: [{ 
+                        name: 'BottomNavBar' ,
+                        params: { 
+                            screen: 'Main',
+                            isTypeUser: true,
+                            navigation: navigation
+                        }
+                    }], // user main
                 });
             } else {
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Logs' }], // company main
+                    routes: [{ 
+                        name: 'BottomNavBar' ,
+                        params: { 
+                            screen: 'Main',
+                            isTypeUser: false,
+                            navigation: navigation
+                        }
+                    }], // buisness main
                 });
             }
         }
@@ -208,6 +222,14 @@ const logIntoSocketIO = (token) => {
 
 const socket = SocketIOClient(`${API_URL}`);
 
+// let is_socket_connected = false;
 
+socket.on('connection-success',  (message) => {
+    console.log(message)
+})
+
+socket.on('connection-failure',  (message) => {
+    console.log(message)
+})
 
 module.exports = { fetchProtected, fetchUnprotected, linkToPage, checkConsumerStatusAndNavigate, fetchCustomToken, uploadFile, socket, logIntoSocketIO};
