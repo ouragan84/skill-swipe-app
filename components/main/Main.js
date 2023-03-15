@@ -26,7 +26,7 @@ const Main = (props) => {
   const useSwiper = useRef()
   const navigation = useNavigation();
 
-  const [cardIndex, setCardIndex] = React.useState(0);
+  //const [cardIndex, setCardIndex] = React.useState(0);
   const [swipeStates, setSwipeStates] = React.useState({});
   
   const [cardList, setCardList] = useState([])
@@ -57,137 +57,165 @@ const Main = (props) => {
     }, props.navigation);
   }
 
-  console.log('IN MAIN ISTYPE USER:', props.isTypeUser)
+  // console.log('IN MAIN ISTYPE USER:', props.isTypeUser)
 
-  let tempStates = {
-    up: false,
-    down: false,
-    left: false,
-    right: false
+  // let tempStates = {
+  //   up: false,
+  //   down: false,
+  //   left: false,
+  //   right: false
+  // }
+
+  const rejectCurrentCard = () => {
+    let cardListCopy = cardList.slice(0);
+    const rejected = cardListCopy[0]
+    cardListCopy.splice(0, 1);
+    if(rejected)
+      console.log(`Reject: ${rejected.positionInfo.title}`)
+    setCardList(cardListCopy);
   }
 
-  const handleOnSwipedTop = (cardIndex) => {
+  const acceptCurrentCard = () => {
+    let cardListCopy = cardList.slice(0);
+    const rejected = cardListCopy[0]
+    cardListCopy.splice(0, 1);
+    if(rejected)
+      console.log(`Liked: ${rejected.positionInfo.title}`)
+    setCardList(cardListCopy);
+  }
 
-    console.log('card index: ', cardIndex)
+  // const handleOnSwipedTop = (cardIndex) => {
+
+  //   console.log('card index: ', cardIndex)
     
-    if(!tempStates.up)
-    {
-      console.log('oop')
-      //setSwipeState(true)
-      tempStates = {
-        up: true,
-        down: false,
-        left: false,
-        right: false
-      }
-    }
+  //   if(!tempStates.up)
+  //   {
+  //     console.log('oop')
+  //     //setSwipeState(true)
+  //     tempStates = {
+  //       up: true,
+  //       down: false,
+  //       left: false,
+  //       right: false
+  //     }
+  //   }
 
-    setSwipeStates(tempStates)
-  }  
+  //   setSwipeStates(tempStates)
+  // }  
 
 
 const handleOnSwipedLeft = (index) => {
-  if(!tempStates.left)
-  {
-    console.log('looft')
+  rejectCurrentCard();
+
+  // if(!tempStates.left)
+  // {
+    
+    // console.log('looft')
     //setSwipeState(false)
-    tempStates = {
-      up: false,
-      down: false,
-      left: true,
-      right: false
-    }
-    console.log('card index rejected: ', index)
+    // tempStates = {
+    //   up: false,
+    //   down: false,
+    //   left: true,
+    //   right: false
+    // }
+    // // console.log('card index rejected: ', index)
 
   //to the next card
-  setCardIndex(index+1)
-  setSwipeStates(tempStates)
-  }
+  //setCardIndex(index+1)
+    // setSwipeStates(tempStates)
+  // }
   
 }
 
 const handleOnSwipedRight = (index ) => {
-  if(!tempStates.right)
-  {
-    console.log('right')
-    //setSwipeState(false)
-    tempStates = {
-      up: false,
-      down: false,
-      left: false,
-      right: true
-    }
-    console.log('card index liked: ', index)
+  acceptCurrentCard();
+  // if(!tempStates.right)
+  // {
+    
+  //   // console.log('right')
+  //   // setSwipeState(false)
+  //   // tempStates = {
+  //   //   up: false,
+  //   //   down: false,
+  //   //   left: false,
+  //   //   right: true
+  //   // }
+  //   // console.log('card index liked: ', index)
 
-  //to the next card
-  setCardIndex(index+1)
-  setSwipeStates(tempStates)
-  }
+  // //to the next card
+  // //setCardIndex(index+1)
+  // // setSwipeStates(tempStates)
+  // }
   
 }
 
 // Icon click handle
 const handleRejectIconClick = () => {
 
-  if(!tempStates.left)
-  {
-    console.log('left')
-  //setSwipeState(false)
-    tempStates = {
-      up: false,
-      down: false,
-      left: true,
-      right: false
-    }
+  rejectCurrentCard();
+  useSwiper.current.swipeLeft()
+  // if(!tempStates.left)
+  // {
     
-    useSwiper.current.swipeLeft()
+  //   console.log('left')
+  //setSwipeState(false)
+    // tempStates = {
+    //   up: false,
+    //   down: false,
+    //   left: true,
+    //   right: false
+    // }
+    
+    // useSwiper.current.swipeLeft()
 
-    console.log('card index rejected: ', cardIndex)
+    // console.log('card index rejected: ', cardIndex)
 
     //to the next card
-    setCardIndex(cardIndex+1)
-    setSwipeStates(tempStates)
-  }
+    //setCardIndex(cardIndex+1)
+    // setSwipeStates(tempStates)
+  // }
   
 }
 const handleDescIconClick = () => {
-  if(!tempStates.up)
-  {
-    console.log('up')
-  
-    tempStates = {
-      up: true,
-      down: false,
-      left: false,
-      right: false
-    }
+  // if(!tempStates.up)
+  // {
 
-    console.log('desc for card index: ', cardIndex, ', name: ', cardList[cardIndex].name)
-  setSwipeStates(tempStates) 
-  }
+  //   console.log('up')
+  
+    // tempStates = {
+    //   up: true,
+    //   down: false,
+    //   left: false,
+    //   right: false
+    // }
+
+    // console.log('desc for card index: ', cardIndex, ', name: ', cardList[cardIndex].name)
+  // setSwipeStates(tempStates) 
+  // }
   
 }
 const handleLikeIconClick = () => {
 
-  if(!tempStates.right)
-  {
-    console.log('right')
+  // if(!tempStates.right)
+  // {
+    acceptCurrentCard();
+    // console.log('right')
     //setSwipeState(false)
 
-    tempStates = {
-      up: false,
-      down: false,
-      left: false,
-      right: true
-    }
+    // tempStates = {
+    //   up: false,
+    //   down: false,
+    //   left: false,
+    //   right: true
+    // }
     useSwiper.current.swipeRight()
 
-    console.log('card index liked: ', cardIndex)
+    // console.log('card index liked: ', cardIndex)
 
   //to the next card
-  setCardIndex(cardIndex+1)
-  setSwipeStates(tempStates)
-  } 
+  //setCardIndex(cardIndex+1)
+  // setSwipeStates(tempStates)
+  // } 
   
    
 }
@@ -198,7 +226,7 @@ const handleAllSwipesDone = () => {
 
   let allButtons;
 
-  if(cardIndex<cardList.length)
+  if(cardList.length > 0)
   {
     allButtons = (
       <View style={mainStyles.buttonsContainer}>
@@ -210,7 +238,7 @@ const handleAllSwipesDone = () => {
         />
         <MainDescription 
           onPress={() => handleDescIconClick()} 
-          info={cardList[cardIndex]} 
+          info={cardList[0]} 
           onModalButtonClick={()=>{}}
         />
         <IconButton
@@ -224,7 +252,7 @@ const handleAllSwipesDone = () => {
   }
   
 
-    console.log('up staes is on: ', swipeStates.up)
+    // console.log('up staes is on: ', swipeStates.up)
 
 
     const noMoreContentCard = (
@@ -288,13 +316,13 @@ return (
         animateCardOpacity
         containerStyle={mainStyles.container}
         cards={cardList}
-        renderCard={(card) => cardIndex<cardList.length-1? (
+        renderCard={(card) => card? (
           <Card card={card} isTypeUser={props.isTypeUser}/>
         ): (
           noMoreContentCard
         )}
         
-        cardIndex={cardIndex}
+        cardIndex={0}
         backgroundColor="white"
         stackSize={2}
         animateOverlayLabelsOpacity

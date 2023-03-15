@@ -26,16 +26,20 @@ const Card = ({ card, isTypeUser }) => {
     // - Branch Size
     // - skills -> format = Preferred Skills: X, Y, Z
 
+
       let skills = 'Preferred Skills: '
 
-      for(let i=0;i<card.positionInfo.skills.length; i++)
-      {
-        if(i!=0)
+      if(card.positionInfo.skills)
+        for(let i=0;i<card.positionInfo.skills.length; i++)
         {
-          skills += ', '
+          if(i!=0)
+          {
+            skills += ', '
+          }
+          skills += card.positionInfo.skills[i]
         }
-        skills += card.positionInfo.skills[i]
-      }
+      else
+        skills += 'none'
 
      displayInfo = {
       "title": card.positionInfo.title,
