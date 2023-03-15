@@ -167,7 +167,7 @@ const checkConsumerStatusAndNavigate = (navigation) => {
                         params: { 
                             screen: 'Main',
                             isTypeUser: true,
-                            navigation: navigation
+                            navigation: navigation,
                         }
                     }], // user main
                 });

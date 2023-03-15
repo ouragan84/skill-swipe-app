@@ -47,7 +47,7 @@ function BottomNavBar({route}) {
         <Tab.Screen
           name="Main"
           //children={props => <Main {...props} />}
-          children={() => <Main data={route.params.data} isTypeUser={route.params.isTypeUser}/>}
+          children={() => <Main isTypeUser={route.params.isTypeUser}/>}
         />
         <Tab.Screen
           name="Messages"

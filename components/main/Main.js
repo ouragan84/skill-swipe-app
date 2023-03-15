@@ -13,6 +13,8 @@ import MainDescription from './MainDescription'
 import { moderateScale } from '../helper/Metrics'
 import { useNavigation } from '@react-navigation/native';
 
+import {socket, fetchProtected, fetchUnrotected} from '../../hooks/webRequestHelper'
+
 import { colors } from '../../constants/colors'
 
 const { height } = Dimensions.get('screen')
@@ -26,6 +28,34 @@ const Main = (props) => {
 
   const [cardIndex, setCardIndex] = React.useState(0);
   const [swipeStates, setSwipeStates] = React.useState({});
+  
+  const [cardList, setCardList] = useState([])
+
+  useEffect(() => {
+    updateCards();
+  }, [])
+
+  const updateCards = async () => {
+    if(cardList.length > 5)
+      return;
+    fetchProtected('/main/user/get/cards', 'GET', null, (response) => {console.error(response)}, (response) => {
+      let newCards = response.cards;
+      let updatedCards = cardList.splice(0);
+      for(let i = 0; i < newCards.length; i++){
+        if(newCards[i] == null)
+          continue;
+        for(let j = 0; j < cardList.length; j++)
+          if(newCards[i]._id == cardList[j]._id)
+            continue;
+        
+        updatedCards.push(newCards[i]);
+      }
+      
+      console.log('here buithc')
+      console.log(updatedCards)
+      setCardList(updatedCards);
+    }, props.navigation);
+  }
 
   console.log('IN MAIN ISTYPE USER:', props.isTypeUser)
 
@@ -132,7 +162,7 @@ const handleDescIconClick = () => {
       right: false
     }
 
-    console.log('desc for card index: ', cardIndex, ', name: ', props.data[cardIndex].name)
+    console.log('desc for card index: ', cardIndex, ', name: ', cardList[cardIndex].name)
   setSwipeStates(tempStates) 
   }
   
@@ -168,7 +198,7 @@ const handleAllSwipesDone = () => {
 
   let allButtons;
 
-  if(cardIndex<props.data.length)
+  if(cardIndex<cardList.length)
   {
     allButtons = (
       <View style={mainStyles.buttonsContainer}>
@@ -180,7 +210,7 @@ const handleAllSwipesDone = () => {
         />
         <MainDescription 
           onPress={() => handleDescIconClick()} 
-          info={props.data[cardIndex]} 
+          info={cardList[cardIndex]} 
           onModalButtonClick={()=>{}}
         />
         <IconButton
@@ -257,13 +287,13 @@ return (
         onSwipedRight={(index) => handleOnSwipedRight(index)}
         animateCardOpacity
         containerStyle={mainStyles.container}
-        cards={props.data}
-        renderCard={(card) => cardIndex<props.data.length? (
+        cards={cardList}
+        renderCard={(card) => cardIndex<cardList.length-1? (
           <Card card={card} isTypeUser={props.isTypeUser}/>
         ): (
           noMoreContentCard
         )}
-        infinite
+        
         cardIndex={cardIndex}
         backgroundColor="white"
         stackSize={2}
