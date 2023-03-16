@@ -2,7 +2,6 @@ import React from 'react';
 import {Text, View,TextInput, StyleSheet} from 'react-native';
 import {styles} from '../../constants/styles';
 
-
 export default function InputM(props) {
     return (
         <View>
@@ -15,6 +14,7 @@ export default function InputM(props) {
                 placeholder={props.placeholder}
                 autoCapitalize={props.autoCapitalize}
                 autoCorrect={props.autoCorrect}
+                defaultValue={props.defaultValue}
             /> 
             <Text style={styles.inputTextStyle}>{props.name}</Text>
         </View>   

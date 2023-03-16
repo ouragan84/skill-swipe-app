@@ -1,6 +1,23 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Dimensions} from 'react-native'
 import { horizontalScale, moderateScale, verticalScale } from '../components/helper/Metrics';
 
+const DIMENSION_WIDTH = Dimensions.get("window").width;
+const DIMENSION_HEIGHT = Dimensions.get("window").height;
+
+const PRIMARY_COLOR = "#7444C0";
+const SECONDARY_COLOR = "#5636B8";
+const WHITE = "#FFFFFF";
+const GRAY = "#757E90";
+const DARK_GRAY = "#363636";
+const BLACK = "#000000";
+
+const ONLINE_STATUS = "#46A575";
+const OFFLINE_STATUS = "#D04949";
+
+const STAR_ACTIONS = "#FFA200";
+const LIKE_ACTIONS = "#B644B2";
+const DISLIKE_ACTIONS = "#363636";
+const FLASH_ACTIONS = "#5028D7";
 
 export const styles = StyleSheet.create({
     buttonBorderStyle: {
@@ -166,6 +183,11 @@ export const styles = StyleSheet.create({
     width: horizontalScale(120),
     marginTop: moderateScale(30),
   },
+  usrProfileLogoImgStyle: {
+    borderRadius: moderateScale(25),
+    height: verticalScale(120),
+    width: horizontalScale(120),
+  },
   companyLogoImgStyle:{
     borderRadius: moderateScale(25),
     height: verticalScale(200),
@@ -206,6 +228,19 @@ export const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(15),
     paddingVertical: moderateScale(10),
   },
+
+  inputDescBoxStyle: {
+    width:horizontalScale(300),
+    height:verticalScale(150),
+    borderRadius: moderateScale(18),
+    margin: moderateScale(10),
+    borderWidth: 1,
+    borderColor: "#ADAFBB",
+    paddingHorizontal: moderateScale(15),
+    paddingVertical: moderateScale(10),
+  },
+
+
   inputTextStyle: {
     paddingHorizontal:5,
     backgroundColor:'white',
@@ -222,5 +257,131 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
   },
+
+  // SCREEN - PROFILE
+	containerProfile: { marginHorizontal: 0 },
+	containerCardItem: {
+		marginTop: 0,
+	},
+	topIcons: {
+		flex: 1, 
+		flexDirection: 'row',
+		marginTop: 100
+	},
+	topIconLeft: {
+		paddingLeft: 20,
+		marginTop: 50,
+		marginBottom: -50,
+	},
+	topIconRight: {
+		fontSize: 20,
+		paddingRight: 20,
+		textAlign: 'right'
+	},
+	photo: {
+		width: DIMENSION_WIDTH,
+		height: 450,
+		marginTop: 0
+	},
+	
+	
+	actionsProfile: {
+		justifyContent: "center",
+		flexDirection: "row",
+		alignItems: "center"
+	},
+	textButton: {
+		fontSize: 15,
+		paddingLeft: 5
+	},
+	circledButton: {
+		width: 50,
+		height: 50,
+		borderRadius: 25,
+		backgroundColor: PRIMARY_COLOR,
+		justifyContent: "center",
+		alignItems: "center",
+		marginRight: 10
+	},
+	roundedButton: {
+		justifyContent: "center",
+		flexDirection: "row",
+		alignItems: "center",
+		marginLeft: 10,
+		height: 50,
+		borderRadius: 25,
+		backgroundColor: SECONDARY_COLOR,
+		paddingHorizontal: 20,
+	},
+
+	// SCREEN - GENERAL
+	bg: {
+		flex: 1,
+		resizeMode: "cover",
+		width: DIMENSION_WIDTH,
+		height: DIMENSION_HEIGHT
+	},
+	top: {
+		paddingTop: 50,
+		marginHorizontal: 10,
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center"
+	},
+	title: { paddingBottom: 10, fontSize: 22, color: DARK_GRAY },
+	icon: {
+		fontSize: 20,
+		color: DARK_GRAY,
+		paddingRight: 10
+	},
+
+  // SCREEN - GENERAL
+	bg: {
+		flex: 1,
+		resizeMode: "cover",
+		width: DIMENSION_WIDTH,
+		height: DIMENSION_HEIGHT
+	},
+
+  // COMPONENT - MESSAGE
+	containerMessage: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "flex-start",
+		flexDirection: "row",
+		paddingHorizontal: 10,
+		width: DIMENSION_WIDTH - 100
+	},
+
+	messageContent: {
+		width: DIMENSION_WIDTH - 150
+	},
+	avatar: {
+		borderRadius: 30,
+		width: 60,
+		height: 60,
+		marginRight: 20,
+		marginVertical: 15
+	},
+	message: {
+		color: GRAY,
+		fontSize: 12,
+		paddingTop: 5
+	},
+
+  // SCREEN - MESSAGES
+	containerMessages: {
+		justifyContent: "space-between",
+		flex: 1,
+		paddingHorizontal: 10
+	},
+
+  // SCREEN - MATCHES
+	containerLikes: {
+		justifyContent: "space-between",
+		flex: 1,
+		paddingHorizontal: 10
+	},
+
 });
 

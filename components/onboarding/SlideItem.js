@@ -6,14 +6,35 @@ import { verticalScale } from '../helper/Metrics';
 
 const {width, height} = Dimensions.get('screen')
 
-const SlideItem = ({item}) => {
+
+const SlideItem = (props) => {
+
+    const dataKeys = Object.keys(props.item)
+
+    let dataToDisplay = (
+        <View style={styles_.content}>
+                    <Text style={styles.textOB1style}>{props.item.title}</Text>
+                    <Text style={styles.textOB2style}>{props.item.description}</Text>
+        </View>
+    )
+
+    if(props.isMain)
+    {
+        dataToDisplay = (
+            <View style={styles_.content}>
+                <Text style={styles.textOB1style}>{props.item.title}</Text>
+                <Text style={styles.textOB2style}>{props.item.description}</Text>
+                <Text style={styles.textOB2style}>{props.item.pay}</Text>
+                <Text style={styles.textOB2style}>{props.item.distance}</Text>
+            </View>
+        )
+    }
+
+
     return (
         <View style={styles_.container}>
-            <ImageM source={item.img}/>
-            <View style={styles_.content}>
-                <Text style={styles.textOB1style}>{item.title}</Text>
-                <Text style={styles.textOB2style}>{item.description}</Text>
-            </View>
+            <ImageM source={props.item.img}/>
+            {dataToDisplay}
         </View>
     );
 };
