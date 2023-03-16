@@ -7,16 +7,18 @@ import { getPhoto } from '../../hooks/webRequestHelper';
 
 const Card = ({ card, isTypeUser }) => {
 
+  // isTypeUser refers to the person using the app, so isTypeUser = true means we show position profiles.
+
   let displayInfo = {} 
 
   // BUSINESSES SEE USER INFO
   if(!isTypeUser)
   {
       displayInfo= {
-        "title": card.name,
-        "location": card.city + ", " + card.state,
-        "skills": card.experiences ? card.experiences[0].title : card.description.substr(0,23)+"...",
-        "supportInfo": "Last Experience: " + card.lastExperience
+        "title": card.personalInformation.firstName + ' ' + card.personalInformation.lastName,
+        "location": card.personalInformation.city + ", " + 'CA',
+        "skills": card.experience ? card.experience[0].title : card.description.substr(0,23)+"...",
+        "supportInfo": "support"
       }
   }
 
@@ -50,7 +52,7 @@ const Card = ({ card, isTypeUser }) => {
      }
   }
 
-  let picture = {uri: getPhoto(card.companyInfo.profilePicture.name)}
+  let picture = {uri: getPhoto(isTypeUser? card.companyInfo.profilePicture.name : card.profilePicture.name)}
 
   // console.log("card picture:", picture);
 

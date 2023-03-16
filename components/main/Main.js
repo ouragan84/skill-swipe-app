@@ -35,14 +35,21 @@ const Main = (props) => {
 
   useEffect(() => {
     updateCards();
+
+    //io.on('new-applicant')
   }, [])
 
   const updateCards = async () => {
-    if(cardList.length > 5)
-      return;
-    fetchProtected('/main/user/get/cards', 'GET', null, (response) => {console.error(response)}, (response) => {
+    // if(cardList.length > 5)
+    //   return;
+    fetchProtected(props.isTypeUser?'/main/user/get/cards':'/main/company/get/cards', 'GET', null, 
+    (response) => {console.error(response)}, (response) => {
       let newCards = response.cards;
       let updatedCards = cardList.splice(0);
+
+      if(updatedCards.length>0 && updatedCards[updatedCards.length-1] == null)
+        updatedCards.pop()
+
       for(let i = 0; i < newCards.length; i++){
         if(newCards[i] == null)
           continue;
@@ -58,6 +65,7 @@ const Main = (props) => {
       // console.log('here buithc')
       // console.log(updatedCards)
       setCardList(updatedCards);
+
     }, props.navigation);
   }
 
@@ -78,7 +86,7 @@ const Main = (props) => {
     //   console.log(`Reject: ${rejected.positionInfo.title}`)
     // setCardList(cardListCopy);
 
-    fetchProtected('/main/user/reject/position', 'POST', {
+    fetchProtected(props.isTypeUser?'/main/user/reject/position':'/main/company/reject/applicant', 'POST', {
       positionId: cardList[index].id
     }, (response) => {console.error(response)}, (response) => {
       console.log(response)
@@ -92,7 +100,7 @@ const Main = (props) => {
     // if(rejected)
     //   console.log(`Liked: ${rejected.positionInfo.title}`)
     // setCardList(cardListCopy);
-    fetchProtected('/main/user/apply/position', 'POST', {
+    fetchProtected(props.isTypeUser?'/main/user/reject/position':'/main/company/accept/applicant', 'POST', {
       positionId: cardList[index].id
     }, (response) => {console.error(response)}, (response) => {
       console.log(response)
