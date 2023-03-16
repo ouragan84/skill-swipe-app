@@ -14,9 +14,9 @@ import SocketIOClient from 'socket.io-client';
 
 const s3url = 'https://skill-swipe-bucket.s3.us-west-1.amazonaws.com/'
 
-const getPhoto = (photoUrl) => {
-    if(photoUrl)
-        return `${s3url}${photoUrl}`;
+const getPhoto = (photo) => {
+    if(photo && photo.name)
+        return `${s3url}${photo.name}`;
     return `https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDgyNDJlNmJjYzc1YTliYjI1ZDQ1NDg4M2U5N2JjMGI0Y2I1ODdlYSZjdD1n/3oEjI6SIIHBdRxXI40/giphy.gif`
 }
 
@@ -192,16 +192,32 @@ const checkConsumerStatusAndNavigate = async (navigation) => {
 
                 
             } else {
-                navigation.reset({
-                    index: 0,
-                    routes: [{ 
-                        name: 'BottomNavBar' ,
-                        params: { 
-                            screen: 'Main',
-                            isTypeUser: false
-                        }
-                    }], // buisness main
-                });
+
+
+                await fetchProtected('/company/get/complete-info', 'GET', null, (response) => {}, async (response) => {
+
+                    let positionInfos = [];
+
+                    for(let i = 0; i < response.company.positions.length; ++i){
+                        await fetchProtected(`/company/get/complete-position-info/${i}`, 'GET', null, (response) => {}, (response) => {
+                            positionInfos.push(response.position);
+                        }, navigation);
+                    }
+
+                    let profile = response.company;
+                    profile.positionInfos = positionInfos;
+
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ 
+                            name: 'Dashboard' ,
+                            params: {
+                                isTypeUser: false,
+                                profile: profile
+                            }
+                        }], // user main
+                    });
+                }, navigation);
             }
         }
     }, navigation)

@@ -227,6 +227,7 @@ function NavStack(props) {
             <FontAwesome name="user" size={24} color="black" />
           ),
           headerShown:false,
+          animationEnabled: false,
         }}
       />
       <Stack.Screen 

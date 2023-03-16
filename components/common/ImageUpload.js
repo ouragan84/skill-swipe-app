@@ -86,7 +86,7 @@ export default function ImageUpload (props) {
 
  
     const imageSource = {
-      uri: (isLocal && props.photo.includes("/"))? props.photo: getPhoto(props.photo.name), // bug for a frame where isLocal updated but not props.photo, fixed by checking props.photo.
+      uri: (isLocal && typeof props.photo === "string")? props.photo: getPhoto(props.photo), // bug for a frame where isLocal updated but not props.photo, fixed by checking props.photo.
     };
 
     // console.log(props.photo, imageSource, isLocal);
