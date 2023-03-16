@@ -17,6 +17,7 @@ import {socket, fetchProtected, fetchUnrotected} from '../../hooks/webRequestHel
 
 import { colors } from '../../constants/colors'
 import CardItem from './CardItem'
+import BusDescription from './BusDescription'
 
 const { height } = Dimensions.get('screen')
 
@@ -51,9 +52,11 @@ const Main = (props) => {
         
         updatedCards.push(newCards[i]);
       }
+
+      updatedCards.push(null)
       
-      console.log('here buithc')
-      console.log(updatedCards)
+      // console.log('here buithc')
+      // console.log(updatedCards)
       setCardList(updatedCards);
     }, props.navigation);
   }
@@ -67,22 +70,33 @@ const Main = (props) => {
   //   right: false
   // }
 
-  const rejectCurrentCard = () => {
-    let cardListCopy = cardList.slice(0);
-    const rejected = cardListCopy[0]
-    cardListCopy.splice(0, 1);
-    if(rejected)
-      console.log(`Reject: ${rejected.positionInfo.title}`)
-    setCardList(cardListCopy);
+  const rejectCurrentCard = (index) => {
+    // let cardListCopy = cardList.slice(0);
+    // const rejected = cardListCopy[0]
+    // cardListCopy.splice(0, 1);
+    // if(rejected)
+    //   console.log(`Reject: ${rejected.positionInfo.title}`)
+    // setCardList(cardListCopy);
+
+    fetchProtected('/main/user/reject/position', 'POST', {
+      positionId: cardList[index].id
+    }, (response) => {console.error(response)}, (response) => {
+      console.log(response)
+    }, props.navigation);
   }
 
-  const acceptCurrentCard = () => {
-    let cardListCopy = cardList.slice(0);
-    const rejected = cardListCopy[0]
-    cardListCopy.splice(0, 1);
-    if(rejected)
-      console.log(`Liked: ${rejected.positionInfo.title}`)
-    setCardList(cardListCopy);
+  const acceptCurrentCard = (index) => {
+    // let cardListCopy = cardList.slice(0);
+    // const rejected = cardListCopy[0]
+    // cardListCopy.splice(0, 1);
+    // if(rejected)
+    //   console.log(`Liked: ${rejected.positionInfo.title}`)
+    // setCardList(cardListCopy);
+    fetchProtected('/main/user/apply/position', 'POST', {
+      positionId: cardList[index].id
+    }, (response) => {console.error(response)}, (response) => {
+      console.log(response)
+    }, props.navigation);
   }
 
   // const handleOnSwipedTop = (myCardIndex) => {
@@ -123,7 +137,9 @@ const handleOnSwipedLeft = (index) => {
     // // console.log('card index rejected: ', index)
 
   //to the next card
+  rejectCurrentCard(index);
   setmyCardIndex(index+1)
+  
     // setSwipeStates(tempStates)
   // }
   
@@ -146,6 +162,7 @@ const handleOnSwipedRight = (index ) => {
   //   // console.log('card index liked: ', index)
 
   // //to the next card
+  acceptCurrentCard(index);
   setmyCardIndex(index+1)
   // // setSwipeStates(tempStates)
   // }
@@ -175,6 +192,7 @@ const handleRejectIconClick = () => {
     // console.log('card index rejected: ', myCardIndex)
 
     //to the next card
+    rejectCurrentCard(myCardIndex);
     setmyCardIndex(myCardIndex+1)
     // setSwipeStates(tempStates)
   // }
@@ -218,6 +236,7 @@ const handleLikeIconClick = () => {
     // console.log('card index liked: ', myCardIndex)
 
   //to the next card
+  acceptCurrentCard(myCardIndex);
   setmyCardIndex(myCardIndex+1)
   // setSwipeStates(tempStates)
   // } 
@@ -242,11 +261,21 @@ const handleAllSwipesDone = () => {
           color="white"
           backgroundColor="#E5566D"
         />
+        {props.isTypeUser? 
+        <BusDescription 
+        onPress={() => handleDescIconClick()} 
+        info={cardList[myCardIndex].positionInfo.description} 
+        onModalButtonClick={()=>{}}
+        card={myCardIndex >= cardList.length ? null : cardList[myCardIndex]}
+        />
+        :
         <MainDescription 
           onPress={() => handleDescIconClick()} 
           info={cardList[myCardIndex].positionInfo.description} 
           onModalButtonClick={()=>{}}
+          card={myCardIndex >= cardList.length ? null : cardList[myCardIndex]}
         />
+        }
         <IconButton
           name="heart"
           onPress={() => handleLikeIconClick()}
@@ -325,7 +354,7 @@ return (
         animateCardOpacity
         containerStyle={mainStyles.container}
         cards={cardList}
-        renderCard={(card) => myCardIndex<cardList.length-1? (
+        renderCard={(card) => card? (
           <Card card={card} isTypeUser={props.isTypeUser}/>
         ): (
           noMoreContentCard

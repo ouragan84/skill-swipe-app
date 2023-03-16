@@ -23,9 +23,12 @@ const Tab = createBottomTabNavigator();
 
 function BottomNavBar({route}) {
 
-  console.log('route isTypeUser: ', route.params.isTypeUser)
+  // console.log('route isTypeUser: ', route.params.isTypeUser)
   //const isTypeUser = props.route.params.isTypeUser;
   const isTypeUser=route.params.isTypeUser
+  const profile=route.params.profile
+
+  // console.log(profile);
 
   const userNavBar = (
     <Tab.Navigator
@@ -37,12 +40,14 @@ function BottomNavBar({route}) {
       >
         <Tab.Screen
           name="MyProfile"
-          component={MyProfile}
+          // component={MyProfile}
+          children={()=><MyProfile profile={profile}/>}
           options={{
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="user" size={24} color="black" />
             ),
           }}
+          
         />
         <Tab.Screen
           name="Main"

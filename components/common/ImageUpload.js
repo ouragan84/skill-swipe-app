@@ -1,54 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, TouchableOpacity, Text, View, Platform, TextInput, Image, Button} from 'react-native';
 import * as ImagePicker from 'expo-image-picker'
 
 import {styles} from '../../constants/styles'
 import { horizontalScale, moderateScale, verticalScale } from '../../components/helper/Metrics';
 import Icon from 'react-native-vector-icons/Entypo'
-import { fetchUnprotected, fetchProtected , uploadFile} from '../../hooks/webRequestHelper'
+import { fetchUnprotected, fetchProtected , uploadFile, getPhoto} from '../../hooks/webRequestHelper'
 import { Buffer } from "buffer";
 
 
 
 export default function ImageUpload (props) {
 
-  // if(! (props.photo && props.setPhoto) )
-
-  // [photo, setPhoto] = useState()
-  // [photoData, setPhotoData] = useState()
-
-
-  // const currentPhotoUrl = props.currentPhotoUrl;
   const uploadUrl = props.uploadUrl;
 
-
-  // setPhoto(currentPhotoUrl);
-
-// currentPhotoUrl uploadUrl setErrorText ratio setIsCon
-
-  
-
-//   const createFormData = (photoUri, body = {}) => {
-//     const data = new FormData();
-
-//     console.log('HELLO')
-
-//     var imageJSON = {
-//       imageName:new Date().getTime()+"_profile.png",
-//       avatar:photoUri,
-
-//     }
-  
-//     data.append('image', JSON.stringify(imageJSON))
-//     //data.append('image', JSON.stringify(imageJSON))
-//     //data.append('image', Buffer.from(imageJSON.avatar))
-  
-//     console.log('form data: ', JSON.stringify(imageJSON))
-//     //console.log('form data: ', Buffer.from(imageJSON.avatar))
-
-//     return data;
-//   };
-
+  const [isLocal, setIsLocal] = useState(false);
 
  const handleChoosePhoto = async () => {
 
@@ -64,14 +30,10 @@ export default function ImageUpload (props) {
      quality: 1
    });
 
-
    if (!result.canceled) {
 
       const hello = result.assets[0].uri.split('.');
       const extension = hello[hello.length - 1].toLowerCase();
-
-      // console.log("photo choosen", result.assets[0].uri, extension)
-
 
       let type = '';
 
@@ -89,6 +51,7 @@ export default function ImageUpload (props) {
         () => console.log("ppoop"), props.navigation, type
       );
       
+      setIsLocal(true);
       props.setPhoto(result.assets[0].uri);
 
       
@@ -122,7 +85,11 @@ export default function ImageUpload (props) {
  //<Image style={styles.usrProfileLogoImgStyle} source={require('../assets/images/test.jpg')}/>
 
  
-    const imageSource = (props.photo)? { uri: props.photo } : require('../../assets/images/test.jpg');
+    const imageSource = {
+      uri: isLocal? props.photo: getPhoto(props.photo.name) ,
+    };//
+
+    console.log(props.photo, imageSource, isLocal);
 
     // console.log(imageSource)
 

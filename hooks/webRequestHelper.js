@@ -12,6 +12,14 @@ import SocketIOClient from 'socket.io-client';
 //     return `${API_URL}${url}`;
 // }
 
+const s3url = 'https://skill-swipe-bucket.s3.us-west-1.amazonaws.com/'
+
+const getPhoto = (photoUrl) => {
+    if(photoUrl)
+        return `${s3url}${photoUrl}`;
+    return `https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDgyNDJlNmJjYzc1YTliYjI1ZDQ1NDg4M2U5N2JjMGI0Y2I1ODdlYSZjdD1n/3oEjI6SIIHBdRxXI40/giphy.gif`
+}
+
 const fetchUnprotected = async (url, method, body, errorDisplay, next, log = false) => {
 
     const options = {
@@ -133,7 +141,13 @@ const linkToPage = (url) => {
     Linking.openURL(`${API_URL}${url}`);
 }
 
-const checkConsumerStatusAndNavigate = (navigation) => {
+// const getUserInformations = async (props) => {
+//     await fetchProtected('/user/get/complete-info', 'GET', null, (response) => {}, (response) => {
+//         props.user = response.user;
+//     }, props.navigation);
+// }
+
+const checkConsumerStatusAndNavigate = async (navigation) => {
     fetchProtected('/consumer/info', 'GET', null, async (err) => {
         navigation.reset({
             index: 0,
@@ -160,17 +174,23 @@ const checkConsumerStatusAndNavigate = (navigation) => {
             logIntoSocketIO(token);
 
             if (response.consumer.isTypeUser) {
-                navigation.reset({
-                    index: 0,
-                    routes: [{ 
-                        name: 'BottomNavBar' ,
-                        params: { 
-                            screen: 'Main',
-                            isTypeUser: true,
-                            navigation: navigation,
-                        }
-                    }], // user main
-                });
+
+                // do same for buisness
+                await fetchProtected('/user/get/complete-info', 'GET', null, (response) => {}, (response) => {
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ 
+                            name: 'BottomNavBar' ,
+                            params: { 
+                                screen: 'Main',
+                                isTypeUser: true,
+                                profile: response.user
+                            }
+                        }], // user main
+                    });
+                }, navigation);
+
+                
             } else {
                 navigation.reset({
                     index: 0,
@@ -178,8 +198,7 @@ const checkConsumerStatusAndNavigate = (navigation) => {
                         name: 'BottomNavBar' ,
                         params: { 
                             screen: 'Main',
-                            isTypeUser: false,
-                            navigation: navigation
+                            isTypeUser: false
                         }
                     }], // buisness main
                 });
@@ -232,4 +251,4 @@ socket.on('connection-failure',  (message) => {
     console.log(message)
 })
 
-module.exports = { fetchProtected, fetchUnprotected, linkToPage, checkConsumerStatusAndNavigate, fetchCustomToken, uploadFile, socket, logIntoSocketIO};
+module.exports = { fetchProtected, fetchUnprotected, linkToPage, checkConsumerStatusAndNavigate, fetchCustomToken, uploadFile, socket, logIntoSocketIO, getPhoto};

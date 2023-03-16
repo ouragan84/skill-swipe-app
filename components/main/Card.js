@@ -3,6 +3,8 @@ import { View, Text, Image, ImageSourcePropType, StyleSheet } from 'react-native
 import { shape, string, number } from 'prop-types'
 import styles from './Card.styles'
 import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics'
+import { getPhoto } from '../../hooks/webRequestHelper';
+
 const Card = ({ card, isTypeUser }) => {
 
   let displayInfo = {} 
@@ -26,7 +28,6 @@ const Card = ({ card, isTypeUser }) => {
     // - Branch Size
     // - skills -> format = Preferred Skills: X, Y, Z
 
-
       let skills = 'Preferred Skills: '
 
       if(card.positionInfo.skills)
@@ -49,6 +50,10 @@ const Card = ({ card, isTypeUser }) => {
      }
   }
 
+  let picture = {uri: getPhoto(card.companyInfo.profilePicture.name)}
+
+  // console.log("card picture:", picture);
+
   return (
     <View
     activeOpacity={1}
@@ -67,7 +72,7 @@ const Card = ({ card, isTypeUser }) => {
         {`${card.name}, ${card.experiences[0].title}`}
       </Text>
     </View> */}
-      <Image style={stylez.image} source={card.photo}/>
+      <Image style={stylez.image} source={picture}/>
       <View style={{paddingBottom:moderateScale(250)}}/>
       <Text style={{
         fontSize:moderateScale(24),
