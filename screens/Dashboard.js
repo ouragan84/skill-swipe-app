@@ -53,13 +53,15 @@ const Dashboard = (props) => {
 
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
 
+  const [indexDeleting, setIndexDeleting] = useState(0);
+
   let company = props.route.params.profile;
   let positionInfos = props.route.params.profile.positionInfos;
 
   // console.log(positionInfos);
 
-  const handleDelete = (i) => {
-    console.log("Trying to delete " + i)
+  const handleDelete = () => {
+    console.log("Trying to delete " + indexDeleting)
     // fetchProtected(`/company/delete/position/${i}`, 'DELETE', null, (response)=>{console.log("ERROR", response)}, (response)=>{
     //   // console.log("GOOD", response)
     //   checkConsumerStatusAndNavigate(props.navigation);
@@ -69,7 +71,7 @@ const Dashboard = (props) => {
     // );
   }
 
-  let businessPositionsComp = positionInfos.map(item => (
+  let businessPositionsComp = positionInfos.map((item,index) => (
     <View style={{paddingBottom:15}}>
     <View
       style={{
@@ -81,10 +83,10 @@ const Dashboard = (props) => {
       <Text style={{paddingLeft:moderateScale(25), fontSize:moderateScale(16)}}>{item.information.title}</Text>
       
       <View style={{flexDirection:'row'}}>
-      <FontAwesome5 name="trash" onPress={()=>setConfirmModalVisible(!confirmModalVisible)} style={{
+      <FontAwesome5 name="trash" onPress={()=>{setIndexDeleting(index); setConfirmModalVisible(!confirmModalVisible)}} style={{
         paddingRight:moderateScale(25), fontSize:moderateScale(18)
       }}/>
-      <Confirm modalVisible={confirmModalVisible} setModalVisible={setConfirmModalVisible} message="Are you sure you want to do this?" onModalButtonClick={()=>handleDelete(item.information.title)}/>
+      <Confirm modalVisible={confirmModalVisible} setModalVisible={setConfirmModalVisible} message="Are you sure you want to do this?" onModalButtonClick={()=>handleDelete()}/>
 
       <EntypoIcon name="chevron-right" onPress={()=>{
         const screenToGoTo = 'Main'
