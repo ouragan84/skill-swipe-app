@@ -42,11 +42,12 @@ const SignUp = (props) => {
       <ButtonM name="Register as Applicant" click={() => clkMe(true)}/>
       <View style={{paddingBottom:moderateScale(20)}}/>
       <ButtonM name="Register as Company" click={() => clkMe(false)}/>
-      <View style={{width:horizontalScale(210), paddingTop:moderateScale(70), flexDirection:"row", justifyContent:"space-between"}}>
+      <View style={{width:horizontalScale(210), paddingTop:moderateScale(70), flexDirection:"row", justifyContent:"space-between", paddingBottom:moderateScale(20)}}>
         <Text onPress={() => linkToPage('/terms-of-use')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Terms of use</Text>
         <Text onPress={() => linkToPage('/privacy-policy')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Privacy Policy</Text>
       </View>
       <ButtonM name="Go to user view" click={() => goToUserProfile(true)} />
+      <View style={{paddingBottom:moderateScale(20)}}/>
       <ButtonM name="Go to business view" click={() => goToUserProfile(false)} />
     </SafeAreaView>
   )

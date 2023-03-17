@@ -1,0 +1,25 @@
+Agriculture
+Culinary
+Forestry
+Fishing
+Retail
+Administration
+Arts
+Entertainment
+Recreation
+Construction
+Defense
+Education
+Finance
+Insurance
+Healthcare
+Hospitality
+Social Assistance
+Manufacturing
+Mining
+Technical Services
+Real Estate
+Transportation
+Warehousing
+Utilities
+Wholesale
