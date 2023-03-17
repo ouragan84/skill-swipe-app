@@ -65,7 +65,7 @@ function TopNavBar(props) {
             }
           }}
           options={{
-            tabBarLabel: 'Matches',
+            tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="chatbubbles"  size={moderateScale(30)} color={navColorState[0]? "#28A0BB": "black"} style={{marginBottom: moderateScale(-20)}}/>
             ),
@@ -80,7 +80,7 @@ function TopNavBar(props) {
             }
           }}
           options={{
-            tabBarLabel: 'Main',
+            tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
               <Image style={{height: verticalScale(40), width:horizontalScale(40), marginTop: moderateScale(20)}} source={require('../../assets/images/logo.png')}/>
             ),
@@ -96,9 +96,9 @@ function TopNavBar(props) {
             }
           }}
           options={{
-            tabBarLabel: 'Edit Position',
+            tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
-              <Feather name="edit"   size={moderateScale(30)} color={navColorState[0]? "#28A0BB": "black"} style={{marginBottom: moderateScale(-20)}}/>
+              <Feather name="edit"   size={moderateScale(30)} color={navColorState[2]? "#28A0BB": "black"} style={{marginBottom: moderateScale(-20)}}/>
             ),
             animationEnabled: false,
           }}
