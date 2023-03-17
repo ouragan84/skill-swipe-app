@@ -2,7 +2,7 @@
 
 Skill Swipe is a mobile app built with **react-native, Node.js, express.js, and mongoDB** as the database/backend. 
 
-
+This repository contains the React Native Client.
 
 Recruiters can use Skill Swipe to streamline the hiring process and find the best talent for their organization. They can post job openings and receive applications from qualified candidates who match their requirements.
 
@@ -12,13 +12,29 @@ Our implementation is an mobile web app running on both IOS/Android
 
 ## Before Starting
 
-The first line installs the expo client<br />
-The second line installs all other dependencies
+Add a `.env` file at the root of the directory containing the web url of the backend server. To run using the delpoyed backend, add:
+
+```
+API_URL=https://skill-swipe-backend.onrender.com
+```
+
+To instead use the local server, add:
+
+```
+API_URL=http://localhost:3000
+```
+
+Note: you might have to restart your node environement after making changes to the `.env` because of limitations of the `dotenv` library.
+
+Then, run the following code to install dependencies:
 
 ```
 npm install expo-cli -g
 npm install
 ```
+
+ - The first line installs the expo client
+ - The second line installs all other dependencies
 
 ## To Run
 
@@ -32,7 +48,7 @@ Install the Expo App on your IPhone / Android Device<br />
 In order to run it,<br />
 Scan the QR code in the camera app, and it should redirect you to the expo app
 
-Note: make sure that your phone is on the same wifi as your computer (where you inputted npm start)
+Note: make sure that your phone is on the same wifi as your computer (where you inputted npm start). Also, you cannot use a local server while using your phone (because your phone is separate from your computer and cannot access local resources)
 
 ## Set Up Android Emulation
 
