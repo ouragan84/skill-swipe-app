@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 
 const saveToken = async (token) => {
     // kind of a hack to be able to store multiple values inside keychain, but they are secure so it's worth it.
-    console.log("trying to save token ", token)
+    // console.log("trying to save token ", token)
 
     await SecureStore.setItemAsync(
         'access-token',

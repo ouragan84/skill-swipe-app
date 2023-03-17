@@ -1,6 +1,8 @@
-import {React, useEffect, useState} from 'react';
+import { React, useCallback, useEffect, useRef, useState } from "react";
+import { Dimensions } from "react-native";
 import { styles } from '../constants/styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import {AutoScrollFlatList} from "react-native-autoscroll-flatlist";
 
 import {
   ScrollView,
@@ -28,6 +30,8 @@ const MessageScreen = () => {
 
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
+
+  const width = Dimensions.get("screen").width;
 
   let justFlipped = false
 
@@ -82,7 +86,7 @@ const MessageScreen = () => {
                 </FlatList> */}
 
                 {/* THIS FLATLIST IS JUST FOR VIEW PURPOSES */}
-                <FlatList
+                <AutoScrollFlatList
                     data={messages}
                     renderItem={({item: message}) => (
                         <View>

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {SafeAreaView, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { horizontalScale, moderateScale } from '../../../../../components/helper/Metrics';
+import { horizontalScale, moderateScale } from './Metrics';
 
 export default function ButtonM(props) {
     let setSelected = props.callback
     let setCount = props.countCallback
+    let isUnlimited = props.isUnlimited ? true : false; //default false
+    let maxCount = props.maxCount ? props.maxCount : 5; //default 5
 
     let skillsList=props.skillsList
     const [selected,setSelect] = useState(props.selected)
@@ -22,7 +24,7 @@ export default function ButtonM(props) {
 
     const renderItem = (item,index) => {
         const isSelected = selected.includes(index)
-        const canSelect = selected.length <= 5-1
+        const canSelect = selected.length <= (maxCount-1) || isUnlimited
         return(
             <TouchableWithoutFeedback key={index} style={{
                 paddingTop: moderateScale(15),
@@ -41,7 +43,7 @@ export default function ButtonM(props) {
                       arr.push(index)
                     else
                       arr = arr.filter(i => i !== index)
-                    console.log(arr)
+                    // console.log(arr)
                     setSelected(arr)
                     setCount(arr.length)
                 }

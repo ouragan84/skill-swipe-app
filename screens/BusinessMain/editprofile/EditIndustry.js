@@ -1,29 +1,26 @@
 import React, { useState } from 'react';
 import {Text, SafeAreaView,StyleSheet,ScrollView, View} from 'react-native';
-import InputM from '../../../../components/common/InputM';
-import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
-import ButtonM from '../../../../components/common/ButtonM';
+import InputM from '../../../components/common/InputM';
+import { horizontalScale, moderateScale, verticalScale } from '../../../components/helper/Metrics';
+import ButtonM from '../../../components/common/ButtonM';
 import Icon from 'react-native-vector-icons/Entypo';
-import CButtonM from '../../../../components/common/CButtonM';
-import SRButtonM from '../../../../components/common/SRButtonM';
+import CButtonM from '../../../components/common/CButtonM';
+import SRButtonM from '../../../components/common/SRButtonM';
 import { Dimensions } from 'react-native';
 import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import {fetchUnprotected, fetchProtected} from '../../../../hooks/webRequestHelper';
+import { useNavigation } from '@react-navigation/native';
 
 const { screenWidth, screenHeight } = Dimensions.get('window');
 
-const Industry = (props) => {  
 
-  const confirm = () => {
-    
-    const i = refInd.indexOf(true);
-    const industry = industries[i] == "Other" ? other : industries[i];
-    fetchProtected('/company/set/industry', 'POST', {
-      industry 
-    }, setErrorText, () => props.navigation.navigate('AddLogo'), props.navigation);
+function clickMe(){
+  console.log("poopy buttcrack")
+}
 
-    // () => props.navigation.navigate('AddLogo')
-  }
+const EditIndustry = ({route}) => {
+  const businessInfo = route.params.businessInfo
+  const navigation = useNavigation();
+  const [skillCount, setSkillCount] = useState(0)
 
   //input - list of industries as an array
   let industryList = ["Agriculture",   
@@ -52,9 +49,6 @@ const Industry = (props) => {
   "Utilities", 
   "Wholesale", "Other"] 
   const [industries, setIndustries] = useState(industryList)
-  const [other, setOther] = useState()
-  const [errorText, setErrorText] = useState("");
-
 
   let ref = []
   for(let i = 0; i < industries.length; i++){
@@ -64,7 +58,7 @@ const Industry = (props) => {
 
   let otherComp;
   if(refInd[refInd.length-1]){
-    otherComp = <InputM name="Other" placeholder="Type your company's industry" value={other} onChangeValue={setOther}/>
+    otherComp = <InputM name="Other" placeholder="Type your company's industry"/>
   }else{
     otherComp = <View style={{paddingBottom:moderateScale(85)}}/>
   }
@@ -124,11 +118,12 @@ const Industry = (props) => {
       </ScrollView>
       <View style={{paddingBottom:moderateScale(10)}}/>
       {otherComp}
-      <ButtonM name="Confirm" click={confirm}/>
-      <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
+      <ButtonM name="Confirm" click={() => navigation.navigate('BusinessProfileSummary', {
+      businessInfo: businessInfo
+    })}/>
       <View style={{paddingBottom:moderateScale(10)}}/>
     </SafeAreaView>
   );
 };
 
-export default Industry;
+export default EditIndustry;

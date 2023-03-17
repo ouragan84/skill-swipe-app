@@ -38,6 +38,12 @@ import Industry from './screens/consumer/register/business/Industry';
 import AddLogo from './screens/consumer/register/business/AddLogo';
 import Position from './screens/consumer/register/business/Position';
 import BusinessProfileSummary from './screens/BusinessMain/BusinessProfileSummary';
+import EditIndustry from './screens/BusinessMain/editprofile/EditIndustry';
+import EditNameDescSize from './screens/BusinessMain/editprofile/EditNameDescSize';
+import AddPosition from './screens/BusinessMain/AddPosition'
+import TopNavBar from './components/main/TopNavBar';
+
+// import {socket} from '/hooks/webRequestHelper'
 
 const Stack = createStackNavigator();
 
@@ -56,7 +62,7 @@ function NavStack(props) {
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor: '#eee',
+            backgroundColor: '#28A0BB',
           },
           headerTintColor: '#fff',
           headerTitleStyle :{
@@ -195,6 +201,35 @@ function NavStack(props) {
        options={{ title: 'Position', headerShown: false, gestureEnabled:false }}
       />
       <Stack.Screen 
+       name="EditIndustry" 
+       
+       component={ EditIndustry } 
+       options={{ title: 'EditIndustry', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="EditNameDescSize" 
+       
+       component={ EditNameDescSize } 
+       options={{ title: 'EditNameDescSize', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="AddPosition" 
+       
+       component={ AddPosition } 
+       options={{ title: 'AddPosition', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          tabBarLabel: 'Dashboard',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user" size={24} color="black" />
+          ),
+          headerShown:false,
+        }}
+      />
+      <Stack.Screen 
        name="TestScreen" 
        
        component={ TestScreen } 
@@ -207,18 +242,18 @@ function NavStack(props) {
       <Stack.Screen 
        name="BottomNavBar"  
        component={ BottomNavBar }
-       options={{ title: 'BottomNavBar', headerShown: false}}
+       options={{ title: 'BottomNavBar', headerShown: false, }}
+      />
+      <Stack.Screen 
+       name="TopNavBar"  
+       component={ TopNavBar }
+       options={{ title: 'TopNavBar', headerShown: true }}
       />
       {/* <Stack.Screen
         name="Profile"
         component={Profile}
         options={{ title: 'Profile', headerShown: false }}
       /> */}
-      <Stack.Screen
-        name="Dashboard"
-        component={Dashboard}
-        options={{ title: 'Dashboard', headerShown: false }}
-      />
       <Stack.Screen
         name="LikedProfiles"
         component={LikedProfiles}
@@ -241,7 +276,7 @@ function NavStack(props) {
       <Stack.Screen
         name="BusinessProfileSummary"
         component={BusinessProfileSummary}
-        options={{ title: 'BusinessProfileSummary', headerShown: false }}
+        options={{ title: '', headerShown: true }}
       />
 
     </Stack.Navigator>

@@ -8,7 +8,7 @@ export default function NinputM(props) {
 
     let isEditable = props.isEditable!==undefined? props.isEditable: true
 
-    console.log('can edit: ', isEditable)
+    // console.log('can edit: ', isEditable)
 
     return (
         <View>

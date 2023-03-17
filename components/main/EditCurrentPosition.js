@@ -1,25 +1,28 @@
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Text,TextInput,Modal,ScrollView, SafeAreaView, View, Image, FlatList, StyleSheet, Pressable} from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import ButtonM from '../../../../components/common/ButtonM';
-import InputM from '../../../../components/common/InputM';
-import MLinputM from '../../../../components/common/MLinputM';
-import NinputM from '../../../../components/common/NinputM';
-import SRButtonM from '../../../../components/common/SRButtonM';
-import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
-import { styles } from '../../../../constants/styles';
-import SkillsListB from '../../../../components/helper/SkillsListB';
-import SkillsListItem from './helper-components/SkillsListItem';
+import ButtonM from '../common/ButtonM';
+import InputM from '../common/InputM';
+import MLinputM from '../common/MLinputM';
+import NinputM from '../common/NinputM';
+import SRButtonM from '../common/SRButtonM';
+import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics';
+import { styles } from '../../constants/styles';
+import SkillsListB from '../../components/helper/SkillsListB';
+import SkillsListItem from '../../screens/consumer/register/business/helper-components/SkillsListItem';
 import Icon from 'react-native-vector-icons/Entypo';
-import { skillsList } from '../../../../data/skillTags';
-import { fetchUnprotected, fetchProtected, checkConsumerStatusAndNavigate} from '../../../../hooks/webRequestHelper';
-import * as Location from 'expo-location';
+import {fetchUnprotected, fetchProtected, checkConsumerStatusAndNavigate} from '../../hooks/webRequestHelper';
 
 
+const EditCurrentPosition = (props) => {
+  const [num, setNum] = useState(1)
+  useEffect(() => {
+    fetchProtected('/company/get/complete-info', 'GET', null, (response) => {/*error handling*/}, (response) => {
+      console.log(response.company.positions.length)
+    }, props.navigation)
+  })
 
-const Position = (props) => {
-  // const [num, setNum] = useState(1)
   const [modalVisible, setModalVisible] = useState(false);
   const [skillCount, setSkillCount] = useState(0)
 
@@ -29,115 +32,100 @@ const Position = (props) => {
   const multiSlider2ValuesChange = values => setMultiSlider2Value(values);
   const [multiSlider3Value, setMultiSlider3Value] = React.useState([3, 4]);
   const multiSlider3ValuesChange = values => setMultiSlider3Value(values);
-  const [errorText, setErrorText] = useState("");
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [roleCount, setRoleCount] = useState();
-  const [skillPriorities, setSkillPriorities] = useState([]);
-  const [branchSize, setBranchSize] = useState();
 
+  let skillsList=[
+    "Java",
+"Python",
+"C++",
+"JavaScript",
+"PHP",
+"Ruby",
+"Swift",
+"Objective-C",
+"Kotlin",
+"Go",
+"TypeScript",
+"Rust",
+"Perl",
+"Lua",
+"Bash - Shell",
+"Powershell",
+"Scala",
+"R",
+"MATLAB",
+"Dart",
+"Visual Basic (VB)",
+"C#",
+"Haskell",
+"Erlang",
+"Lisp",
+"Clojure",
+"Assembly language",
+"SQL (Structured Query Language)",
+"HTML/CSS",
+"XML",
+"JSON",
+"GraphQL",
+"Solidity (for blockchain)",
+"Dart (for Flutter)",
+"Julia",
+"Groovy",
+"Tcl (Tool Command Language)",
+"Prolog",
+"Ada",
+"Cobol",
+"ReactJS",
+"Angular",
+"Vue.js",
+"Ruby on Rails",
+"Django",
+"Laravel",
+"Express.js",
+"Flask",
+"ASP.NET",
+"Spring Boot",
+"Database management",
+"Agile methodology",
+"Object-oriented programming",
+"Algorithms",
+"Machine learning",
+"Data analytics",
+"Cloud computing",
+"DevOps",
+"UX/UI design",
+"Mobile app development",
+"Version control",
+"Network security",
+"System administration",
+"Artificial intelligence",
+"Computer graphics",
+"Test-driven development",
+"Project management",
+"Web server administration",
+"Scripting",
+"Data visualization",
+"Cybersecurity",
+"Data mining",
+"Operating systems",
+"API design",
+"Embedded systems",
+"Virtualization",
+"Data modeling",
+"Information retrieval",
+"Distributed systems",
+"Computer vision",
+"Natural language processing",
+"Big data",
+"Microservices",
+"Data warehousing",
+"Serverless computing",
+"Containerization",
+"Object-relational mapping",
+"Business intelligence",
+  ]
 
-
-  const getInitialInfo = () => {
-
-    // console.log("trying", branchSize)
-    if(branchSize) 
-      return;
-    
-    fetchProtected('/company/get/complete-info', 'GET', null, setErrorText, (response) => {
-      // con
-      setBranchSize(`${response.company.size}`);
-      console.log("poop", )
-
-    }, props.navigation)
-  }
-
-  getInitialInfo();
-
-  const confirm = async () => {
-    // setSkillCount(skillCount+1)
-
-    setErrorText('')
-
-    let { status } = await Location.requestForegroundPermissionsAsync();
-
-    // Handle Permission Denied
-    if (status !== 'granted') {
-      return setErrorText('Permission to access location was denied');
-      
-    }
-
-    let location = await Location.getCurrentPositionAsync({});
-
-    const skills = [];
-    const skillsImportance = [];
-
-    console.log("skillPriorities", skillPriorities);
-
-    for(let i = 0; i < skillPriorities.length; ++i){
-      // if(skillPriorities[i][0].length == 0)
-      //   return setErrorText('Try Selecting skills');
-
-      if(!skillPriorities[i])
-        return setErrorText('Please select importance for each skill');
-
-      let imp;
-
-      switch (skillPriorities[i][1]){
-        case 'Low': imp = 1; break;
-        case 'Medium': imp = 2; break;
-        case 'High': imp = 3; break;
-        default: return setErrorText('Please select importance for each skill');
-      }
-
-
-      skillsImportance.push(imp);
-      skills.push(skillPriorities[i][0]);
-    }
-
-    
-
-    fetchProtected('/company/add/position', 'POST', {
-      title,
-      description,
-      fillGoalCount: Number(roleCount),
-      payRange: multiSliderValue,
-	    hoursPerWeek: multiSlider2Value, 
-	    monthsRelevantExperience: [multiSlider3Value[0]*12, multiSlider3Value[1]*12], 
-      isRemote: workType[0],
-      isHybrid: workType[1],
-      isInPerson: workType[2],
-      acceptsOver16: ageRange[0],
-      acceptsOver18: ageRange[1],
-      acceptsOver21: ageRange[2],
-      hoursFlexibility: flexib.indexOf(true)+1,
-      skillsImportance,
-      skills,
-      location: [location.coords.latitude, location.coords.longitude],
-      branchSize: Number(branchSize)
-
-  }, setErrorText, () => {
-    setModalVisible(false);
-    setSkillCount(0);
-    setMultiSliderValue([15, 30]);
-    setMultiSlider2Value([15, 30]);
-    setMultiSlider3Value([3, 4]);
-    setErrorText("");
-    setTitle();
-    setDescription();
-    setRoleCount();
-    setSkillPriorities([]);
-    setSelectedSkills([]);
-    props.navigation.navigate('Position', {num: props.route.params.num + 1})
-  }, props.navigation);
-    
-
-  }
-
-  const çdoneAdding = () => {
-    fetchProtected('/company/check-complete', 'GET', null, setErrorText, () => {
-      checkConsumerStatusAndNavigate(props.navigation);
-    }, props.navigation)
+  const clickMe = () => {
+    setSkillCount(skillCount+1)
   }
 
   const [workType, setWorkType] = useState([false,false,false])
@@ -198,56 +186,46 @@ const Position = (props) => {
 
   // THIS SKILLPRIORITIES ARRAY IS ALL YOU NEED FOR THE BACKEND
   // THE FORMAT IS ['skill', 'difficulty']
-  // let skillPriorities = []
-
-  const setSkillPriority = (a, i) =>{
-    // const poopy = skillPriorities;
-
-    // if(i >= 5)
-    //   return;
-
+  let skillPriorities = []
+  for(let i = 0; i < selectedSkills.length; i++){
+    skillPriorities[i] = ["",""]
+  }
+  const setSkillPriorities = (a, i) =>{
     skillPriorities[i] = a
-
-    setSkillPriorities(skillPriorities);
-
   }
 
   const renderItem = (item,i) => { 
     return(
-      <SkillsListItem key={i} item={item} i={i} skillsList={skillsList} selectedSkills={selectedSkills} callbackSkillCount={setSkillCount} callbackSelectedSkills={setSelectedSkills} callbackSkillPri={setSkillPriority}/> 
+      <SkillsListItem key={i} item={item} i={i} skillsList={skillsList} selectedSkills={selectedSkills} callbackSkillCount={setSkillCount} callbackSelectedSkills={setSelectedSkills} callbackSkillPri={setSkillPriorities}/> 
     )
   }
 
   const vToRE = (v) => {
-    // let ref = [0, 1, 5, 10, "+"]
-    // return ref[v]
-
-    if(v == 20)
-      return '+'
-    return v
+    let ref = [0, 1, 5, 10, "+"]
+    return ref[v]
   }
 
   const handleRelExpDisplay = () => {
-    if(multiSlider3Value[0] == 0 && multiSlider3Value[1] == 20)
-      return "Any"
+    if(multiSlider3Value[0] == 0 && multiSlider3Value[1] == 4)
+      return "None"
     
-    if(multiSlider3Value[1] == 20){
-      return vToRE(multiSlider3Value[0]) + vToRE(multiSlider3Value[1]) + ' years'
+    if(multiSlider3Value[1] == 4){
+      return vToRE(multiSlider3Value[0]) + vToRE(multiSlider3Value[1])
     }else{
-      return vToRE(multiSlider3Value[0]) + " to "+ vToRE(multiSlider3Value[1]) + ' years'
-    } 
+      return vToRE(multiSlider3Value[0]) + " to "+ vToRE(multiSlider3Value[1])
+    }
   }
 
 
   return (
-    <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#edf5f7'}}>
-      <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingBottom:moderateScale(30)}}>Add Position {props.route.params.num}</Text>
-      
-      <ScrollView style={{width:'100%',backgroundColor:"white",flexGrow:0, height:verticalScale(500)}}>
+    <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#fff'}}>
+      <Text style={{fontSize:moderateScale(28), fontWeight:'bold', paddingTop:moderateScale(24)}}>Edit Position</Text>
+
+      <ScrollView style={{width:'100%',backgroundColor:"white"}}>
       <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
       <View style={{paddingBottom:moderateScale(20)}}/>
-      <InputM name="Title" placeholder="Enter job title" value={title} onChangeValue={setTitle}/>
-      <MLinputM name="Description" placeholder="Enter job description" value={description} onChangeValue={setDescription}/>
+      <InputM name="Title" placeholder="Enter job title"/>
+      <MLinputM name="Description" placeholder="Enter job description"/>
       
       <Modal
         animationType="slide"
@@ -260,7 +238,7 @@ const Position = (props) => {
         <View style={stylez.centeredView}>
           <View style={stylez.modalView}>  
             <ScrollView style={{width:horizontalScale(300), padding:moderateScale(10), backgroundColor:"#eeeeee"}}>
-              <SkillsListB skillsList={skillsList} callback={setSelectedSkills} countCallback={setSkillCount} selected={selectedSkills} maxCount={5} isUnlimited={false}/>
+              <SkillsListB skillsList={skillsList} callback={setSelectedSkills} countCallback={setSkillCount} selected={selectedSkills}/>
             </ScrollView>
             <View style={{paddingBottom:moderateScale(15)}}/>
             <ButtonM name={`Done (${skillCount}/5)`}  click={() => {
@@ -333,7 +311,7 @@ const Position = (props) => {
         sliderLength={horizontalScale(300)}
         onValuesChange={multiSlider3ValuesChange}
         min={0}
-        max={20}
+        max={4}
         step={1}
         allowOverlap={false}
         snapped
@@ -426,26 +404,13 @@ const Position = (props) => {
         <Text style={{alignSelf: 'center',paddingBottom: moderateScale(5),fontSize:moderateScale(15)}}>
           Number of open roles
         </Text>
-        <NinputM placeholder="" width={moderateScale(100)} value={roleCount} onChangeValue={setRoleCount}/>
+        <NinputM placeholder="" width={moderateScale(100)}/>
       </View>
-
-      <View style={{justifyContent:'space-between', flexDirection:'row', width:horizontalScale(300)}}>
-        <Text style={{alignSelf: 'center',paddingBottom: moderateScale(5),fontSize:moderateScale(15)}}>
-          Number of employees in branch
-        </Text>
-        <NinputM placeholder="" width={moderateScale(100)} value={branchSize} onChangeValue={setBranchSize}/>
-      </View>
-
-
+      <View style={{paddingBottom:moderateScale(20)}}/>
+      <ButtonM name="Confirm" click={()=>console.log("Confirm changes to position")}/>
       <View style={{paddingBottom:moderateScale(40)}}/>
       </View>
       </ScrollView>
-
-      <Text style={{paddingTop:20, color:'#c22'}}>{errorText}</Text>
-
-      <Text onPress={doneAdding} style={{fontSize:moderateScale(15), color:'#28A0BB'}}> Done adding positions</Text>
-      <View style={{paddingBottom:moderateScale(20)}}/>
-      <ButtonM name="Add position +" click={confirm}/>        
 
     </SafeAreaView>
     
@@ -527,4 +492,4 @@ const stylez = StyleSheet.create({
 });
 
 
-export default Position;
+export default EditCurrentPosition;
