@@ -52,7 +52,7 @@ const Card = ({ card, isTypeUser }) => {
      }
   }
 
-  let picture = {uri: getPhoto(isTypeUser? card.companyInfo.profilePicture.name : card.profilePicture.name)}
+  let picture = {uri: getPhoto(isTypeUser? card.companyInfo.profilePicture : card.profilePicture)}
 
   // console.log("card picture:", picture);
 

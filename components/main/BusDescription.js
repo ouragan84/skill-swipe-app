@@ -13,7 +13,7 @@ export default function BusDescription(props) {
     // let experienceCards = []
     // let experiences = []
     let pos = props.card;
-    let picture = {uri: getPhoto(pos.companyInfo.profilePicture.name)}
+    let picture = {uri: getPhoto(pos.companyInfo.profilePicture)}
 
 
     let preferedSkillsStr = ""

@@ -112,7 +112,7 @@ const Main = (props) => {
     // if(rejected)
     //   console.log(`Liked: ${rejected.positionInfo.title}`)
     // setCardList(cardListCopy);
-    fetchProtected(props.isTypeUser?'/main/user/reject/position':`/main/company/accept/applicant${props.position_index}`, 'POST', {
+    fetchProtected(props.isTypeUser?'/main/user/accept/position':`/main/company/accept/applicant${props.position_index}`, 'POST', {
       positionId: cardList[index].id
     }, (response) => {console.error(response)}, (response) => {
       console.log(response)

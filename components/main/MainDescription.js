@@ -6,6 +6,7 @@ import ButtonM from '../../components/common/ButtonM'
 import IconButton from './IconButton'
 import SeeMore from 'react-native-see-more-inline';
 import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
+import {getPhoto} from '../../hooks/webRequestHelper';
 
 export default function Confirm(props) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -77,20 +78,20 @@ export default function Confirm(props) {
                 <View style={stylez.modalView}>
                   <ScrollView showsVerticalScrollIndicator={false}>  
                   <View style={{paddingBottom:moderateScale(40)}}/>
-                  <Image style={stylez.image} source={props.info.photo}/>
+                  <Image style={stylez.image} source={{uri:getPhoto(props.info.profilePicture)}}/>
                   <View style={{paddingBottom:moderateScale(10)}}/>
                   <Text style={{
                     fontSize:moderateScale(28),
                     fontWeight:'bold',
                     textAlign:'center'
-                  }}>{props.info.name}</Text>
+                  }}>{props.info.personalInformation.firstName} {props.info.personalInformation.lastName}</Text>
                   
                   <Text style={{
                     fontSize:moderateScale(18),
                     color: '#000',
                     fontWeight:'default',
                     alignSelf:'center'
-                  }}>{props.info.city}, CA</Text> 
+                  }}>{props.info.personalInformation.city}, CA</Text> 
                   <View style={{paddingBottom:moderateScale(20)}}/>
 
                   <View style={{width:horizontalScale(330), backgroundColor:'#f5f5f5', borderRadius:moderateScale(18)}}>
