@@ -84,7 +84,7 @@ const MyProfile = (props) => {
     return `${yrs} years, ${mths} months`
   }
 
-  if(experiences){
+  if(experiences.length > 0){
     for(let i = 0; i < experiences.length; i++){
       let expSkills = []
       let skills = experiences[i].skills

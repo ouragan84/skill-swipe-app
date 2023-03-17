@@ -13,11 +13,11 @@ const Card = ({ card, isTypeUser }) => {
 
   // BUSINESSES SEE USER INFO
   if(!isTypeUser)
-  {
+  {   
       displayInfo= {
         "title": card.personalInformation.firstName + ' ' + card.personalInformation.lastName,
         "location": card.personalInformation.city + ", " + 'CA',
-        "skills": card.experience ? card.experience[0].title : card.description.substr(0,23)+"...",
+        "skills": card.experience.length>0 ? card.experience[0].title : card.description,
         "supportInfo": "support"
       }
   }

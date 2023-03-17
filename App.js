@@ -48,7 +48,7 @@ import TopNavBar from './components/main/TopNavBar';
 
 const Stack = createStackNavigator();
 
-// LogBox.ignoreAllLogs();
+LogBox.ignoreAllLogs();
 
 const MyTheme = {
   ...DefaultTheme,
@@ -61,7 +61,7 @@ const MyTheme = {
 function NavStack(props) {
   return (
      <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Onboard" //Home
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -93,7 +93,7 @@ function NavStack(props) {
        name="Onboard" 
        
        component={ Onboard } 
-       options={{ title: 'Onboard', headerShown: false }}
+       options={{ title: 'Onboard', headerShown: false , animationEnabled: false}}
       />
       <Stack.Screen 
        name="Location" 
@@ -246,7 +246,7 @@ function NavStack(props) {
       <Stack.Screen 
        name="BottomNavBar"  
        component={ BottomNavBar }
-       options={{ title: 'BottomNavBar', headerShown: false, }}
+       options={{ title: 'BottomNavBar', headerShown: false, animationEnabled: false}}
       />
       <Stack.Screen 
        name="TopNavBar"  

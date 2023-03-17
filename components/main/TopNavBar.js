@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Dimensions, Text, View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+const { width, height } = Dimensions.get('window');
 
 
 import MyProfile from '../../screens/MyProfile';
@@ -54,7 +55,8 @@ function TopNavBar(props) {
       >
         <Tab.Screen
           name="Messages"
-          component={Messages}
+          children={() => <Messages isTypeUser={isTypeUser} dashNav={props.navigation} pos_index={position_index}/>}
+          // component={Messages}
           options={{
             tabBarLabel: 'Matches',
             tabBarIcon: ({ color, size }) => (
@@ -86,9 +88,30 @@ function TopNavBar(props) {
     <>
         <View style={{backgroundColor:'#28A0BB', height:verticalScale(105), width:'100%'}} >
           <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-            <Entypo style={{width:horizontalScale(100),fontSize:moderateScale(25), fontWeight:'bold', color:'white', textAlign:'left', alignItems:'center', top:verticalScale(55), paddingLeft:moderateScale(10)}} name="chevron-left" onPress={()=>{props.navigation.pop()}}/>
-            <Text style={{width:horizontalScale(100),fontSize:moderateScale(20), fontWeight:'bold', color:'white', textAlign:'center', alignItems:'center', top:verticalScale(55)}}>{positionInfos[position_index].information.title}</Text>   
-            <View style={{width:horizontalScale(100)}}/>
+            <Entypo style={{width:horizontalScale(width/6),fontSize:moderateScale(25), fontWeight:'bold', color:'white', textAlign:'left', alignItems:'center', top:verticalScale(55), paddingLeft:moderateScale(15)}} name="chevron-left" onPress={()=>{props.navigation.pop()}}/>
+            <Text style={{width:horizontalScale(2*width/3),fontSize:moderateScale(20), fontWeight:'bold', color:'white', textAlign:'center', alignItems:'center', top:verticalScale(55)}}>{positionInfos[position_index].information.title}</Text>   
+            <Entypo style={{width:horizontalScale(width/6),fontSize:moderateScale(25), fontWeight:'bold', color:'white', textAlign:'right', alignItems:'center', top:verticalScale(55), paddingRight:moderateScale(15)}} name="cw" onPress={()=>{
+              props.navigation.reset({
+                index: 0,
+                routes: [{ 
+                    name: 'Dashboard' ,
+                    params: {
+                        isTypeUser: false,
+                        profile: profile
+                    }
+                },{
+                  name: 'TopNavBar' ,
+                    params:  { 
+                      screen: 'Main',
+                      profile: profile,
+                      isTypeUser: false,
+                      position_index: position_index,
+                      positionInfos: positionInfos
+                    }
+                }
+                ], // user main
+            });
+            }}/>
           </View>
         </View>
         {busNavBar}

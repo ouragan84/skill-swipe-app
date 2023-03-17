@@ -101,9 +101,9 @@ const Main = (props) => {
     //   console.log(`Reject: ${rejected.positionInfo.title}`)
     // setCardList(cardListCopy);
 
-    fetchProtected(props.isTypeUser?'/main/user/reject/position':`/main/company/reject/applicant/${props.position_index}`, 'POST', {
-      positionId: cardList[index].id
-    }, (response) => {console.error(response)}, (response) => {
+    fetchProtected(props.isTypeUser?'/main/user/reject/position':`/main/company/reject/applicant/${props.position_index}`, 'POST', 
+    props.isTypeUser?{positionId: cardList[index].id}:{userId: cardList[index].id}, 
+    (response) => {console.error(response)}, (response) => {
       console.log(response)
     }, props.navigation);
   }
@@ -115,9 +115,9 @@ const Main = (props) => {
     // if(rejected)
     //   console.log(`Liked: ${rejected.positionInfo.title}`)
     // setCardList(cardListCopy);
-    fetchProtected(props.isTypeUser?'/main/user/apply/position':`/main/company/accept/applicant${props.position_index}`, 'POST', {
-      positionId: cardList[index].id
-    }, (response) => {console.error(response)}, (response) => {
+    fetchProtected(props.isTypeUser?'/main/user/apply/position':`/main/company/accept/applicant/${props.position_index}`, 'POST', 
+    props.isTypeUser?{positionId: cardList[index].id}:{userId: cardList[index].id}, 
+    (response) => {console.error(response)}, (response) => {
       console.log(response)
     }, props.navigation);
   }
@@ -275,7 +275,7 @@ const handleAllSwipesDone = () => {
 
   if(myCardIndex < cardList.length-1)
   {
-    console.log('desc: ', cardList[0].positionInfo.description)
+    // console.log('desc: ', cardList[0].positionInfo.description)
     allButtons = (
       <View style={mainStyles.buttonsContainer}>
         <IconButton
@@ -294,7 +294,7 @@ const handleAllSwipesDone = () => {
         :
         <MainDescription 
           onPress={() => handleDescIconClick()} 
-          info={cardList[myCardIndex].positionInfo.description} 
+          info={cardList[myCardIndex]} 
           onModalButtonClick={()=>{}}
           card={myCardIndex >= cardList.length ? null : cardList[myCardIndex]}
         />
@@ -361,7 +361,7 @@ const handleAllSwipesDone = () => {
 
 return (
   <View
-    style={{flex:1, alignItems: 'center', paddingTop:moderateScale(props.isTypeUser ? 50:0)}}
+    style={{flex:1, alignItems: 'center', paddingTop:moderateScale(0)}}
   >
     <View style={mainStyles.swiperContainer}>
     <Swiper

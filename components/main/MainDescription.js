@@ -11,22 +11,19 @@ import {getPhoto} from '../../hooks/webRequestHelper';
 export default function Confirm(props) {
     const [modalVisible, setModalVisible] = useState(false);
     let experienceCards = []
-    let experiences = props.info.experiences
+    let experiences = props.info.experience
 
     const monthsToYM = (m) => {
       let mths = m % 12
       let yrs = Math.floor(m / 12)
       return `${yrs} years, ${mths} months`
     }
-
-    if(experiences){
+    if(experiences.length > 0){
       for(let i = 0; i < experiences.length; i++){
-        expSkills = []
+        expSkills = ""
         skills = experiences[i].skills
         for (let j = 0; j < skills.length; j++){
-          expSkills.push(
-            <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>{skills[j]} {j != skills.length-1?"·":""} </Text>
-          )
+          expSkills+=skills[j] + (j != skills.length-1 ?" · ":"")
         }
 
         experienceCards.push(
@@ -45,13 +42,11 @@ export default function Confirm(props) {
               fontWeight:'default',
               letterSpacing:.3,
             }} numberOfLines={2}>
-            {props.info.experiences[i].description}  
+            {experiences[i].description}  
             </SeeMore> 
             <View style={{paddingBottom:moderateScale(5)}}/>
-            <View style={{flexDirection:'row'}}>
               <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'bold',letterSpacing:.3,}}>Skills: </Text>
-              {expSkills}
-            </View>
+              <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>{expSkills}</Text>
           </View>
         )
       }
@@ -109,7 +104,7 @@ export default function Confirm(props) {
                         fontWeight:'default',
                         letterSpacing:.3,
                       }} numberOfLines={4}>
-                      {props.info.description}  
+                      {props.info.personalInformation.description}  
                       </SeeMore> 
                     </View>
                   </View>

@@ -157,7 +157,7 @@ const Dashboard = (props) => {
           <FontAwesome5 name="user-edit" style={{ fontSize: moderateScale(25), color: "white"}} onPress={()=>goToCompanyProfile()}/>
         </View>
       </View>
-      <ScrollView style={{backgroundColor:'white', width:'100%'}}>
+      <ScrollView style={{backgroundColor:'white', width:'100%', height:verticalScale(440)}}>
         <View style={{flex:1, alignItems: 'center', justifyContent: 'center',}}>
         <View style={{flexDirection:"row",alignItems: 'center', justifyContent: 'center', width:horizontalScale(360), paddingVertical:moderateScale(15), }}>
           <Text style={{fontSize:moderateScale(20), textAlign:'center', fontWeight:'bold'}}>
