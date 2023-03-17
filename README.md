@@ -1,6 +1,6 @@
 # Skill Swipe App - COM SCI 35L Project
 
-Skill Swipe is a mobile app built with **react-native, Node.js, express.js, and mongoDB** as the database/backend. 
+Skill Swipe is a mobile app built with **React Native, Node.js, Express.js, and MongoDB** as the database/backend. 
 
 This repository contains the React Native Client.
 
