@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
 
@@ -42,6 +42,7 @@ function TopNavBar(props) {
   // props
 
   // props.title = "poop"
+
   
   const busNavBar = (
     <Tab.Navigator
@@ -64,7 +65,13 @@ function TopNavBar(props) {
         />
         <Tab.Screen
           name="Main"
-          children={() => <Main isTypeUser={isTypeUser} position_index={position_index} />}
+          children={() => <Main isTypeUser={isTypeUser} position_index={position_index}  />}
+          options={{
+            tabBarLabel: 'Main',
+            tabBarIcon: ({ color, size }) => (
+              <Image source={require('../../assets/images/logo.png')}/>
+            ),
+          }}
         />
         <Tab.Screen
           name="EditCurrentPosition"
