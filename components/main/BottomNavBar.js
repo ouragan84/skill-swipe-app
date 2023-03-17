@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View ,Dimensions} from 'react-native';
+import { Text, View ,Dimensions, Image} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const { width, height } = Dimensions.get('window');
 
@@ -32,6 +32,11 @@ function BottomNavBar(props) {
   const isTypeUser=props.route.params.isTypeUser
   const profile=props.route.params.profile
 
+  const [navColorState, setNavColorState] = React.useState([false, false, false]);
+
+
+
+  // console.log(profile);
 
   const userNavBar = (
     <Tab.Navigator
@@ -45,9 +50,16 @@ function BottomNavBar(props) {
           name="MyProfile"
           // component={MyProfile}
           children={()=><MyProfile profile={profile}/>}
+          listeners={{
+            tabPress: e => {
+              setNavColorState([true, false, false])
+            }
+          }}
           options={{
+            tabBarLabel: '',
+            
             tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="user" size={24} color="black" />
+              <FontAwesome name="user" size={moderateScale(30)} color={navColorState[0]? "#28A0BB": "black"} style={{marginBottom: moderateScale(-20)}}/>
             ),
           }}
           
@@ -55,16 +67,31 @@ function BottomNavBar(props) {
         <Tab.Screen
           name="Main"
           //children={props => <Main {...props} />}
-          children={() => <Main isTypeUser={isTypeUser}/>}
+          listeners={{
+            tabPress: e => {
+              setNavColorState([false, true, false])
+            }
+          }}
+          children={() => <Main isTypeUser={route.params.isTypeUser}/>}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({ color, size }) => (
+              <Image style={{height: verticalScale(40), width:horizontalScale(40), marginTop: moderateScale(20)}} source={require('../../assets/images/logo.png')}/>
+            ),
+          }}
         />
         <Tab.Screen
           name="Messages"
           children={() => <Messages isTypeUser={isTypeUser} dashNav={props.navigation}/>}
-          // component={Messages}
+          listeners={{
+            tabPress: e => {
+              setNavColorState([false, false, true])
+            }
+          }}
           options={{
-            tabBarLabel: 'Matches',
+            tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
-              <Ionicons name="chatbubbles" size={24} color="black" />
+              <Ionicons name="chatbubbles" size={moderateScale(30)} color={navColorState[2]? "#28A0BB": "black"} style={{marginBottom: moderateScale(-20)}}/>
             ),
           }}
         />

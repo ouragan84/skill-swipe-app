@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dimensions, Text, View } from 'react-native';
+import { Dimensions, Text, View, Image } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 const { width, height } = Dimensions.get('window');
 
@@ -43,6 +43,9 @@ function TopNavBar(props) {
   // props
 
   // props.title = "poop"
+
+  onst [navColorState, setNavColorState] = React.useState([false, false, false]);
+
   
   const busNavBar = (
     <Tab.Navigator
@@ -56,26 +59,46 @@ function TopNavBar(props) {
         <Tab.Screen
           name="Messages"
           children={() => <Messages isTypeUser={isTypeUser} dashNav={props.navigation} pos_index={position_index}/>}
-          // component={Messages}
+          listeners={{
+            tabPress: e => {
+              setNavColorState([true, false, false])
+            }
+          }}
           options={{
             tabBarLabel: 'Matches',
             tabBarIcon: ({ color, size }) => (
-              <Ionicons name="chatbubbles" size={24} color="black" />
+              <Ionicons name="chatbubbles"  size={moderateScale(30)} color={navColorState[0]? "#28A0BB": "black"} style={{marginBottom: moderateScale(-20)}}/>
             ),
           }}
         />
         <Tab.Screen
           name="Main"
-          children={() => <Main isTypeUser={isTypeUser} position_index={position_index} />}
+          children={() => <Main isTypeUser={isTypeUser} position_index={position_index}  />}
+          listeners={{
+            tabPress: e => {
+              setNavColorState([false, true, false])
+            }
+          }}
+          options={{
+            tabBarLabel: 'Main',
+            tabBarIcon: ({ color, size }) => (
+              <Image style={{height: verticalScale(40), width:horizontalScale(40), marginTop: moderateScale(20)}} source={require('../../assets/images/logo.png')}/>
+            ),
+          }}
         />
         <Tab.Screen
           name="EditCurrentPosition"
           children={() => <EditCurrentPosition position_index={position_index} position={positionInfos[position_index]} navigation={props.navigation}/>}
           // component={EditCurrentPosition}
+          listeners={{
+            tabPress: e => {
+              setNavColorState([false, false, true])
+            }
+          }}
           options={{
             tabBarLabel: 'Edit Position',
             tabBarIcon: ({ color, size }) => (
-              <Feather name="edit" size={24} color="black" />
+              <Feather name="edit"   size={moderateScale(30)} color={navColorState[0]? "#28A0BB": "black"} style={{marginBottom: moderateScale(-20)}}/>
             ),
             animationEnabled: false,
           }}
