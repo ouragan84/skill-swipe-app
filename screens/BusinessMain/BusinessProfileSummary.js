@@ -36,41 +36,46 @@ import SeeMore from 'react-native-see-more-inline';
 
 
 
-const BusinessProfileSummary = ({route}) => {
+const BusinessProfileSummary = (props) => {
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   const clickMe = () => {
     console.log("a")
   }
 
-  const businessInfo = route.params.businessInfo
-  const [phoneLocation, setPhoneLocation] = useState("San Francisco, CA")
+  console.log(props.route.params.profile)
 
-  const handleDescClick = () => {
+  let profile = props.route.params.profile;
 
-    navigation.navigate('Description', {
-      description: businessInfo.description,
-      navigation: navigation
-    })
+  console.log(profile)
+  // const [phoneLocation, setPhoneLocation] = useState(profile.information.city + " CA")
 
-    Keyboard.dismiss()
-  }
+  // const handleDescClick = () => {
 
-  const handleDeleteExp = () => {
-    console.log('deleted')
-  }
+  //   props.navigation.navigate('Description', {
+  //     description: profile.description
+  //   });
+
+  //   Keyboard.dismiss()
+  // }
+
+  const [photo, setPhoto] = useState(profile.profilePicture)
+
+  // const handleDeleteExp = () => {
+  //   console.log('deleted')
+  // }
 
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
       <ScrollView>
         <View style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
         <View style={{paddingBottom:moderateScale(30)}}/>
-        <ImageUpload/>          
+        <ImageUpload uploadUrl={'/company/set/profile-picture'} setErrorText={() => {}} photo={photo} setPhoto={setPhoto}/>       
         <Text style={{
           fontSize:moderateScale(28),
           fontWeight:'bold',
-        }}>{businessInfo.name}</Text>
+        }}>{profile.name}</Text>
         
         <View style={{paddingBottom:moderateScale(20)}}/>
 
@@ -89,8 +94,8 @@ const BusinessProfileSummary = ({route}) => {
             marginTop:moderateScale(22),
             marginBottom:moderateScale(10)
           }} name='edit'
-          onPress={() => navigation.navigate('EditNameDescSize', {
-            businessInfo: businessInfo
+          onPress={() => props.navigation.navigate('EditNameDescSize', {
+            profile: profile
           })}
           />
           </View>
@@ -101,7 +106,7 @@ const BusinessProfileSummary = ({route}) => {
               fontSize:moderateScale(16),
               color: '#000',
               fontWeight:'default',
-            }}>{businessInfo.size}</Text> 
+            }}>{profile.size}</Text> 
             </View>
             <View style={{flexDirection:'row'}}>
             <Text style={{fontSize:moderateScale(16), color: '#000',fontWeight:'bold'}}>Industry: </Text>
@@ -109,7 +114,7 @@ const BusinessProfileSummary = ({route}) => {
               fontSize:moderateScale(16),
               color: '#000',
               fontWeight:'default',
-            }}>{businessInfo.industry}</Text> 
+            }}>{profile.industry}</Text> 
             </View>
             <View style={{paddingBottom:moderateScale(10)}}/>
             <SeeMore linkStyle={{ fontWeight: '500' }} style={{
@@ -118,13 +123,13 @@ const BusinessProfileSummary = ({route}) => {
               fontWeight:'default',
               letterSpacing:.3,
             }} numberOfLines={4}>
-            {businessInfo.description}  
+            {profile.description}  
             </SeeMore> 
           </View>
         </View>
         <View style={{paddingBottom:moderateScale(10)}}/>
       
-        <View style={{width:horizontalScale(330), backgroundColor:'#f5f5f5', borderRadius:moderateScale(18)}}>
+        {/* <View style={{width:horizontalScale(330), backgroundColor:'#f5f5f5', borderRadius:moderateScale(18)}}>
           <Text style={{
             fontSize:moderateScale(24),
             fontWeight:'bold',
@@ -143,7 +148,7 @@ const BusinessProfileSummary = ({route}) => {
           <View style={{flex:1, justifyContent:"center", alignItems:'center', marginBottom:moderateScale(15)}}>
           <ButtonM name='Recalculate Location' click={()=>console.log('test')}/>
           </View>
-        </View>
+        </View> */}
 
         </View>
       </ScrollView>

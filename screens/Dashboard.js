@@ -42,14 +42,6 @@ const Dashboard = (props) => {
 
   const navigation = useNavigation();
   // const [busProfileData, setBusProfileData] = useState(businessProfile)
-  const goToCompanyProfile = (prof) => {
-
-    navigation.navigate('BusinessProfileSummary', {
-      businessInfo: prof
-    })
-
-    Keyboard.dismiss()
-  }
 
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
 
@@ -58,17 +50,23 @@ const Dashboard = (props) => {
   let company = props.route.params.profile;
   let positionInfos = props.route.params.profile.positionInfos;
 
+  const goToCompanyProfile = () => {
+
+    navigation.navigate('BusinessProfileSummary', {
+      profile: company
+    });
+
+    Keyboard.dismiss()
+  }
+
   // console.log(positionInfos);
 
   const handleDelete = () => {
-    console.log("Trying to delete " + indexDeleting)
-    // fetchProtected(`/company/delete/position/${i}`, 'DELETE', null, (response)=>{console.log("ERROR", response)}, (response)=>{
-    //   // console.log("GOOD", response)
-    //   checkConsumerStatusAndNavigate(props.navigation);
-    //   // props.route.params.profile.positionInfos = positionInfos.splice(i,1);
-    //   // positionInfos = props.route.params.profile.positionInfos;
-    // }
-    // );
+    // console.log("Trying to delete " + indexDeleting)
+    fetchProtected(`/company/delete/position/${indexDeleting}`, 'DELETE', null, (response)=>{console.log("ERROR", response)}, (response)=>{
+      checkConsumerStatusAndNavigate(props.navigation);
+    }
+    );
   }
 
   let businessPositionsComp = positionInfos.map((item,index) => (
@@ -154,7 +152,7 @@ const Dashboard = (props) => {
         </View>
 
         <View style={{alignSelf:'center',top:10}}>
-          <FontAwesome5 name="user-edit" style={{ fontSize: moderateScale(25), color: "white"}} onPress={()=>goToCompanyProfile(positionInfos)}/>
+          <FontAwesome5 name="user-edit" style={{ fontSize: moderateScale(25), color: "white"}} onPress={()=>goToCompanyProfile()}/>
         </View>
       </View>
       <ScrollView style={{backgroundColor:'white', width:'100%'}}>

@@ -9,27 +9,54 @@ import CButtonM from '../../../components/common/CButtonM';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import NinputM from '../../../components/common/NinputM';
 import { useNavigation } from '@react-navigation/native';
+import { fetchProtected } from '../../../hooks/webRequestHelper';
 
 
 function clickMe(){
   console.log("poopy buttcrack")
 }
 
-const EditNameDescSize = ({route}) => {
-  const navigation = useNavigation();
-  const businessInfo = route.params.businessInfo
+const EditNameDescSize = (props) => {
+
+  const profile = props.route.params.profile
+
+ const [name, setName] = useState(profile.name)
+ const [description, setDescription] = useState(profile.description)
+ const [size, setSize] = useState(`${profile.size}`)
+
+ const [errorText, setErrorText] = useState('');
+
+
+  // const navigation = useNavigation();
+  
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{fontSize:moderateScale(28), fontWeight:'bold', paddingBottom:50}}>Edit Details</Text>
-      <InputM name="Name of Business" placeholder="Enter your company's name" />
-      <MLinputM name="Company Description" placeholder="Talk about your company and its goals"/>
-      <InputM name="Company Size" placeholder="Enter your company's size" numeric={true}/>      
+      <InputM name="Name of Business" placeholder="Enter your company's name" value={name} onChangeValue={setName}/>
+      <MLinputM name="Company Description" placeholder="Talk about your company and its goals" value={description} onChangeValue={setDescription}/>
+      <InputM name="Company Size" placeholder="Enter your company's size" numeric={true} value={size} onChangeValue={setSize}/>
 
-      <View style={{paddingBottom:moderateScale(30)}}/>
+      <Text style={{paddingTop:20, color:'#c22'}}>{errorText}</Text>
+      <View style={{paddingBottom:moderateScale(10)}}/>
+
+
       {/* TODO CLICK THIS BUTTON TO ALLOW LOCATION SERVICES */}
-      <ButtonM name="Confirm" click={() => navigation.navigate('EditIndustry', {
-      businessInfo: businessInfo
-    })} />
+      <ButtonM name="Confirm" click={() => {
+
+        if(size.length == 0 || !Number(size) || Number(size)==0)
+          return setErrorText("Please specify your company's size ")
+        
+        fetchProtected('/company/set/company-information', 'POST', {
+          name, 
+          description, 
+          size: Number(size)
+        }, setErrorText, () => {
+          props.navigation.navigate('EditIndustry', {
+          profile: profile
+        })}, props.navigation)}}
+        />
+
+    
     </SafeAreaView>
   );
 };

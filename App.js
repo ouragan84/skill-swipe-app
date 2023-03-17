@@ -1,7 +1,7 @@
 // App.js
 
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, LogBox } from 'react-native';
 import { NavigationContainer , DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -43,9 +43,12 @@ import EditNameDescSize from './screens/BusinessMain/editprofile/EditNameDescSiz
 import AddPosition from './screens/BusinessMain/AddPosition'
 import TopNavBar from './components/main/TopNavBar';
 
+
 // import {socket} from '/hooks/webRequestHelper'
 
 const Stack = createStackNavigator();
+
+// LogBox.ignoreAllLogs();
 
 const MyTheme = {
   ...DefaultTheme,
