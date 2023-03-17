@@ -3,7 +3,6 @@ import content from './skills.json';
 const readTextFile = () => {
   try {
     console.log("reading from file")
-    console.log(content.skills)
     return content.skills;
   } catch (error) {
     console.error('Error reading the file:', error);
