@@ -10,6 +10,8 @@ import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics
 
 import Confirm from '../../components/helper/Confirm.js'
 
+import {getPhoto} from '../../hooks/webRequestHelper'
+
 const MessageItem = ({ image, lastMessage, name, index, navigation }) => {
 
   const [deletePressed, setDeletePressed] = useState(false)
@@ -41,7 +43,7 @@ const MessageItem = ({ image, lastMessage, name, index, navigation }) => {
   let messageList = (
     <TouchableOpacity key={index} onPress={handlePress}>
       <View style={styles.containerMessage}>
-        <Image source={require("../../assets/images/techjob.png")} style={styles.avatar} />
+        <Image source={{uri:getPhoto(image)}} style={styles.avatar} />
         <View style={styles.messageContent}>
           <Text>{name}</Text>
           <Text style={styles.message}>{lastMessage}</Text>

@@ -1,7 +1,7 @@
 // App.js
 
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, LogBox } from 'react-native';
 import { NavigationContainer , DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -43,7 +43,12 @@ import EditNameDescSize from './screens/BusinessMain/editprofile/EditNameDescSiz
 import AddPosition from './screens/BusinessMain/AddPosition'
 import TopNavBar from './components/main/TopNavBar';
 
+
+// import {socket} from '/hooks/webRequestHelper'
+
 const Stack = createStackNavigator();
+
+LogBox.ignoreAllLogs();
 
 const MyTheme = {
   ...DefaultTheme,
@@ -56,7 +61,7 @@ const MyTheme = {
 function NavStack(props) {
   return (
      <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Onboard" //Home
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -88,7 +93,7 @@ function NavStack(props) {
        name="Onboard" 
        
        component={ Onboard } 
-       options={{ title: 'Onboard', headerShown: false }}
+       options={{ title: 'Onboard', headerShown: false , animationEnabled: false}}
       />
       <Stack.Screen 
        name="Location" 
@@ -225,6 +230,7 @@ function NavStack(props) {
             <FontAwesome name="user" size={24} color="black" />
           ),
           headerShown:false,
+          animationEnabled: false,
         }}
       />
       <Stack.Screen 
@@ -240,12 +246,13 @@ function NavStack(props) {
       <Stack.Screen 
        name="BottomNavBar"  
        component={ BottomNavBar }
-       options={{ title: 'BottomNavBar', headerShown: false, }}
+       options={{ title: 'BottomNavBar', headerShown: false, animationEnabled: false}}
       />
       <Stack.Screen 
        name="TopNavBar"  
        component={ TopNavBar }
-       options={{ title: 'TopNavBar', headerShown: true }}
+       options={{ title: '', headerShown: false, animationEnabled: false}}
+       
       />
       {/* <Stack.Screen
         name="Profile"

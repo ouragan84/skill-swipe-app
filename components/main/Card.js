@@ -3,18 +3,22 @@ import { View, Text, Image, ImageSourcePropType, StyleSheet } from 'react-native
 import { shape, string, number } from 'prop-types'
 import styles from './Card.styles'
 import { horizontalScale, moderateScale, verticalScale } from '../helper/Metrics'
+import { getPhoto } from '../../hooks/webRequestHelper';
+
 const Card = ({ card, isTypeUser }) => {
+
+  // isTypeUser refers to the person using the app, so isTypeUser = true means we show position profiles.
 
   let displayInfo = {} 
 
   // BUSINESSES SEE USER INFO
   if(!isTypeUser)
-  {
+  {   
       displayInfo= {
-        "title": card.name,
-        "location": card.city + ", " + card.state,
-        "skills": card.experiences ? card.experiences[0].title : card.description.substr(0,23)+"...",
-        "supportInfo": "Last Experience: " + card.lastExperience
+        "title": card.personalInformation.firstName + ' ' + card.personalInformation.lastName,
+        "location": card.personalInformation.city + ", " + 'CA',
+        "skills": card.experience.length>0 ? card.experience[0].title : card.description,
+        "supportInfo": "support"
       }
   }
 
@@ -28,14 +32,17 @@ const Card = ({ card, isTypeUser }) => {
 
       let skills = 'Preferred Skills: '
 
-      for(let i=0;i<card.positionInfo.skills.length; i++)
-      {
-        if(i!=0)
+      if(card.positionInfo.skills)
+        for(let i=0;i<card.positionInfo.skills.length; i++)
         {
-          skills += ', '
+          if(i!=0)
+          {
+            skills += ', '
+          }
+          skills += card.positionInfo.skills[i]
         }
-        skills += card.positionInfo.skills[i]
-      }
+      else
+        skills += 'none'
 
      displayInfo = {
       "title": card.positionInfo.title,
@@ -44,6 +51,10 @@ const Card = ({ card, isTypeUser }) => {
       "supportInfo": "$ " + card.positionInfo.payRange[0] + '-' + card.positionInfo.payRange[1] + "/hr, " + card.positionInfo.hoursPerWeek[0] + '-' + card.positionInfo.hoursPerWeek[1] + " hrs/week"
      }
   }
+
+  let picture = {uri: getPhoto(isTypeUser? card.companyInfo.profilePicture : card.profilePicture)}
+
+  // console.log("card picture:", picture);
 
   return (
     <View
@@ -63,7 +74,7 @@ const Card = ({ card, isTypeUser }) => {
         {`${card.name}, ${card.experiences[0].title}`}
       </Text>
     </View> */}
-      <Image style={stylez.image} source={card.photo}/>
+      <Image style={stylez.image} source={picture}/>
       <View style={{paddingBottom:moderateScale(250)}}/>
       <Text style={{
         fontSize:moderateScale(24),

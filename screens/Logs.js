@@ -1,33 +1,35 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {StyleSheet, TouchableOpacity, Text, View, Platform, TextInput} from 'react-native';
 import {API_URL} from '@env';
+import {socket, fetchUnprotected} from '../hooks/webRequestHelper'
 
 export default function Logs (props) {
-  const [logsText, setLogsText] = useState('Press FETCH and logs will appear here.');
-  const [logsCount, setLogsCount] = useState('Count: -');
-  const [logSendTitle, setLogSendTitle] = useState('');
+  const [logsText, setLogsText] = useState('Press FETCH and logs will appear here.\n');
   const [logSendMessage, setLogSendMessage] = useState('');
+  const [fooEvents, setFooEvents] = useState([]);
+
+  useEffect(() => {
+
+    console.log(props)
+
+    const onMessage = (value) => {
+      setLogsText(previous => `${previous}\n${value}`);
+    }
+
+    socket.on('message', onMessage);
+
+    return () => {
+      socket.off('message', onMessage);
+    };
+  }, []);
 
   const sendLogs = () => {
-    fetch(API_URL+'/logs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: logSendTitle,
-        message: logSendMessage
-      }),
-    });
+    // socket.emit('message', logSendMessage)
+
+    fetchUnprotected('/get/image-url/3feacfc5d4463a64bb7722cdd2526b89fd532f0db23cd02ae693d7ddee1d8e4b', 'GET', null, 
+    (response)=>{console.log("EROOR " + response)}
+    , (response)=>{console.log("WORKED " + response.url)})
   }
-
-  const fetchLogs = async () => {
-    const json_logs = await fetch(API_URL+'/logs').then((response) => response.json());
-    const logs_num = await fetch(API_URL+'/logs/count').then((response) => response.json());
-
-      setLogsText(JSON.stringify(json_logs, null, 2));
-      setLogsCount("Count: " + logs_num);
-  };
 
   return (
     <View style={styles.container}>
@@ -36,12 +38,6 @@ export default function Logs (props) {
 
         <Text>API URL = {API_URL}</Text>
 
-        <TextInput
-          style={styles.inputtitle}
-          onChangeText={setLogSendTitle}
-          value={logSendTitle}
-          placeholder="Title"
-        />
         <TextInput
           style={styles.inputcontent}
           onChangeText={setLogSendMessage}
@@ -52,16 +48,8 @@ export default function Logs (props) {
         <TouchableOpacity style={styles.button} onPress={sendLogs}>
           <Text>SEND</Text>
         </TouchableOpacity>
-        
-        <View>
-          <Text style={styles.title}> RESULT: </Text>
-          <TouchableOpacity style={styles.button} onPress={fetchLogs}>
-            <Text>FETCH</Text>
-          </TouchableOpacity>
-        </View>
 
         <View>
-          <Text>{logsCount}</Text>
           <Text style={styles.monotext}>{logsText}</Text>
         </View>
     </View>

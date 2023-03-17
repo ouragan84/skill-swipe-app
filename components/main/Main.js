@@ -13,7 +13,11 @@ import MainDescription from './MainDescription'
 import { moderateScale } from '../helper/Metrics'
 import { useNavigation } from '@react-navigation/native';
 
+import {socket, fetchProtected, fetchUnrotected} from '../../hooks/webRequestHelper'
+
 import { colors } from '../../constants/colors'
+import CardItem from './CardItem'
+import BusDescription from './BusDescription'
 
 const { height } = Dimensions.get('screen')
 
@@ -24,140 +28,241 @@ const Main = (props) => {
   const useSwiper = useRef()
   const navigation = useNavigation();
 
-  const [cardIndex, setCardIndex] = React.useState(0);
+  const [myCardIndex, setmyCardIndex] = React.useState(0);
   const [swipeStates, setSwipeStates] = React.useState({});
+  
+  const [cardList, setCardList] = useState([])
 
-  console.log('IN MAIN ISTYPE USER:', props.isTypeUser)
+    useEffect(() => {
+      updateCards();
+      const onNewApplicant = () => {
+        // setLogsText(previous => `${previous}\n${value}`);
 
-  let tempStates = {
-    up: false,
-    down: false,
-    left: false,
-    right: false
+        console.log("NEW APPLICANT ")
+        updateCards();
+      }
+  
+      socket.on('new-applicant', onNewApplicant);
+  
+      return () => {
+        socket.off('new-applicant', onNewApplicant);
+      };
+    }, []);
+
+  const updateCards = async () => {
+    // if(cardList.length > 5)
+    //   return;
+    fetchProtected(props.isTypeUser?'/main/user/get/cards':`/main/company/get/cards/${props.position_index}`, 'GET', null, 
+    (response) => {console.error(response)}, (response) => {
+      let newCards = response.cards;
+
+      console.log('response: ', response)
+
+      let updatedCards = cardList.splice(0);
+
+      if(updatedCards.length>0 && updatedCards[updatedCards.length-1] == null)
+        updatedCards.pop()
+
+      for(let i = 0; i < newCards.length; i++){
+        if(newCards[i] == null)
+          continue;
+        for(let j = 0; j < cardList.length; j++)
+          if(newCards[i]._id == cardList[j]._id)
+            continue;
+        
+        updatedCards.push(newCards[i]);
+      }
+
+      updatedCards.push(null)
+      
+      // console.log('here buithc')
+      // console.log(updatedCards)
+      setCardList(updatedCards);
+
+      console.log(updatedCards[0])
+
+    }, props.navigation);
   }
 
-  const handleOnSwipedTop = (cardIndex) => {
+  // console.log('IN MAIN ISTYPE USER:', props.isTypeUser)
 
-    console.log('card index: ', cardIndex)
+  // let tempStates = {
+  //   up: false,
+  //   down: false,
+  //   left: false,
+  //   right: false
+  // }
+
+  const rejectCurrentCard = (index) => {
+    // let cardListCopy = cardList.slice(0);
+    // const rejected = cardListCopy[0]
+    // cardListCopy.splice(0, 1);
+    // if(rejected)
+    //   console.log(`Reject: ${rejected.positionInfo.title}`)
+    // setCardList(cardListCopy);
+
+    fetchProtected(props.isTypeUser?'/main/user/reject/position':`/main/company/reject/applicant/${props.position_index}`, 'POST', 
+    props.isTypeUser?{positionId: cardList[index].id}:{userId: cardList[index].id}, 
+    (response) => {console.error(response)}, (response) => {
+      console.log(response)
+    }, props.navigation);
+  }
+
+  const acceptCurrentCard = (index) => {
+    // let cardListCopy = cardList.slice(0);
+    // const rejected = cardListCopy[0]
+    // cardListCopy.splice(0, 1);
+    // if(rejected)
+    //   console.log(`Liked: ${rejected.positionInfo.title}`)
+    // setCardList(cardListCopy);
+    fetchProtected(props.isTypeUser?'/main/user/apply/position':`/main/company/accept/applicant/${props.position_index}`, 'POST', 
+    props.isTypeUser?{positionId: cardList[index].id}:{userId: cardList[index].id}, 
+    (response) => {console.error(response)}, (response) => {
+      console.log(response)
+    }, props.navigation);
+  }
+
+  // const handleOnSwipedTop = (myCardIndex) => {
+
+  //   console.log('card index: ', myCardIndex)
     
-    if(!tempStates.up)
-    {
-      console.log('oop')
-      //setSwipeState(true)
-      tempStates = {
-        up: true,
-        down: false,
-        left: false,
-        right: false
-      }
-    }
+  //   if(!tempStates.up)
+  //   {
+  //     console.log('oop')
+  //     //setSwipeState(true)
+  //     tempStates = {
+  //       up: true,
+  //       down: false,
+  //       left: false,
+  //       right: false
+  //     }
+  //   }
 
-    setSwipeStates(tempStates)
-  }  
+  //   setSwipeStates(tempStates)
+  // }  
 
 
 const handleOnSwipedLeft = (index) => {
-  if(!tempStates.left)
-  {
-    console.log('looft')
+  console.log('INDEX is: ', index)
+  //rejectCurrentCard();
+  console.log('left')
+  // if(!tempStates.left)
+  // {
+    
+    // console.log('looft')
     //setSwipeState(false)
-    tempStates = {
-      up: false,
-      down: false,
-      left: true,
-      right: false
-    }
-    console.log('card index rejected: ', index)
+    // tempStates = {
+    //   up: false,
+    //   down: false,
+    //   left: true,
+    //   right: false
+    // }
+    // // console.log('card index rejected: ', index)
 
   //to the next card
-  setCardIndex(index+1)
-  setSwipeStates(tempStates)
-  }
+  rejectCurrentCard(index);
+  setmyCardIndex(index+1)
+  
+    // setSwipeStates(tempStates)
+  // }
   
 }
 
 const handleOnSwipedRight = (index ) => {
-  if(!tempStates.right)
-  {
-    console.log('right')
-    //setSwipeState(false)
-    tempStates = {
-      up: false,
-      down: false,
-      left: false,
-      right: true
-    }
-    console.log('card index liked: ', index)
+  //acceptCurrentCard();
+  console.log('right')
+  // if(!tempStates.right)
+  // {
+    
+  //   // console.log('right')
+  //   // setSwipeState(false)
+  //   // tempStates = {
+  //   //   up: false,
+  //   //   down: false,
+  //   //   left: false,
+  //   //   right: true
+  //   // }
+  //   // console.log('card index liked: ', index)
 
-  //to the next card
-  setCardIndex(index+1)
-  setSwipeStates(tempStates)
-  }
+  // //to the next card
+  acceptCurrentCard(index);
+  setmyCardIndex(index+1)
+  // // setSwipeStates(tempStates)
+  // }
   
 }
 
 // Icon click handle
 const handleRejectIconClick = () => {
 
-  if(!tempStates.left)
-  {
-    console.log('left')
-  //setSwipeState(false)
-    tempStates = {
-      up: false,
-      down: false,
-      left: true,
-      right: false
-    }
+  //rejectCurrentCard();
+  useSwiper.current.swipeLeft()
+  console.log('left icon')
+  // if(!tempStates.left)
+  // {
     
-    useSwiper.current.swipeLeft()
+  //   console.log('left')
+  //setSwipeState(false)
+    // tempStates = {
+    //   up: false,
+    //   down: false,
+    //   left: true,
+    //   right: false
+    // }
+    
+    // useSwiper.current.swipeLeft()
 
-    console.log('card index rejected: ', cardIndex)
+    // console.log('card index rejected: ', myCardIndex)
 
     //to the next card
-    setCardIndex(cardIndex+1)
-    setSwipeStates(tempStates)
-  }
+    rejectCurrentCard(myCardIndex);
+    setmyCardIndex(myCardIndex+1)
+    // setSwipeStates(tempStates)
+  // }
   
 }
 const handleDescIconClick = () => {
-  if(!tempStates.up)
-  {
-    console.log('up')
-  
-    tempStates = {
-      up: true,
-      down: false,
-      left: false,
-      right: false
-    }
+  // if(!tempStates.up)
+  // {
 
-    console.log('desc for card index: ', cardIndex, ', name: ', props.data[cardIndex].name)
-  setSwipeStates(tempStates) 
-  }
+  //   console.log('up')
+  
+    // tempStates = {
+    //   up: true,
+    //   down: false,
+    //   left: false,
+    //   right: false
+    // }
+
+    // console.log('desc for card index: ', myCardIndex, ', name: ', cardList[myCardIndex].name)
+  // setSwipeStates(tempStates) 
+  // }
   
 }
 const handleLikeIconClick = () => {
 
-  if(!tempStates.right)
-  {
-    console.log('right')
+  // if(!tempStates.right)
+  // {
+    //acceptCurrentCard();
+    console.log('right icon')
+    // console.log('right')
     //setSwipeState(false)
 
-    tempStates = {
-      up: false,
-      down: false,
-      left: false,
-      right: true
-    }
+    // tempStates = {
+    //   up: false,
+    //   down: false,
+    //   left: false,
+    //   right: true
+    // }
     useSwiper.current.swipeRight()
 
-    console.log('card index liked: ', cardIndex)
+    // console.log('card index liked: ', myCardIndex)
 
   //to the next card
-  setCardIndex(cardIndex+1)
-  setSwipeStates(tempStates)
-  } 
+  acceptCurrentCard(myCardIndex);
+  setmyCardIndex(myCardIndex+1)
+  // setSwipeStates(tempStates)
+  // } 
   
    
 }
@@ -168,8 +273,9 @@ const handleAllSwipesDone = () => {
 
   let allButtons;
 
-  if(cardIndex<props.data.length)
+  if(myCardIndex < cardList.length-1)
   {
+    // console.log('desc: ', cardList[0].positionInfo.description)
     allButtons = (
       <View style={mainStyles.buttonsContainer}>
         <IconButton
@@ -178,11 +284,21 @@ const handleAllSwipesDone = () => {
           color="white"
           backgroundColor="#E5566D"
         />
+        {props.isTypeUser? 
+        <BusDescription 
+        onPress={() => handleDescIconClick()} 
+        info={cardList[myCardIndex].positionInfo.description} 
+        onModalButtonClick={()=>{}}
+        card={myCardIndex >= cardList.length ? null : cardList[myCardIndex]}
+        />
+        :
         <MainDescription 
           onPress={() => handleDescIconClick()} 
-          info={props.data[cardIndex]} 
+          info={cardList[myCardIndex]} 
           onModalButtonClick={()=>{}}
+          card={myCardIndex >= cardList.length ? null : cardList[myCardIndex]}
         />
+        }
         <IconButton
           name="heart"
           onPress={() => handleLikeIconClick()}
@@ -194,7 +310,7 @@ const handleAllSwipesDone = () => {
   }
   
 
-    console.log('up staes is on: ', swipeStates.up)
+    // console.log('up staes is on: ', swipeStates.up)
 
 
     const noMoreContentCard = (
@@ -236,7 +352,7 @@ const handleAllSwipesDone = () => {
     
 
   // useEffect(() => {
-  //   if(cardIndex==userProfiles.length)
+  //   if(myCardIndex==userProfiles.length)
   //   {
   //     console.log('last card done')
   //   };
@@ -245,26 +361,28 @@ const handleAllSwipesDone = () => {
 
 return (
   <View
-    style={mainStyles.mainContainer}
+    style={{flex:1, alignItems: 'center', paddingTop:moderateScale(0)}}
   >
     <View style={mainStyles.swiperContainer}>
     <Swiper
         ref={useSwiper}
+        myCardIndex={0}
         //onSwipedTop={(index) => handleOnSwipedTop(index)}
         disableBottomSwipe={true}
         disableTopSwipe={true}
+        disableLeftSwipe={myCardIndex==cardList.length-1}
+        disableRightSwipe={myCardIndex==cardList.length-1}
         onSwipedLeft={(index) => handleOnSwipedLeft(index)}
         onSwipedRight={(index) => handleOnSwipedRight(index)}
         animateCardOpacity
         containerStyle={mainStyles.container}
-        cards={props.data}
-        renderCard={(card) => cardIndex<props.data.length? (
+        cards={cardList}
+        renderCard={(card) => card? (
           <Card card={card} isTypeUser={props.isTypeUser}/>
         ): (
           noMoreContentCard
         )}
-        infinite
-        cardIndex={cardIndex}
+        
         backgroundColor="white"
         stackSize={2}
         animateOverlayLabelsOpacity
@@ -293,7 +411,7 @@ return (
     
     {allButtons? allButtons: <View></View>}
     {/* {!swipeStates.up? allButtons: likeRejectButtons}
-    {swipeStates.up? <MainDescription onModalButtonClick={()=>{}} info={userProfiles[cardIndex]}/> : <Text></Text>} */}
+    {swipeStates.up? <MainDescription onModalButtonClick={()=>{}} info={userProfiles[myCardIndex]}/> : <Text></Text>} */}
     
   </View>
 )}

@@ -6,26 +6,24 @@ import ButtonM from '../../components/common/ButtonM'
 import IconButton from './IconButton'
 import SeeMore from 'react-native-see-more-inline';
 import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
+import {getPhoto} from '../../hooks/webRequestHelper';
 
 export default function Confirm(props) {
     const [modalVisible, setModalVisible] = useState(false);
     let experienceCards = []
-    let experiences = props.info.experiences
+    let experiences = props.info.experience
 
     const monthsToYM = (m) => {
       let mths = m % 12
       let yrs = Math.floor(m / 12)
       return `${yrs} years, ${mths} months`
     }
-
-    if(experiences){
+    if(experiences.length > 0){
       for(let i = 0; i < experiences.length; i++){
-        expSkills = []
+        expSkills = ""
         skills = experiences[i].skills
         for (let j = 0; j < skills.length; j++){
-          expSkills.push(
-            <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>{skills[j]} {j != skills.length-1?"·":""} </Text>
-          )
+          expSkills+=skills[j] + (j != skills.length-1 ?" · ":"")
         }
 
         experienceCards.push(
@@ -44,13 +42,11 @@ export default function Confirm(props) {
               fontWeight:'default',
               letterSpacing:.3,
             }} numberOfLines={2}>
-            {props.info.experiences[i].description}  
+            {experiences[i].description}  
             </SeeMore> 
             <View style={{paddingBottom:moderateScale(5)}}/>
-            <View style={{flexDirection:'row'}}>
               <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'bold',letterSpacing:.3,}}>Skills: </Text>
-              {expSkills}
-            </View>
+              <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>{expSkills}</Text>
           </View>
         )
       }
@@ -77,20 +73,20 @@ export default function Confirm(props) {
                 <View style={stylez.modalView}>
                   <ScrollView showsVerticalScrollIndicator={false}>  
                   <View style={{paddingBottom:moderateScale(40)}}/>
-                  <Image style={stylez.image} source={props.info.photo}/>
+                  <Image style={stylez.image} source={{uri:getPhoto(props.info.profilePicture)}}/>
                   <View style={{paddingBottom:moderateScale(10)}}/>
                   <Text style={{
                     fontSize:moderateScale(28),
                     fontWeight:'bold',
                     textAlign:'center'
-                  }}>{props.info.name}</Text>
+                  }}>{props.info.personalInformation.firstName} {props.info.personalInformation.lastName}</Text>
                   
                   <Text style={{
                     fontSize:moderateScale(18),
                     color: '#000',
                     fontWeight:'default',
                     alignSelf:'center'
-                  }}>{props.info.city}, CA</Text> 
+                  }}>{props.info.personalInformation.city}, CA</Text> 
                   <View style={{paddingBottom:moderateScale(20)}}/>
 
                   <View style={{width:horizontalScale(330), backgroundColor:'#f5f5f5', borderRadius:moderateScale(18)}}>
@@ -108,7 +104,7 @@ export default function Confirm(props) {
                         fontWeight:'default',
                         letterSpacing:.3,
                       }} numberOfLines={4}>
-                      {props.info.description}  
+                      {props.info.personalInformation.description}  
                       </SeeMore> 
                     </View>
                   </View>

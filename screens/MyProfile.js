@@ -1,6 +1,6 @@
 
 
-import {React, useState}from 'react';
+import {React, useEffect, useState}from 'react';
 import { styles} from '../constants/styles';
 import Card from '../components/main/Card'
 import { useNavigation } from '@react-navigation/native';
@@ -24,6 +24,8 @@ import Icon from 'react-native-vector-icons/Entypo';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { SafeAreaView } from 'react-navigation';
 import { horizontalScale, moderateScale, verticalScale } from '../components/helper/Metrics';
+import {socket, fetchProtected, fetchUnprotected, getPhoto} from '../hooks/webRequestHelper'
+
 
 import MLinputM from '../components/common/MLinputM';
 import NinputM from '../components/common/NinputM';
@@ -38,33 +40,39 @@ import SeeMore from 'react-native-see-more-inline';
 
 const MyProfile = (props) => {
 
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
-  const clickMe = () => {
-    console.log("a")
-  }
+  const user = props.profile;
+
+  // console.log(props)
+
+  // const clickMe = () => {
+  //   console.log("a")
+  // }
+
+  const [photo, setPhoto] = useState(user.profilePicture);
+
+  // useEffect(() => {
+  //   fetchUnprotected('/get/image-url', 'GET', null, (response) => {}, (response) => {
+  //     setPhoto(response.url)
+  //   } );
+  // }, []);
+
+  let latestExperience = user.experience[user.experience.length - 1];
+    user.experience.forEach(exp => {
+      if(exp.isCurrent)
+        latestExperience = exp;
+    }); 
 
   const userInfo =
   {
-    name: 'Austin Wade',
-    lastExperience: "Software Engineer",
-    photo: require('../assets/images/test.jpg'), city: "San Francisco", state: "CA", description: "I am a sophomore at UCSC majoring in computer engineering with a concentration in systems programming interested in learning all facets of technology where I can gain real-world experience in areas like product management, AI/ML, full-stack development, and more.",
-    experiences: [
-      {
-        title: "Math Inspector",
-        description: "10+ years experience in inspecting Mathes varying in size from 1.2 inches to 8-inch megaladons. Created various sketches of Mathes including one that had a 180 degree curve.",
-        months: 131,
-        isCurrent: false,
-        skills: ["Java", 'Ruby', 'Go'],
-      },
-      {
-        title: "Orgee Coordinator",
-        description: "Planned and organized various orgees with disabled people.",
-        months: 14,
-        isCurrent: false,
-        skills: ["HTML", 'C++', 'Cock'],
-      },
-    ],
+    name: `${user.personalInformation.firstName} ${props.profile.personalInformation.lastName}`,
+    lastExperience: `${latestExperience}`,
+    // photo: photo, 
+    city: `${user.personalInformation.city}`, 
+    state: "CA", 
+    description: `${user.personalInformation.description}`,
+    experiences: user.experience,
     key: 'caseex6qfO4TPMYyhorner',
   }
   let experienceCards = []
@@ -76,10 +84,10 @@ const MyProfile = (props) => {
     return `${yrs} years, ${mths} months`
   }
 
-  if(experiences){
+  if(experiences.length > 0){
     for(let i = 0; i < experiences.length; i++){
-      expSkills = []
-      skills = experiences[i].skills
+      let expSkills = []
+      let skills = experiences[i].skills
       for (let j = 0; j < skills.length; j++){
         expSkills.push(
           <Text style={{fontSize:moderateScale(16),color: '#000',fontWeight:'default',letterSpacing:.3,}}>{skills[j]} {j != skills.length-1?"·":""} </Text>
@@ -126,7 +134,7 @@ const MyProfile = (props) => {
       <ScrollView showsVerticalScrollIndicator={false}>  
         <View style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
         <View style={{paddingBottom:moderateScale(50)}}/>
-        <ImageUpload/>
+        <ImageUpload uploadUrl={'/user/set/profile-picture'} setErrorText={()=>{}} photo={photo} setPhoto={setPhoto}/>
         <Text style={{
           fontSize:moderateScale(28),
           fontWeight:'bold',

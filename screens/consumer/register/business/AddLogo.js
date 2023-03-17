@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Text, SafeAreaView, View, StyleSheet, Image} from 'react-native';
 import InputM from '../../../../components/common/InputM';
 import MLinputM from '../../../../components/common/MLinputM';
@@ -10,25 +10,40 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import NinputM from '../../../../components/common/NinputM';
 import { styles } from '../../../../constants/styles';
 import ImageUpload from '../../../../components/common/ImageUpload'
-import { fetchUnprotected, fetchProtected , uploadFile} from '../../../../hooks/webRequestHelper'
+import { fetchUnprotected, fetchProtected , uploadFile, getPhoto} from '../../../../hooks/webRequestHelper'
 
 
 const AddLogo = (props) => {
 
   const [errorText, setErrorText] = useState("");
-  const [photo, setPhoto] = useState('https://m.media-amazon.com/images/I/41cUjUBqpxL._AC_.jpg');
+  const [photo, setPhoto] = useState(null);
 
-  const setInitialDetail = () => {
-    fetchProtected('/company/get/profile-picture', 'GET', null, setErrorText, (response) => {
+  // const setInitialDetail = () => {
+  //   fetchProtected('/company/get/profile-picture', 'GET', null, setErrorText, (response) => {
       
-      setPhoto(response.pictureUrl);
+  //     setPhoto(response.pictureUrl);
 
 
+
+  //   }, props.navigation);
+  // }
+
+  useEffect(() => {
+    fetchProtected('/company/get/complete-info', 'GET', null, setErrorText, (response) => {
+      // console.log("first response", response)
+      // setFirstName(response.user.personalInformation.firstName);
+      // setLastName(response.user.personalInformation.lastName);
+      setPhoto(response.company.profilePicture);
+
+      // fetchUnprotected(`/get/image-url/${response.user.profilePicture.name}`, 'GET', null, setErrorText, (response) => {
+      //   // console.log("photo response", response)
+      //   setPhoto(response.url);
+      // }, false)
 
     }, props.navigation);
-  }
+  }, []);
 
-  setInitialDetail();
+  // setInitialDetail();
 
 
   const confirm = () => {
