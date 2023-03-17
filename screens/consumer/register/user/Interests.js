@@ -1,12 +1,13 @@
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import React, { useState } from 'react';
-import {Text, SafeAreaView, StyleSheet, View, Button} from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {Text, SafeAreaView, StyleSheet, View, Button, TouchableWithoutFeedback, Keyboard} from 'react-native';
+//import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import ButtonM from '../../../../components/common/ButtonM';
 import SRButtonM from '../../../../components/common/SRButtonM';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
 import { styles } from '../../../../constants/styles';
 import {fetchUnprotected, fetchProtected} from '../../../../hooks/webRequestHelper';
+
 
 const Interests = (props) => {
   const [sliderOneChanging, setSliderOneChanging] = React.useState(false);
@@ -110,125 +111,127 @@ const Interests = (props) => {
   }
 
   return (
-    <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontSize:moderateScale(32), fontWeight:'bold'}}>Preferences</Text>
-      
-      <View style={stylez.sliders}>
-        <View style={stylez.sliderOne}>
-          <Text style={stylez.text}>Maximum Distance</Text>
-          <Text style={[stylez.text, sliderOneChanging && { color: 'black' }]}>
-            {sliderOneValue >= maxDistance ? (maxDistance+"+") : sliderOneValue} miles
-          </Text>
-        </View>
-        <MultiSlider
-          values={sliderOneValue}
-          min={1}
-          max={maxDistance+1}
-          sliderLength={horizontalScale(300)}
-          onValuesChangeStart={sliderOneValuesChangeStart}
-          onValuesChange={sliderOneValuesChange}
-          onValuesChangeFinish={sliderOneValuesChangeFinish}
-          selectedStyle={{ backgroundColor: '#28A0BB',}}
-          unselectedStyle={{ backgroundColor: '#ADAFBB', }}
-          trackStyle={{ height: 4, }}
-        />
-
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
+      <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{fontSize:moderateScale(32), fontWeight:'bold'}}>Preferences</Text>
         
-        <View style={stylez.sliderOne}>
-          <Text style={stylez.text}>Hours Per Week</Text>
-          <Text style={stylez.text}>{multiSliderValue[0]} to {multiSliderValue[1]} hours </Text>
-        </View>
-        <MultiSlider
-          values={[multiSliderValue[0], multiSliderValue[1]]}
-          sliderLength={horizontalScale(300)}
-          onValuesChange={multiSliderValuesChange}
-          min={10}
-          max={40}
-          step={5}
-          allowOverlap={false}
-          snapped
-          selectedStyle={{ backgroundColor: '#28A0BB',}}
-          unselectedStyle={{ backgroundColor: '#ADAFBB', }}
-          trackStyle={{ height: 4, }}
-        />
+        <View style={stylez.sliders}>
+          <View style={stylez.sliderOne}>
+            <Text style={stylez.text}>Maximum Distance</Text>
+            <Text style={[stylez.text, sliderOneChanging && { color: 'black' }]}>
+              {sliderOneValue >= maxDistance ? (maxDistance+"+") : sliderOneValue} miles
+            </Text>
+          </View>
+          <MultiSlider
+            values={sliderOneValue}
+            min={1}
+            max={maxDistance+1}
+            sliderLength={horizontalScale(300)}
+            onValuesChangeStart={sliderOneValuesChangeStart}
+            onValuesChange={sliderOneValuesChange}
+            onValuesChangeFinish={sliderOneValuesChangeFinish}
+            selectedStyle={{ backgroundColor: '#28A0BB',}}
+            unselectedStyle={{ backgroundColor: '#ADAFBB', }}
+            trackStyle={{ height: 4, }}
+          />
 
-        <View style={stylez.sliderOne}>
-          <Text style={stylez.text}>Company Size</Text>
-          <Text style={stylez.text}>{sliderToCSIZE(multiSlider2Value[0])}{multiSlider2Value[1]<5 ? " to " : ""}{sliderToCSIZE(multiSlider2Value[1])} employees </Text>
-        </View>
-        <MultiSlider
-          values={[multiSlider2Value[0], multiSlider2Value[1]]}
-          sliderLength={horizontalScale(300)}
-          onValuesChange={multiSlider2ValuesChange}
-          min={0}
-          max={5}
-          step={1}
-          allowOverlap={false}
-          snapped
-          selectedStyle={{ backgroundColor: '#28A0BB',}}
-          unselectedStyle={{ backgroundColor: '#ADAFBB', }}
-          trackStyle={{ height: 4, }}
-        />
-        <View style={{paddingBottom:moderateScale(20)}}/>
+          
+          <View style={stylez.sliderOne}>
+            <Text style={stylez.text}>Hours Per Week</Text>
+            <Text style={stylez.text}>{multiSliderValue[0]} to {multiSliderValue[1]} hours </Text>
+          </View>
+          <MultiSlider
+            values={[multiSliderValue[0], multiSliderValue[1]]}
+            sliderLength={horizontalScale(300)}
+            onValuesChange={multiSliderValuesChange}
+            min={10}
+            max={40}
+            step={5}
+            allowOverlap={false}
+            snapped
+            selectedStyle={{ backgroundColor: '#28A0BB',}}
+            unselectedStyle={{ backgroundColor: '#ADAFBB', }}
+            trackStyle={{ height: 4, }}
+          />
 
-        <View style={{justifyContent:'space-between', flexDirection:'row'}}>
-          <TouchableWithoutFeedback onPress={()=>setWorkType([!workType[0],workType[1],workType[2]])}> 
-            <View style={buttonBorderStyleL(workType[0])}>
-              <Text style={buttonTextStyle(workType[0])}>Remote</Text>
-            </View>
-          </TouchableWithoutFeedback>
+          <View style={stylez.sliderOne}>
+            <Text style={stylez.text}>Company Size</Text>
+            <Text style={stylez.text}>{sliderToCSIZE(multiSlider2Value[0])}{multiSlider2Value[1]<5 ? " to " : ""}{sliderToCSIZE(multiSlider2Value[1])} employees </Text>
+          </View>
+          <MultiSlider
+            values={[multiSlider2Value[0], multiSlider2Value[1]]}
+            sliderLength={horizontalScale(300)}
+            onValuesChange={multiSlider2ValuesChange}
+            min={0}
+            max={5}
+            step={1}
+            allowOverlap={false}
+            snapped
+            selectedStyle={{ backgroundColor: '#28A0BB',}}
+            unselectedStyle={{ backgroundColor: '#ADAFBB', }}
+            trackStyle={{ height: 4, }}
+          />
+          <View style={{paddingBottom:moderateScale(20)}}/>
 
-          <TouchableWithoutFeedback onPress={()=>setWorkType([workType[0],!workType[1],workType[2]])}>
-            <View style={buttonBorderStyleM(workType[1])}>
-              <Text style={buttonTextStyle(workType[1])}>Hybrid</Text>
-            </View>
-          </TouchableWithoutFeedback>
+          <View style={{justifyContent:'space-between', flexDirection:'row'}}>
+            <TouchableWithoutFeedback onPress={()=>setWorkType([!workType[0],workType[1],workType[2]])}> 
+              <View style={buttonBorderStyleL(workType[0])}>
+                <Text style={buttonTextStyle(workType[0])}>Remote</Text>
+              </View>
+            </TouchableWithoutFeedback>
 
-          <TouchableWithoutFeedback onPress={()=>setWorkType([workType[0],workType[1],!workType[2]])}>
-            <View style={buttonBorderStyleR(workType[2])}>
-              <Text style={buttonTextStyle(workType[2])}>In Person</Text>
-            </View>
-          </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={()=>setWorkType([workType[0],!workType[1],workType[2]])}>
+              <View style={buttonBorderStyleM(workType[1])}>
+                <Text style={buttonTextStyle(workType[1])}>Hybrid</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={()=>setWorkType([workType[0],workType[1],!workType[2]])}>
+              <View style={buttonBorderStyleR(workType[2])}>
+                <Text style={buttonTextStyle(workType[2])}>In Person</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+
+          <View style={{paddingBottom:moderateScale(10)}}/>
+          <Text style={stylez.text}>How flexible do you want your work hours?</Text>
+          <View style={{paddingBottom:moderateScale(5)}}/>
+          <View style={{justifyContent:'space-between', flexDirection:'row'}}>
+            <TouchableWithoutFeedback onPress={()=>{
+              let temp = flexib[0]
+              setFlexib([!temp,false,false])
+            }}> 
+              <View style={buttonBorderStyleL(flexib[0])}>
+                <Text style={buttonTextStyle(flexib[0])}>Rigid</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={()=>{
+              let temp = flexib[1]
+              setFlexib([false,!temp,false])
+            }}> 
+              <View style={buttonBorderStyleM(flexib[1])}>
+                <Text style={buttonTextStyle(flexib[1])}>Fair</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={()=>{
+              let temp = flexib[2]
+              setFlexib([false,false,!temp])
+            }}>             
+            <View style={buttonBorderStyleR(flexib[2])}>
+                <Text style={buttonTextStyle(flexib[2])}>Free</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
         </View>
 
         <View style={{paddingBottom:moderateScale(10)}}/>
-        <Text style={stylez.text}>How flexible do you want your work hours?</Text>
-        <View style={{paddingBottom:moderateScale(5)}}/>
-        <View style={{justifyContent:'space-between', flexDirection:'row'}}>
-          <TouchableWithoutFeedback onPress={()=>{
-            let temp = flexib[0]
-            setFlexib([!temp,false,false])
-          }}> 
-            <View style={buttonBorderStyleL(flexib[0])}>
-              <Text style={buttonTextStyle(flexib[0])}>Rigid</Text>
-            </View>
-          </TouchableWithoutFeedback>
-
-          <TouchableWithoutFeedback onPress={()=>{
-            let temp = flexib[1]
-            setFlexib([false,!temp,false])
-          }}> 
-            <View style={buttonBorderStyleM(flexib[1])}>
-              <Text style={buttonTextStyle(flexib[1])}>Fair</Text>
-            </View>
-          </TouchableWithoutFeedback>
-
-          <TouchableWithoutFeedback onPress={()=>{
-            let temp = flexib[2]
-            setFlexib([false,false,!temp])
-          }}>             
-          <View style={buttonBorderStyleR(flexib[2])}>
-              <Text style={buttonTextStyle(flexib[2])}>Free</Text>
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
-      </View>
-
-      <View style={{paddingBottom:moderateScale(10)}}/>
-      <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
-      <ButtonM name="Confirm" click={submitIntrests} />
-  
+        <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
+        <ButtonM name="Confirm" click={submitIntrests} />
+      
     </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

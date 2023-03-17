@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text, SafeAreaView, View} from 'react-native';
+import {Text, SafeAreaView, View, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import InputM from '../../../../components/common/InputM';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
 import ButtonM from '../../../../components/common/ButtonM';
@@ -61,20 +61,24 @@ const NameDOB = (props) => {
 
 
   return (
-    <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingBottom:50}}>Tell us your name</Text>
-      <InputM name="First Name" placeholder="Enter your first name" onChangeValue={setFirstName} value={firstName}/>
-      <InputM name="Last Name" placeholder="Enter your last name" onChangeValue={setLastName} value={lastName}/>
-      <InputM name="Date of Birth" placeholder="Enter your date of birth" onChangeValue={(text) => {
-        setDate(
-          handleText(text)
-        );
-      }} value={date} numeric={true} />
-      <View style={{paddingBottom:moderateScale(50)}}/>
-      <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
-      {/* TODO CLICK THIS BUTTON TO ALLOW LOCATION SERVICES */}
-      <ButtonM name="Confirm" click={sendInfo} />
-    </SafeAreaView>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
+        <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
+
+        <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingBottom:50}}>Tell us your name</Text>
+        <InputM name="First Name" placeholder="Enter your first name" onChangeValue={setFirstName} value={firstName}/>
+        <InputM name="Last Name" placeholder="Enter your last name" onChangeValue={setLastName} value={lastName}/>
+        <InputM name="Date of Birth" placeholder="Enter your date of birth" onChangeValue={(text) => {
+          setDate(
+            handleText(text)
+          );
+        }} value={date} numeric={true} />
+        <View style={{paddingBottom:moderateScale(50)}}/>
+        <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
+        {/* TODO CLICK THIS BUTTON TO ALLOW LOCATION SERVICES */}
+        <ButtonM name="Confirm" click={sendInfo} />
+        </SafeAreaView>
+
+      </TouchableWithoutFeedback>
   );
 };
 

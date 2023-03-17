@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Text, SafeAreaView, View, Image} from 'react-native';
+import {Text, SafeAreaView, View, Image, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import InputM from '../../../../components/common/InputM';
 import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
 import ButtonM from '../../../../components/common/ButtonM';
@@ -14,8 +14,6 @@ import {fetchProtected, fetchUnprotected, checkConsumerStatusAndNavigate, getPho
 // import ImgToBase64 from 'react-native-image-base64';
 // import {RNFS} from 'react-native-fs';
 import * as FileSystem from 'expo-file-system';
-
- 
 
 
 const Profile = (props) => {
@@ -67,23 +65,27 @@ const Profile = (props) => {
 
 
   return (
+    <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontSize:moderateScale(32), fontWeight:'bold'}}>Finalize your Profile</Text>
-      <Text style={{fontSize:moderateScale(18), paddingVertical:moderateScale(20)}}>Please Select a profile picture</Text>
-      <View>
-        {/* <Image style={styles.logoImgStyle} source={require('../../../../assets/images/test.jpg')}/>
-        <View style={{borderWidth:moderateScale(2), borderColor:'white', top:verticalScale(-30), left:verticalScale(90),backgroundColor:"#28A0BB", width:moderateScale(40), height:moderateScale(40), borderRadius:moderateScale(20)}}>
-          <Icon onPress={clickMe} name="camera" style={{color:'white',fontSize:moderateScale(20), justifyContent:'center', textAlign:'center', top:verticalScale(7)}}/>
-        </View> */}
-        <ImageUpload uploadUrl={'/user/set/profile-picture'} setErrorText={setErrorText} photo={photo} setPhoto={setPhoto}/>
-      </View>
-      <Text style={{fontSize:moderateScale(20), fontWeight:'bold'}}>{firstName} {lastName}</Text>
-      <View style={{paddingTop:40}}/>
-      <MLinputM name="Description" placeholder="Talk about yourself and describe your objective." value={description} onChangeValue={setDescription}/>
-      <View style={{paddingTop:40}}/>
-      <Text style={{paddingTop:20, color:'#c22'}}>{errorText}</Text>
-      <ButtonM name="Confirm" click={confirm} />
+      
+        <Text style={{fontSize:moderateScale(32), fontWeight:'bold'}}>Finalize your Profile</Text>
+        <Text style={{fontSize:moderateScale(18), paddingVertical:moderateScale(20)}}>Please Select a profile picture</Text>
+        <View>
+          {/* <Image style={styles.logoImgStyle} source={require('../../../../assets/images/test.jpg')}/>
+          <View style={{borderWidth:moderateScale(2), borderColor:'white', top:verticalScale(-30), left:verticalScale(90),backgroundColor:"#28A0BB", width:moderateScale(40), height:moderateScale(40), borderRadius:moderateScale(20)}}>
+            <Icon onPress={clickMe} name="camera" style={{color:'white',fontSize:moderateScale(20), justifyContent:'center', textAlign:'center', top:verticalScale(7)}}/>
+          </View> */}
+          <ImageUpload uploadUrl={'/user/set/profile-picture'} setErrorText={setErrorText} photo={photo} setPhoto={setPhoto}/>
+        </View>
+        <Text style={{fontSize:moderateScale(20), fontWeight:'bold'}}>{firstName} {lastName}</Text>
+        <View style={{paddingTop:40}}/>
+        <MLinputM name="Description" placeholder="Talk about yourself and describe your objective." value={description} onChangeValue={setDescription}/>
+        <View style={{paddingTop:40}}/>
+        <Text style={{paddingTop:20, color:'#c22'}}>{errorText}</Text>
+        <ButtonM name="Confirm" click={confirm} />
+      
     </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

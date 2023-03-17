@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text,TextInput,Modal,ScrollView, SafeAreaView, View, Image, FlatList, StyleSheet, Pressable} from 'react-native';
+import {Text,TextInput,Modal,ScrollView, SafeAreaView, View, Image, FlatList, StyleSheet, Pressable, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import ButtonM from '../../../../components/common/ButtonM';
 import InputM from '../../../../components/common/InputM';
 import MLinputM from '../../../../components/common/MLinputM';
@@ -47,6 +47,7 @@ const Experience = (props) => {
   }
 
   return (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingBottom:moderateScale(30)}}>Experience {props.route.params.num}</Text>
       <InputM name="Title" placeholder="Enter job title" onChangeValue={setTitle} value={title}/>
@@ -90,8 +91,8 @@ const Experience = (props) => {
       <ButtonM name="Add experience +" click={submitExperience}/>
 
       <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
-      
     </SafeAreaView>
+    </TouchableWithoutFeedback>
     
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import {Text, SafeAreaView,StyleSheet,ScrollView, View} from 'react-native';
+import {Text, SafeAreaView,StyleSheet,ScrollView, View, TouchableWithoutFeedback } from 'react-native';
 import InputM from '../../../../components/common/InputM';
-import { horizontalScale, moderateScale, verticalScale } from '../../../../components/helper/Metrics';
+import { horizontalScale, moderateScale, verticalScale} from '../../../../components/helper/Metrics';
 import ButtonM from '../../../../components/common/ButtonM';
 import Icon from 'react-native-vector-icons/Entypo';
 import CButtonM from '../../../../components/common/CButtonM';
@@ -50,7 +50,7 @@ const Skills = (props) => {
       <ButtonM name="Confirm" click={confirm}/>
 
       <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
-
+     
     </SafeAreaView>
   );
 };
