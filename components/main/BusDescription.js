@@ -93,7 +93,7 @@ export default function BusDescription(props) {
                     <Image style={stylez.image} source={picture}/>
                     <View style={{paddingLeft:moderateScale(20), alignContent:'flex-start'}}>
                       <Text style={{
-                        fontSize:moderateScale(28),
+                        fontSize:moderateScale(22),
                         fontWeight:'bold',
                         textAlign:'left'
                       }}>{pos.positionInfo.title}</Text>

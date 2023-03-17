@@ -44,7 +44,7 @@ function TopNavBar(props) {
 
   // props.title = "poop"
 
-  onst [navColorState, setNavColorState] = React.useState([false, false, false]);
+  const [navColorState, setNavColorState] = React.useState([false, false, false]);
 
   
   const busNavBar = (
