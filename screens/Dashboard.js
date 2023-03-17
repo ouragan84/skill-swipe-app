@@ -35,6 +35,9 @@ import ExpItem from '../components/UserProfileMain/ExpItem';
 import ImageUpload from '../components/common/ImageUpload';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import Confirm from '../components/helper/Confirm';
+import { Entypo } from '@expo/vector-icons';
+
+import auth from '../hooks/authentication'
 
 
 
@@ -153,8 +156,19 @@ const Dashboard = (props) => {
           <Text style={{textAlign:'center',alignSelf:'center', fontSize:moderateScale(20), fontWeight:'bold', color:'white', top:12, paddingLeft:moderateScale(10)}}>Dashboard</Text>   
         </View>
 
-        <View style={{alignSelf:'center',top:10}}>
+        <View style={{alignSelf:'center',top:10, flexDirection:'row'}}>
           <FontAwesome5 name="user-edit" style={{ fontSize: moderateScale(25), color: "white"}} onPress={()=>goToCompanyProfile()}/>
+          <Entypo style={{fontSize: moderateScale(25), color: "white", paddingLeft:moderateScale(20)}} name="log-out" onPress={async ()=>{
+              await auth.deleteToken();
+              await auth.deleteCredentials();
+              props.navigation.reset({
+                index: 0,
+                routes: [{
+                    name: 'Onboard'
+                }
+                ], // user main
+            });
+            }}/>
         </View>
       </View>
       <ScrollView style={{backgroundColor:'white', width:'100%', height:verticalScale(440)}}>

@@ -72,7 +72,7 @@ function BottomNavBar(props) {
               setNavColorState([false, true, false])
             }
           }}
-          children={() => <Main isTypeUser={route.params.isTypeUser}/>}
+          children={() => <Main isTypeUser={props.route.params.isTypeUser}/>}
           options={{
             tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
