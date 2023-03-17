@@ -55,6 +55,9 @@ const Main = (props) => {
     fetchProtected(props.isTypeUser?'/main/user/get/cards':`/main/company/get/cards/${props.position_index}`, 'GET', null, 
     (response) => {console.error(response)}, (response) => {
       let newCards = response.cards;
+
+      console.log('response: ', response)
+
       let updatedCards = cardList.splice(0);
 
       if(updatedCards.length>0 && updatedCards[updatedCards.length-1] == null)
@@ -112,7 +115,7 @@ const Main = (props) => {
     // if(rejected)
     //   console.log(`Liked: ${rejected.positionInfo.title}`)
     // setCardList(cardListCopy);
-    fetchProtected(props.isTypeUser?'/main/user/accept/position':`/main/company/accept/applicant${props.position_index}`, 'POST', {
+    fetchProtected(props.isTypeUser?'/main/user/apply/position':`/main/company/accept/applicant${props.position_index}`, 'POST', {
       positionId: cardList[index].id
     }, (response) => {console.error(response)}, (response) => {
       console.log(response)
