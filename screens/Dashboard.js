@@ -87,11 +87,13 @@ const Dashboard = (props) => {
       <Confirm modalVisible={confirmModalVisible} setModalVisible={setConfirmModalVisible} message="Are you sure you want to do this?" onModalButtonClick={()=>handleDelete()}/>
 
       <EntypoIcon name="chevron-right" onPress={()=>{
-        const screenToGoTo = 'Main'
+        // console.log("BITCH " + positionInfos)
         props.navigation.navigate('TopNavBar', { 
-          screen: screenToGoTo,
-          data: userProfiles, // TODO REPLACE WITH PARTICULAR USERS WHO MIGHT BE INTERESTED IN THAT POSITION
+          screen: 'Main',
+          profile: company,
           isTypeUser: false,
+          position_index: index,
+          positionInfos: positionInfos
         })
       }} style={{
         paddingRight:moderateScale(25), fontSize:moderateScale(20)

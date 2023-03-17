@@ -33,16 +33,26 @@ const Main = (props) => {
   
   const [cardList, setCardList] = useState([])
 
-  useEffect(() => {
-    updateCards();
+    useEffect(() => {
+      updateCards();
+      const onNewApplicant = () => {
+        // setLogsText(previous => `${previous}\n${value}`);
 
-    //io.on('new-applicant')
-  }, [])
+        console.log("NEW APPLICANT ")
+        updateCards();
+      }
+  
+      socket.on('new-applicant', onNewApplicant);
+  
+      return () => {
+        socket.off('new-applicant', onNewApplicant);
+      };
+    }, []);
 
   const updateCards = async () => {
     // if(cardList.length > 5)
     //   return;
-    fetchProtected(props.isTypeUser?'/main/user/get/cards':'/main/company/get/cards', 'GET', null, 
+    fetchProtected(props.isTypeUser?'/main/user/get/cards':`/main/company/get/cards/${props.position_index}`, 'GET', null, 
     (response) => {console.error(response)}, (response) => {
       let newCards = response.cards;
       let updatedCards = cardList.splice(0);
@@ -66,6 +76,8 @@ const Main = (props) => {
       // console.log(updatedCards)
       setCardList(updatedCards);
 
+      console.log(updatedCards[0])
+
     }, props.navigation);
   }
 
@@ -86,7 +98,7 @@ const Main = (props) => {
     //   console.log(`Reject: ${rejected.positionInfo.title}`)
     // setCardList(cardListCopy);
 
-    fetchProtected(props.isTypeUser?'/main/user/reject/position':'/main/company/reject/applicant', 'POST', {
+    fetchProtected(props.isTypeUser?'/main/user/reject/position':`/main/company/reject/applicant/${props.position_index}`, 'POST', {
       positionId: cardList[index].id
     }, (response) => {console.error(response)}, (response) => {
       console.log(response)
@@ -100,7 +112,7 @@ const Main = (props) => {
     // if(rejected)
     //   console.log(`Liked: ${rejected.positionInfo.title}`)
     // setCardList(cardListCopy);
-    fetchProtected(props.isTypeUser?'/main/user/reject/position':'/main/company/accept/applicant', 'POST', {
+    fetchProtected(props.isTypeUser?'/main/user/reject/position':`/main/company/accept/applicant${props.position_index}`, 'POST', {
       positionId: cardList[index].id
     }, (response) => {console.error(response)}, (response) => {
       console.log(response)
@@ -346,7 +358,7 @@ const handleAllSwipesDone = () => {
 
 return (
   <View
-    style={mainStyles.mainContainer}
+    style={{flex:1, alignItems: 'center', paddingTop:moderateScale(props.isTypeUser ? 50:0)}}
   >
     <View style={mainStyles.swiperContainer}>
     <Swiper
