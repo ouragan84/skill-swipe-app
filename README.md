@@ -26,9 +26,14 @@ API_URL=http://localhost:3000
 
 Note: you might have to restart your node environement after making changes to the `.env` because of limitations of the `dotenv` library.
 
+Please make sure to have `npm` and `node` installed with version `19.5.0` or greater (`node -v` to check version).
+
+To install node, please visit [nodejs.org](https://www.nodejs.org/)
+
 Then, run the following code to install dependencies:
 
 ```
+npm config set legacy-peer-deps true
 npm install expo-cli -g
 npm install
 ```
