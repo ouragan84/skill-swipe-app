@@ -81,7 +81,7 @@ const Profile = (props) => {
         <View style={{paddingTop:40}}/>
         <MLinputM name="Description" placeholder="Talk about yourself and describe your objective." value={description} onChangeValue={setDescription}/>
         <View style={{paddingTop:40}}/>
-        <Text style={{paddingTop:20, color:'#c22'}}>{errorText}</Text>
+        <Text style={{height:40, color:'#c22'}}>{errorText}</Text>
         <ButtonM name="Confirm" click={confirm} />
       
     </SafeAreaView>

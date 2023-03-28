@@ -45,6 +45,7 @@ const EmailConfirmation = (props) => {
       <MCIcon style={{paddingTop:moderateScale(50), fontSize:moderateScale(120),}} name="email-send-outline"/>
       <View style={{paddingBottom:moderateScale(50)}}/>
       <ButtonM name="Send Again" click={resend}/>
+      <View style={{paddingBottom:moderateScale(10)}}/>
       <ButtonM name="Go Back" click={goBack}/>
       <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
     </SafeAreaView>

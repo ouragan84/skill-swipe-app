@@ -227,7 +227,7 @@ const Interests = (props) => {
         </View>
 
         <View style={{paddingBottom:moderateScale(10)}}/>
-        <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
+        <Text style={{height:verticalScale(50), color:'#c22'}}>{errorText}</Text>
         <ButtonM name="Confirm" click={submitIntrests} />
       
     </SafeAreaView>

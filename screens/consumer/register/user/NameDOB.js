@@ -54,7 +54,7 @@ const NameDOB = (props) => {
       fetchProtected('/user/set/location', 'POST', {
         latitude: location.coords.latitude,
         longitude: location.coords.longitude
-      }, setErrorText, () => props.navigation.navigate('Experience', {num:1}), props.navigation)
+      }, setErrorText, () => props.navigation.navigate('ExperienceList', {num:1}), props.navigation)
 
     }
   }
@@ -72,8 +72,8 @@ const NameDOB = (props) => {
             handleText(text)
           );
         }} value={date} numeric={true} />
-        <View style={{paddingBottom:moderateScale(50)}}/>
-        <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
+        <View style={{paddingBottom:moderateScale(30)}}/>
+        <Text style={{height:verticalScale(40), color:'#c22'}}>{errorText}</Text>
         {/* TODO CLICK THIS BUTTON TO ALLOW LOCATION SERVICES */}
         <ButtonM name="Confirm" click={sendInfo} />
         </SafeAreaView>

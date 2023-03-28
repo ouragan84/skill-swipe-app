@@ -41,15 +41,15 @@ const Experience = (props) => {
         setTitle("")
         setDescription("")
         setIsCurrent(false)
-        props.navigation.navigate('Experience', {num: props.route.params.num + 1}); 
+        props.navigation.navigate('ExperienceList', {num: props.route.params.num + 1}); 
         
     }, props.navigation)
   }
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-    <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingBottom:moderateScale(30)}}>Experience {props.route.params.num}</Text>
+    <SafeAreaView style={{flexGrow:1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{fontSize:moderateScale(32), fontWeight:'bold', paddingVertical:moderateScale(30)}}>Experience {props.route.params.num}</Text>
       <InputM name="Title" placeholder="Enter job title" onChangeValue={setTitle} value={title}/>
       <MLinputM name="Description" placeholder="Enter your description" onChangeValue={setDescription} value={description}/>
       <View style={{flexDirection:'row', justifyContent:'center', alignContent:'center'}}>
@@ -86,11 +86,11 @@ const Experience = (props) => {
       <View style={{paddingBottom:moderateScale(10)}}/>
       <ButtonM name={`Add Skill Tags (${skillCount}/5)`} click={() => setModalVisible(!modalVisible)}/>
       <View style={{paddingBottom:moderateScale(50)}}/>
-      <Text onPress={() => props.navigation.navigate('Interests')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Done adding Experiences</Text>
+      <Text style={{color:'#c22'}}>{errorText}</Text>
+      {/* <Text onPress={() => props.navigation.navigate('Interests')} style={{fontSize:moderateScale(15), color:'#28A0BB'}}>Done adding Experiences</Text> */}
       <View style={{paddingBottom:moderateScale(20)}}/>
-      <ButtonM name="Add experience +" click={submitExperience}/>
+      <ButtonM name="Save" click={submitExperience}/>
 
-      <Text style={{paddingTop:50, color:'#c22'}}>{errorText}</Text>
     </SafeAreaView>
     </TouchableWithoutFeedback>
     

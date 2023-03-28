@@ -42,13 +42,14 @@ import EditIndustry from './screens/BusinessMain/editprofile/EditIndustry';
 import EditNameDescSize from './screens/BusinessMain/editprofile/EditNameDescSize';
 import AddPosition from './screens/BusinessMain/AddPosition'
 import TopNavBar from './components/main/TopNavBar';
+import ExperienceList from './screens/consumer/register/user/ExperienceList';
 
 
 // import {socket} from '/hooks/webRequestHelper'
 
 const Stack = createStackNavigator();
 
-LogBox.ignoreAllLogs();
+//LogBox.ignoreAllLogs();
 
 const MyTheme = {
   ...DefaultTheme,
@@ -61,7 +62,7 @@ const MyTheme = {
 function NavStack(props) {
   return (
      <Stack.Navigator
-        initialRouteName="Onboard" //Home
+        initialRouteName="Home" //Home
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -220,6 +221,12 @@ function NavStack(props) {
        
        component={ AddPosition } 
        options={{ title: 'AddPosition', headerShown: false, gestureEnabled:false }}
+      />
+      <Stack.Screen 
+       name="ExperienceList" 
+       
+       component={ ExperienceList } 
+       options={{ title: 'ExperienceList', headerShown: false, gestureEnabled:false }}
       />
       <Stack.Screen
         name="Dashboard"

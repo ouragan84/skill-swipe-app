@@ -35,14 +35,22 @@ const Skills = (props) => {
     }, setErrorText, () => { props.navigation.navigate('Profile') }, props.navigation)
   }
 
+  const [searchString, setSearchString] = useState("")
+  let dynamicSkillsList = []
+  for (let s of skillsList) dynamicSkillsList.push(s)
+  dynamicSkillsList = dynamicSkillsList.filter((country) => country.toLowerCase().startsWith(searchString.toLowerCase()))
+
   return (
     <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{fontSize:moderateScale(32), fontWeight:'bold' }}>Add skills you want to use</Text>
+      <Text style={{fontSize:moderateScale(28), fontWeight:'bold', paddingTop:moderateScale(30) }}>Add skills you want to use</Text>
       <View style={{paddingBottom:moderateScale(30)}}/>
-      {/* <InputM name="Search" placeholder="Type a skill you have"/> */}
+      <InputM name="Search" placeholder="Type a skill you have" onChangeValue={setSearchString} value={searchString}/>
 
-      <ScrollView style={{width:horizontalScale(300), padding:moderateScale(10), backgroundColor:"#eeeeee"}}>
-        <SkillsListB skillsList={skillsList} callback={setSelectedSkills} countCallback={setSkillCount} selected={selectedSkills} isUnlimited={true}/>
+      <ScrollView style={{borderRadius:moderateScale(18), padding:moderateScale(10), backgroundColor:"#eeeeee"}}>
+        {dynamicSkillsList.length>0 ? 
+          <SkillsListB skillsList={dynamicSkillsList} callback={setSelectedSkills} countCallback={setSkillCount} selected={selectedSkills} isUnlimited={true}/>
+          : <Text style={{width:horizontalScale(245), textAlign:'center', paddingTop:moderateScale(20)}}>No items match your search</Text>
+        }
       </ScrollView>
       <View style={{paddingBottom:moderateScale(15)}}/>
 
