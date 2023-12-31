@@ -10,6 +10,17 @@ As a user of Skill Swipe, the experience is straightforward and user-friendly. U
 
 Our implementation is an mobile web app running on both IOS/Android
 
+## Preview:
+
+#### Business view:
+
+<img width="957" alt="image" src="https://github.com/ouragan84/skill-swipe-app/assets/77756530/78b61d42-023e-4a62-bcc2-5ad0be9c4cce">
+
+#### User view:
+
+<img width="959" alt="image" src="https://github.com/ouragan84/skill-swipe-app/assets/77756530/f83e5ce4-2f07-493d-8dc9-cbf62fd2a4ee">
+
+
 ## Before Starting
 
 Add a `.env` file at the root of the directory containing the web url of the backend server. To run using the delpoyed backend, add:
